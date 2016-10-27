@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>
+Bugzilla::Mailer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" title="style" type="text/css" href=".././../../../../style.css" media="all" >
+
+</head>
+  <body id="pod">
+<p class="backlinktop"><b><a name="___top" href="../index.html" accesskey="1" title="All Documents">&lt;&lt;</a></b></p>
+<h1>Bugzilla::Mailer</h1>
+<div class='indexgroup'>
+<ul   class='indexList indexList1'>
+  <li class='indexItem indexItem1'><a href='#NAME'>NAME</a>
+  <li class='indexItem indexItem1'><a href='#METHODS'>METHODS</a>
+</ul>
+</div>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="NAME"
+>NAME</a></h1>
+
+<p>Bugzilla::Mailer - Provides methods for sending email</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="METHODS"
+>METHODS</a></h1>
+
+<dl>
+<dt><a name="generate_email"
+><code  class="code">generate_email</code></a></dt>
+
+<dd>
+<p>Generates a multi-part email message,
+using the supplied list of templates.</p>
+
+<dt><a name="MessageToMTA"
+><code  class="code">MessageToMTA</code></a></dt>
+
+<dd>
+<p>Sends the passed message to the mail transfer agent.</p>
+
+<p>The actual behaviour depends on a number of factors: if called from within a database transaction,
+the message will be staged and sent when the transaction is committed.
+If email queueing is enabled,
+the message will be sent to TheSchwartz job queue where it will be processed by the jobqueue daemon,
+else the message is sent immediately.</p>
+
+<dt><a name="build_thread_marker"
+><code  class="code">build_thread_marker</code></a></dt>
+
+<dd>
+<p>Builds header suitable for use as a threading marker in email notifications.</p>
+
+<dt><a name="send_staged_mail"
+><code  class="code">send_staged_mail</code></a></dt>
+
+<dd>
+<p>Sends all staged messages -- called after a database transaction is committed.</p>
+</dd>
+</dl>
+<p class="backlinkbottom"><b><a name="___bottom" href="../index.html" title="All Documents">&lt;&lt;</a></b></p>
+
+<!-- end doc -->
+
+</body></html>

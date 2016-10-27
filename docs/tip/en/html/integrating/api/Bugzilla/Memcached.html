@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>
+Bugzilla::Memcached</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" title="style" type="text/css" href=".././../../../../style.css" media="all" >
+
+</head>
+  <body id="pod">
+<p class="backlinktop"><b><a name="___top" href="../index.html" accesskey="1" title="All Documents">&lt;&lt;</a></b></p>
+<h1>Bugzilla::Memcached</h1>
+<div class='indexgroup'>
+<ul   class='indexList indexList1'>
+  <li class='indexItem indexItem1'><a href='#NAME'>NAME</a>
+  <li class='indexItem indexItem1'><a href='#SYNOPSIS'>SYNOPSIS</a>
+  <li class='indexItem indexItem1'><a href='#DESCRIPTION'>DESCRIPTION</a>
+  <li class='indexItem indexItem1'><a href='#METHODS'>METHODS</a>
+  <ul   class='indexList indexList2'>
+    <li class='indexItem indexItem2'><a href='#Setting'>Setting</a>
+    <li class='indexItem indexItem2'><a href='#Getting'>Getting</a>
+    <li class='indexItem indexItem2'><a href='#Clearing'>Clearing</a>
+  </ul>
+  <li class='indexItem indexItem1'><a href='#Bugzilla%3A%3AObject_CACHE'>Bugzilla::Object CACHE</a>
+  <li class='indexItem indexItem1'><a href='#DIRECT_DATABASE_UPDATES'>DIRECT DATABASE UPDATES</a>
+</ul>
+</div>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="NAME"
+>NAME</a></h1>
+
+<p>Bugzilla::Memcached - Interface between Bugzilla and Memcached.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="SYNOPSIS"
+>SYNOPSIS</a></h1>
+
+<pre  class="code"> use Bugzilla;
+
+ my $memcached = Bugzilla-&#62;memcached;
+
+ # grab data from the cache. there is no need to check if memcached is
+ # available or enabled.
+ my $data = $memcached-&#62;get({ key =&#62; &#39;data_key&#39; });
+ if (!defined $data) {
+     # not in cache, generate the data and populate the cache for next time
+     $data = some_long_process();
+     $memcached-&#62;set({ key =&#62; &#39;data_key&#39;, value =&#62; $data });
+ }
+ # do something with $data
+
+ # updating the profiles table directly shouldn&#39;t be attempted unless you know
+ # what you&#39;re doing. if you do update a table directly, you need to clear that
+ # object from memcached.
+ $dbh-&#62;do(&#34;UPDATE profiles SET request_count=10 WHERE login_name=?&#34;, undef, $login);
+ $memcached-&#62;clear({ table =&#62; &#39;profiles&#39;, name =&#62; $login });</pre>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="DESCRIPTION"
+>DESCRIPTION</a></h1>
+
+<p>If Memcached is installed and configured, Bugzilla can use it to cache data across requests and between webheads. Unlike the request and process caches, only scalars, hashrefs, and arrayrefs can be stored in Memcached.</p>
+
+<p>Memcached integration is only required for large installations of Bugzilla -- if you have multiple webheads then configuring Memcache is recommended.</p>
+
+<p><a href="../Bugzilla/Memcached.html" class="podlinkpod"
+>Bugzilla::Memcached</a> provides an interface to a Memcached server/servers, with the ability to get, set, or clear entries from the cache.</p>
+
+<p>The stored value must be an unblessed hashref, unblessed array ref, or a scalar.</p>
+
+<p>All values are stored in the Memcached systems using the prefix configured with the <code  class="code">memcached_namespace</code> parameter, as well as an additional prefix managed by this class to allow all values to be cleared when <code  class="code">checksetup.pl</code> is executed.</p>
+
+<p>Do not create an instance of this object directly, instead use <a href="../Bugzilla.html#memcached" class="podlinkpod"
+>Bugzilla-&#62;memcached()</a>.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="METHODS"
+>METHODS</a></h1>
+
+<dl>
+<dt><a name="enabled"
+><code  class="code">enabled</code></a></dt>
+
+<dd>
+<p>Returns true if Memcached support is available and enabled.</p>
+</dd>
+</dl>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="Setting"
+>Setting</a></h2>
+
+<p>Adds a value to Memcached.</p>
+
+<dl>
+<dt><a name="set({_key_=&#62;_$key,_value_=&#62;_$value_})"
+><code  class="code">set({ key =&#62; $key, value =&#62; $value })</code></a></dt>
+
+<dd>
+<p>Adds the <code  class="code">value</code> using the specific <code  class="code">key</code>.</p>
+
+<dt><a name="set({_table_=&#62;_$table,_id_=&#62;_$id,_name_=&#62;_$name,_data_=&#62;_$data_})"
+><code  class="code">set({ table =&#62; $table, id =&#62; $id, name =&#62; $name, data =&#62; $data })</code></a></dt>
+
+<dd>
+<p>Adds the <code  class="code">data</code> using a keys generated from the <code  class="code">table</code>, <code  class="code">id</code>, and <code  class="code">name</code>. All three parameters must be provided, however <code  class="code">name</code> can be provided but set to <code  class="code">undef</code>.</p>
+
+<p>This is a convenience method which allows cached data to be later retrieved by specifying the <code  class="code">table</code> and either the <code  class="code">id</code> or <code  class="code">name</code>.</p>
+
+<dt><a name="set_config({_key_=&#62;_$key,_data_=&#62;_$data_})"
+><code  class="code">set_config({ key =&#62; $key, data =&#62; $data })</code></a></dt>
+
+<dd>
+<p>Adds the <code  class="code">data</code> using the <code  class="code">key</code> while identifying the data as part of Bugzilla&#39;s configuration (such as fields, products, components, groups, etc). Values set with <code  class="code">set_config</code> are automatically cleared when changes are made to Bugzilla&#39;s configuration.</p>
+</dd>
+</dl>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="Getting"
+>Getting</a></h2>
+
+<p>Retrieves a value from Memcached. Returns <code  class="code">undef</code> if no matching values were found in the cache.</p>
+
+<dl>
+<dt><a name="get({_key_=&#62;_$key_})"
+><code  class="code">get({ key =&#62; $key })</code></a></dt>
+
+<dd>
+<p>Return <code  class="code">value</code> with the specified <code  class="code">key</code>.</p>
+
+<dt><a name="get({_table_=&#62;_$table,_id_=&#62;_$id_})"
+><code  class="code">get({ table =&#62; $table, id =&#62; $id })</code></a></dt>
+
+<dd>
+<p>Return <code  class="code">value</code> with the specified <code  class="code">table</code> and <code  class="code">id</code>.</p>
+
+<dt><a name="get({_table_=&#62;_$table,_name_=&#62;_$name_})"
+><code  class="code">get({ table =&#62; $table, name =&#62; $name })</code></a></dt>
+
+<dd>
+<p>Return <code  class="code">value</code> with the specified <code  class="code">table</code> and <code  class="code">name</code>.</p>
+
+<dt><a name="get_config({_key_=&#62;_$key_})"
+><code  class="code">get_config({ key =&#62; $key })</code></a></dt>
+
+<dd>
+<p>Return <code  class="code">value</code> with the specified <code  class="code">key</code> from the configuration cache. See <code  class="code">set_config</code> for more information.</p>
+</dd>
+</dl>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="Clearing"
+>Clearing</a></h2>
+
+<p>Removes the matching value from Memcached.</p>
+
+<dl>
+<dt><a name="clear({_key_=&#62;_$key_})"
+><code  class="code">clear({ key =&#62; $key })</code></a></dt>
+
+<dd>
+<p>Removes <code  class="code">value</code> with the specified <code  class="code">key</code>.</p>
+
+<dt><a name="clear({_table_=&#62;_$table,_id_=&#62;_$id_})"
+><code  class="code">clear({ table =&#62; $table, id =&#62; $id })</code></a></dt>
+
+<dd>
+<p>Removes <code  class="code">value</code> with the specified <code  class="code">table</code> and <code  class="code">id</code>, as well as the corresponding <code  class="code">table</code> and <code  class="code">name</code> entry.</p>
+
+<dt><a name="clear({_table_=&#62;_$table,_name_=&#62;_$name_})"
+><code  class="code">clear({ table =&#62; $table, name =&#62; $name })</code></a></dt>
+
+<dd>
+<p>Removes <code  class="code">value</code> with the specified <code  class="code">table</code> and <code  class="code">name</code>, as well as the corresponding <code  class="code">table</code> and <code  class="code">id</code> entry.</p>
+
+<dt><a name="clear_config({_key_=&#62;_$key_})"
+><code  class="code">clear_config({ key =&#62; $key })</code></a></dt>
+
+<dd>
+<p>Remove <code  class="code">value</code> with the specified <code  class="code">key</code> from the configuration cache. See <code  class="code">set_config</code> for more information.</p>
+
+<dt><a name="clear_config"
+><code  class="code">clear_config</code></a></dt>
+
+<dd>
+<p>Removes all configuration related values from the cache. See <code  class="code">set_config</code> for more information.</p>
+
+<dt><a name="clear_all"
+><code  class="code">clear_all</code></a></dt>
+
+<dd>
+<p>Removes all values from the cache.</p>
+</dd>
+</dl>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="Bugzilla::Object_CACHE"
+>Bugzilla::Object CACHE</a></h1>
+
+<p>The main driver for Memcached integration is to allow <a href="../Bugzilla/Object.html" class="podlinkpod"
+>Bugzilla::Object</a> based objects to be automatically cached in Memcache. This is enabled on a per-package basis by setting the <code  class="code">USE_MEMCACHED</code> constant to any true value.</p>
+
+<p>The current implementation is an opt-in (USE_MEMCACHED is false by default), however this will change to opt-out once further testing has been completed (USE_MEMCACHED will be true by default).</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="DIRECT_DATABASE_UPDATES"
+>DIRECT DATABASE UPDATES</a></h1>
+
+<p>If an object is cached and the database is updated directly (instead of via <code  class="code">$object-&#62;update()</code>), then it&#39;s possible for the data in the cache to be out of sync with the database.</p>
+
+<p>As an example let&#39;s consider an extension which adds a timestamp field <code  class="code">last_activitiy_ts</code> to the profiles table and user object which contains the user&#39;s last activity. If the extension were to call <code  class="code">$user-&#62;update()</code>, then an audit entry would be created for each change to the <code  class="code">last_activity_ts</code> field, which is undesirable.</p>
+
+<p>To remedy this, the extension updates the table directly. It&#39;s critical with Memcached that it then clears the cache:</p>
+
+<pre  class="code"> $dbh-&#62;do(&#34;UPDATE profiles SET last_activity_ts=? WHERE userid=?&#34;,
+          undef, $timestamp, $user_id);
+ Bugzilla-&#62;memcached-&#62;clear({ table =&#62; &#39;profiles&#39;, id =&#62; $user_id });</pre>
+<p class="backlinkbottom"><b><a name="___bottom" href="../index.html" title="All Documents">&lt;&lt;</a></b></p>
+
+<!-- end doc -->
+
+</body></html>

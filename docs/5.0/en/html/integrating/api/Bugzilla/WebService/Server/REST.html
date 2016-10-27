@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>
+Bugzilla::WebService::Server::REST</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" title="style" type="text/css" href="../../.././../../../../style.css" media="all" >
+
+</head>
+  <body id="pod">
+<p class="backlinktop"><b><a name="___top" href="../../../index.html" accesskey="1" title="All Documents">&lt;&lt;</a></b></p>
+<h1>Bugzilla::WebService::Server::REST</h1>
+<div class='indexgroup'>
+<ul   class='indexList indexList1'>
+  <li class='indexItem indexItem1'><a href='#NAME'>NAME</a>
+  <li class='indexItem indexItem1'><a href='#DESCRIPTION'>DESCRIPTION</a>
+  <li class='indexItem indexItem1'><a href='#CONNECTING'>CONNECTING</a>
+  <li class='indexItem indexItem1'><a href='#BROWSING'>BROWSING</a>
+  <li class='indexItem indexItem1'><a href='#DATA_FORMAT'>DATA FORMAT</a>
+  <li class='indexItem indexItem1'><a href='#AUTHENTICATION'>AUTHENTICATION</a>
+  <li class='indexItem indexItem1'><a href='#ERRORS'>ERRORS</a>
+  <li class='indexItem indexItem1'><a href='#UTILITY_FUNCTIONS'>UTILITY FUNCTIONS</a>
+  <li class='indexItem indexItem1'><a href='#SEE_ALSO'>SEE ALSO</a>
+</ul>
+</div>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="NAME"
+>NAME</a></h1>
+
+<p>Bugzilla::WebService::Server::REST - The REST Interface to Bugzilla</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="DESCRIPTION"
+>DESCRIPTION</a></h1>
+
+<p>This documentation describes things about the Bugzilla WebService that are specific to REST.
+For a general overview of the Bugzilla WebServices,
+see <a href="../../../Bugzilla/WebService.html" class="podlinkpod"
+>Bugzilla::WebService</a>.
+The <a href="../../../Bugzilla/WebService/Server/REST.html" class="podlinkpod"
+>Bugzilla::WebService::Server::REST</a> module is a sub-class of <a href="../../../Bugzilla/WebService/Server/JSONRPC.html" class="podlinkpod"
+>Bugzilla::WebService::Server::JSONRPC</a> so any method documentation not found here can be viewed in it&#39;s POD.</p>
+
+<p>Please note that <i>everything</i> about this REST interface is <b>EXPERIMENTAL</b>.
+If you want a fully stable API,
+please use the <code  class="code">Bugzilla::WebService::Server::XMLRPC|XML-RPC</code> interface.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="CONNECTING"
+>CONNECTING</a></h1>
+
+<p>The endpoint for the REST interface is the <code  class="code">rest.cgi</code> script in your Bugzilla installation.
+For example,
+if your Bugzilla is at <code  class="code">bugzilla.yourdomain.com</code>,
+to access the API and load a bug,
+you would use <code  class="code">http://bugzilla.yourdomain.com/rest.cgi/bug/35</code>.</p>
+
+<p>If using Apache and mod_rewrite is installed and enabled,
+you can simplify the endpoint by changing /rest.cgi/ to something like /rest/ or something similar.
+So the same example from above would be: <code  class="code">http://bugzilla.yourdomain.com/rest/bug/35</code> which is simpler to remember.</p>
+
+<p>Add this to your .htaccess file:</p>
+
+<pre  class="code">  &#60;IfModule mod_rewrite.c&#62;
+    RewriteEngine On
+    RewriteRule ^rest/(.*)$ rest.cgi/$1 [NE]
+  &#60;/IfModule&#62;</pre>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="BROWSING"
+>BROWSING</a></h1>
+
+<p>If the Accept: header of a request is set to text/html (as it is by an ordinary web browser) then the API will return the JSON data as a HTML page which the browser can display. In other words, you can play with the API using just your browser and see results in a human-readable form. This is a good way to try out the various GET calls, even if you can&#39;t use it for POST or PUT.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="DATA_FORMAT"
+>DATA FORMAT</a></h1>
+
+<p>The REST API only supports JSON input, and either JSON and JSONP output. So objects sent and received must be in JSON format. Basically since the REST API is a sub class of the JSONRPC API, you can refer to <a href="../../../Bugzilla/WebService/Server/JSONRPC.html" class="podlinkpod"
+>JSONRPC</a> for more information on data types that are valid for REST.</p>
+
+<p>On every request, you must set both the &#34;Accept&#34; and &#34;Content-Type&#34; HTTP headers to the MIME type of the data format you are using to communicate with the API. Content-Type tells the API how to interpret your request, and Accept tells it how you want your data back. &#34;Content-Type&#34; must be &#34;application/json&#34;. &#34;Accept&#34; can be either that, or &#34;application/javascript&#34; for JSONP - add a &#34;callback&#34; parameter to name your callback.</p>
+
+<p>Parameters may also be passed in as part of the query string for non-GET requests and will override any matching parameters in the request body.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="AUTHENTICATION"
+>AUTHENTICATION</a></h1>
+
+<p>Along with viewing data as an anonymous user, you may also see private information if you have a Bugzilla account by providing your login credentials.</p>
+
+<dl>
+<dt><a name="Login_name_and_password"
+>Login name and password</a></dt>
+
+<dd>
+<p>Pass in as query parameters of any request:</p>
+
+<p>login=fred@example.com&#38;password=ilovecheese</p>
+
+<p>Remember to URL encode any special characters, which are often seen in passwords and to also enable SSL support.</p>
+
+<dt><a name="Login_token"
+>Login token</a></dt>
+
+<dd>
+<p>By calling GET /login?login=fred@example.com&#38;password=ilovecheese, you get back a <code  class="code">token</code> value which can then be passed to each subsequent call as authentication. This is useful for third party clients that cannot use cookies and do not want to store a user&#39;s login and password in the client. You can also pass in &#34;token&#34; as a convenience.</p>
+</dd>
+</dl>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="ERRORS"
+>ERRORS</a></h1>
+
+<p>When an error occurs over REST, a hash structure is returned with the key <code  class="code">error</code> set to <code  class="code">true</code>.</p>
+
+<p>The error contents look similar to:</p>
+
+<pre  class="code"> { &#34;error&#34;: true, &#34;message&#34;: &#34;Some message here&#34;, &#34;code&#34;: 123 }</pre>
+
+<p>Every error has a &#34;code&#34;, as described in <a href="../../../Bugzilla/WebService.html#ERRORS" class="podlinkpod"
+>&#34;ERRORS&#34; in Bugzilla::WebService</a>. Errors with a numeric <code  class="code">code</code> higher than 100000 are errors thrown by the JSON-RPC library that Bugzilla uses, not by Bugzilla.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="UTILITY_FUNCTIONS"
+>UTILITY FUNCTIONS</a></h1>
+
+<dl>
+<dt><a name="handle"
+><b>handle</b></a></dt>
+
+<dd>
+<p>This method overrides the handle method provided by JSONRPC so that certain actions related to REST such as determining the proper resource to use, loading query parameters, etc. can be done before the proper WebService method is executed.</p>
+
+<dt><a name="response"
+><b>response</b></a></dt>
+
+<dd>
+<p>This method overrides the response method provided by JSONRPC so that the response content can be altered for REST before being returned to the client.</p>
+
+<dt><a name="handle_login"
+><b>handle_login</b></a></dt>
+
+<dd>
+<p>This method determines the proper WebService all to make based on class and method name determined earlier. Then calls <a href="../../../Bugzilla/WebService/Server/handle_login.html" class="podlinkpod"
+>Bugzilla::WebService::Server::handle_login</a> which will attempt to authenticate the client.</p>
+
+<dt><a name="bz_method_name"
+><b>bz_method_name</b></a></dt>
+
+<dd>
+<p>The WebService method name that matches the path used by the client.</p>
+
+<dt><a name="bz_class_name"
+><b>bz_class_name</b></a></dt>
+
+<dd>
+<p>The WebService class containing the method that matches the path used by the client.</p>
+
+<dt><a name="bz_rest_params"
+><b>bz_rest_params</b></a></dt>
+
+<dd>
+<p>Each REST resource contains a hash key called <code  class="code">params</code> that is a subroutine reference. This subroutine will return a hash structure based on matched values from the path information that is formatted properly for the WebService method that will be called.</p>
+
+<dt><a name="bz_rest_options"
+><b>bz_rest_options</b></a></dt>
+
+<dd>
+<p>When a client uses the OPTIONS request method along with a specific path, they are requesting the list of request methods that are valid for the path. Such as for the path /bug, the valid request methods are GET (search) and POST (create). So the client would receive in the response header, <code  class="code">Access-Control-Allow-Methods: GET, POST</code>.</p>
+
+<dt><a name="bz_success_code"
+><b>bz_success_code</b></a></dt>
+
+<dd>
+<p>Each resource can specify a specific SUCCESS CODE if the operation completes successfully. OTherwise STATUS OK (200) is the default returned.</p>
+
+<dt><a name="rest_include_exclude"
+><b>rest_include_exclude</b></a></dt>
+
+<dd>
+<p>Normally the WebService methods required <code  class="code">include_fields</code> and <code  class="code">exclude_fields</code> to be an array of field names. REST allows for the values for these to be instead comma delimited string of field names. This method converts the latter into the former so the WebService methods will not complain.</p>
+</dd>
+</dl>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="SEE_ALSO"
+>SEE ALSO</a></h1>
+
+<p><a href="../../../Bugzilla/WebService.html" class="podlinkpod"
+>Bugzilla::WebService</a></p>
+<p class="backlinkbottom"><b><a name="___bottom" href="../../../index.html" title="All Documents">&lt;&lt;</a></b></p>
+
+<!-- end doc -->
+
+</body></html>

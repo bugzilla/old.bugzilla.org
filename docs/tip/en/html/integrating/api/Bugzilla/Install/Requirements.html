@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>
+Bugzilla::Install::Requirements</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" title="style" type="text/css" href="../.././../../../../style.css" media="all" >
+
+</head>
+  <body id="pod">
+<p class="backlinktop"><b><a name="___top" href="../../index.html" accesskey="1" title="All Documents">&lt;&lt;</a></b></p>
+<h1>Bugzilla::Install::Requirements</h1>
+<div class='indexgroup'>
+<ul   class='indexList indexList1'>
+  <li class='indexItem indexItem1'><a href='#NAME'>NAME</a>
+  <li class='indexItem indexItem1'><a href='#DESCRIPTION'>DESCRIPTION</a>
+  <li class='indexItem indexItem1'><a href='#CONSTANTS'>CONSTANTS</a>
+  <li class='indexItem indexItem1'><a href='#SUBROUTINES'>SUBROUTINES</a>
+</ul>
+</div>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="NAME"
+>NAME</a></h1>
+
+<p>Bugzilla::Install::Requirements - Functions and variables dealing with Bugzilla&#39;s perl-module requirements.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="DESCRIPTION"
+>DESCRIPTION</a></h1>
+
+<p>This module is used primarily by <code  class="code">checksetup.pl</code> to determine whether or not all of Bugzilla&#39;s prerequisites are installed.
+(That is,
+all the perl modules it requires.)</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="CONSTANTS"
+>CONSTANTS</a></h1>
+
+<dl>
+<dt><a name="FEATURE_FILES"
+><code  class="code">FEATURE_FILES</code></a></dt>
+
+<dd>
+<p>A hashref that describes what files should only be compiled if a certain feature is enabled.
+The feature is the key,
+and the values are arrayrefs of file names (which are passed to <code  class="code">glob</code>,
+so shell patterns work).</p>
+</dd>
+</dl>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="SUBROUTINES"
+>SUBROUTINES</a></h1>
+
+<dl>
+<dt><a name="check_cpan_requirements"
+><code  class="code">check_cpan_requirements</code></a></dt>
+
+<dd>
+<dl>
+<dt><a name="Description"
+><b>Description</b></a></dt>
+
+<dd>
+<p>This checks what required perl modules are installed,
+like <code  class="code">checksetup.pl</code> does.</p>
+
+<dt><a name="Params"
+><b>Params</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="$meta_-_A_CPAN::Meta_object."
+><code  class="code">$meta</code> - A <code  class="code">CPAN::Meta</code> object.</a></dt>
+
+<dd>
+<dt><a name="$dirs_-_the_include_dirs_to_search_for_modules,_defaults_to_@INC."
+><code  class="code">$dirs</code> - the include dirs to search for modules,
+defaults to @INC.</a></dt>
+
+<dd>
+<dt><a 
+><code  class="code">$output</code> - <code  class="code">true</code> if you want the function to print out information about what it&#39;s doing,
+and the versions of everything installed.</a></dt>
+</dl>
+
+<dt><a name="Returns"
+><b>Returns</b></a></dt>
+
+<dd>
+<p>A hashref containing these values:</p>
+
+<dl>
+<dt><a name="ok_-_if_all_the_requirements_are_met,_this_is_true."
+><code  class="code">ok</code> - if all the requirements are met,
+this is true.</a></dt>
+
+<dd>
+<dt><a name="found_-_an_arrayref_of_found_modules"
+><code  class="code">found</code> - an arrayref of found modules</a></dt>
+
+<dd>
+<dt><a name="missing_-_an_arrayref_of_missing_modules"
+><code  class="code">missing</code> - an arrayref of missing modules</a></dt>
+</dl>
+</dd>
+</dl>
+
+<dt><a name="check_cpan_feature"
+><code  class="code">check_cpan_feature</code></a></dt>
+
+<dd>
+<dl>
+<dt><a name="Description"
+><b>Description</b></a></dt>
+
+<dd>
+<p>This checks that the optional Perl modules required for a feature are installed.</p>
+
+<dt><a name="Params"
+><b>Params</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="$feature_-_A_CPAN::Meta::Feature_object."
+><code  class="code">$feature</code> - A <code  class="code">CPAN::Meta::Feature</code> object.</a></dt>
+
+<dd>
+<dt><a name="$dirs_-_the_include_dirs_to_search_for_modules,_defaults_to_@INC."
+><code  class="code">$dirs</code> - the include dirs to search for modules,
+defaults to @INC.</a></dt>
+
+<dd>
+<dt><a 
+><code  class="code">$output</code> - <code  class="code">true</code> if you want the function to print out information about what it&#39;s doing,
+and the versions of everything installed.</a></dt>
+</dl>
+
+<dt><a name="Returns"
+><b>Returns</b></a></dt>
+
+<dd>
+<p>A hashref containing these values:</p>
+
+<dl>
+<dt><a name="ok_-_if_all_the_requirements_are_met,_this_is_true."
+><code  class="code">ok</code> - if all the requirements are met,
+this is true.</a></dt>
+
+<dd>
+<dt><a name="found_-_an_arrayref_of_found_modules"
+><code  class="code">found</code> - an arrayref of found modules</a></dt>
+
+<dd>
+<dt><a name="missing_-_an_arrayref_of_missing_modules"
+><code  class="code">missing</code> - an arrayref of missing modules</a></dt>
+</dl>
+
+<dt><a name="check_all_cpan_features"
+><code  class="code">check_all_cpan_features</code></a></dt>
+
+<dd>
+<dl>
+<dt><a name="Description"
+><b>Description</b></a></dt>
+
+<dd>
+<p>This checks which optional Perl modules are currently installed which can enable optional features.</p>
+
+<dt><a name="Params"
+><b>Params</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="$meta_-_A_CPAN::Meta_object."
+><code  class="code">$meta</code> - A <code  class="code">CPAN::Meta</code> object.</a></dt>
+
+<dd>
+<dt><a name="$dirs_-_the_include_dirs_to_search_for_modules,_defaults_to_@INC."
+><code  class="code">$dirs</code> - the include dirs to search for modules,
+defaults to @INC.</a></dt>
+
+<dd>
+<dt><a 
+><code  class="code">$output</code> - <code  class="code">true</code> if you want the function to print out information about what it&#39;s doing,
+and the versions of everything installed.</a></dt>
+</dl>
+
+<dt><a name="Returns"
+><b>Returns</b></a></dt>
+
+<dd>
+<p>A hashref keyed on the feature name.
+The values are hashrefs containing <code  class="code">description</code> and <code  class="code">result</code> keys.</p>
+
+<p><code  class="code">description</code> is the English description of the feature.</p>
+
+<p><code  class="code">result</code> is a hashref in the same format as the return value of <code  class="code">check_cpan_requirements()</code>,
+described previously.</p>
+</dd>
+</dl>
+
+<dt><a name="check_webdotbase($output)"
+><code  class="code">check_webdotbase($output)</code></a></dt>
+
+<dd>
+<p>Description: Checks if the graphviz binary specified in the <code  class="code">webdotbase</code> parameter is a valid binary,
+or a valid URL.</p>
+
+<p>Params: <code  class="code">$output</code> - <code  class="code">$true</code> if you want the function to print out information about what it&#39;s doing.</p>
+
+<p>Returns: <code  class="code">1</code> if the check was successful,
+<code  class="code">0</code> otherwise.</p>
+
+<dt><a name="check_font_file($output)"
+><code  class="code">check_font_file($output)</code></a></dt>
+
+<dd>
+<p>Description: Checks if the font file specified in the <code  class="code">font_type</code> parameter is a valid-looking font file.</p>
+
+<p>Params: <code  class="code">$output</code> - <code  class="code">$true</code> if you want the function to print out information about what it&#39;s doing.</p>
+
+<p>Returns: <code  class="code">1</code> if the check was successful,
+<code  class="code">0</code> otherwise.</p>
+
+<dt><a name="map_files_to_features"
+><code  class="code">map_files_to_features</code></a></dt>
+
+<dd>
+<p>Returns a hashref where file names are the keys and the value is the feature that must be enabled in order to compile that file.</p>
+
+<dt><a name="load_cpan_meta"
+><code  class="code">load_cpan_meta</code></a></dt>
+
+<dd>
+<p>Load MYMETA.json or META.json from the bugzilla directory,
+and a return a <a href="../../CPAN/Meta.html" class="podlinkpod"
+>CPAN::Meta</a> object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="backlinkbottom"><b><a name="___bottom" href="../../index.html" title="All Documents">&lt;&lt;</a></b></p>
+
+<!-- end doc -->
+
+</body></html>

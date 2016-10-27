@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>
+Bugzilla::CGI::ContentSecurityPolicy</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" title="style" type="text/css" href="../.././../../../../style.css" media="all" >
+
+</head>
+  <body id="pod">
+<p class="backlinktop"><b><a name="___top" href="../../index.html" accesskey="1" title="All Documents">&lt;&lt;</a></b></p>
+<h1></h1>
+<div class='indexgroup'>
+<ul   class='indexList indexList1'>
+  <li class='indexItem indexItem1'><a href='#NAME'>NAME</a>
+  <li class='indexItem indexItem1'><a href='#SYNOPSIS'>SYNOPSIS</a>
+  <li class='indexItem indexItem1'><a href='#DESCRIPTION'>DESCRIPTION</a>
+  <li class='indexItem indexItem1'><a href='#ATTRIBUTES'>ATTRIBUTES</a>
+  <ul   class='indexList indexList2'>
+    <li class='indexItem indexItem2'><a href='#report_only'>report_only</a>
+    <li class='indexItem indexItem2'><a href='#disable'>disable</a>
+    <li class='indexItem indexItem2'><a href='#base_uri'>base_uri</a>
+    <li class='indexItem indexItem2'><a href='#child_src'>child_src</a>
+    <li class='indexItem indexItem2'><a href='#connect_src'>connect_src</a>
+    <li class='indexItem indexItem2'><a href='#default_src'>default_src</a>
+    <li class='indexItem indexItem2'><a href='#font_src'>font_src</a>
+    <li class='indexItem indexItem2'><a href='#img_src'>img_src</a>
+    <li class='indexItem indexItem2'><a href='#manifest_src'>manifest_src</a>
+    <li class='indexItem indexItem2'><a href='#media_src'>media_src</a>
+    <li class='indexItem indexItem2'><a href='#object_src'>object_src</a>
+    <li class='indexItem indexItem2'><a href='#referrer'>referrer</a>
+    <li class='indexItem indexItem2'><a href='#report_uri'>report_uri</a>
+    <li class='indexItem indexItem2'><a href='#sandbox'>sandbox</a>
+    <li class='indexItem indexItem2'><a href='#script_src'>script_src</a>
+    <li class='indexItem indexItem2'><a href='#style_src'>style_src</a>
+    <li class='indexItem indexItem2'><a href='#upgrade_insecure_requests'>upgrade_insecure_requests</a>
+  </ul>
+  <li class='indexItem indexItem1'><a href='#METHODS'>METHODS</a>
+  <ul   class='indexList indexList2'>
+    <li class='indexItem indexItem2'><a href='#header_names()'>header_names()</a>
+    <li class='indexItem indexItem2'><a href='#value()'>value()</a>
+    <li class='indexItem indexItem2'><a href='#add_cgi_headers(%24headers)'>add_cgi_headers($headers)</a>
+    <li class='indexItem indexItem2'><a href='#nonce()_%2F_has_nonce()'>nonce() / has_nonce()</a>
+  </ul>
+  <li class='indexItem indexItem1'><a href='#Methods_in_need_of_POD'>Methods in need of POD</a>
+</ul>
+</div>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="NAME"
+>NAME</a></h1>
+
+<p>Bugzilla::CGI::ContentSecurityPolicy - Object-oriented interface to generating CSP directives and adding them to headers.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="SYNOPSIS"
+>SYNOPSIS</a></h1>
+
+<pre  class="code">    use Bugzilla::CGI::ContentSecurityPolicy;
+
+    my $csp = Bugzilla::CGI::ContentSecurityPolicy-&#62;new(
+        default_src =&#62; [ &#39;self&#39; ],
+        style_src   =&#62; [ &#39;self&#39;, &#39;unsafe-inline&#39; ],
+        script_src  =&#62; [ &#39;self&#39;, &#39;nonce&#39; ],
+        child_src   =&#62; [&#39;none&#39;],
+        report_uri  =&#62; &#39;/csp-report.cgi&#39;,
+        referrer    =&#62; &#39;origin-when-cross-origin&#39;,
+    );
+    $csp-&#62;headers_names               # returns a list of header names and depends on the value of $self-&#62;report_only
+    $csp-&#62;value                       # returns the string representation of the policy.
+    $csp-&#62;add_cgi_headers(\%hashref); # will insert entries compatible with CGI.pm&#39;s $cgi-&#62;headers() method into the provided hashref.</pre>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="DESCRIPTION"
+>DESCRIPTION</a></h1>
+
+<p>This class provides an object interface to constructing Content Security Policies.</p>
+
+<p>Rather than use this module, scripts should call $cgi-&#62;content_security_policy() which constructs the CSP headers and registers them for the current request.</p>
+
+<p>See <a href="../../Bugzilla/CGI.html" class="podlinkpod"
+>Bugzilla::CGI</a> for details.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="ATTRIBUTES"
+>ATTRIBUTES</a></h1>
+
+<p>Generally all CSP directives are available as attributes to the constructor, with dashes replaced by underscores. All directives that can be lists must be passed as array references, and the quoting rules for urls and keywords like &#39;self&#39; or &#39;none&#39; is handled automatically.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="report_only"
+>report_only</a></h2>
+
+<p>If this is true, then the the -Report-Only version of the headers will be produced, so nothing will be blocked.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="disable"
+>disable</a></h2>
+
+<p>If this is true, no CSP headers will be used at all.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="base_uri"
+>base_uri</a></h2>
+
+<p>The base-uri directive defines the URIs that a user agent may use as the document base URL. If this value is absent, then any URI is allowed. If this directive is absent, the user agent will use the value in the base element.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="child_src"
+>child_src</a></h2>
+
+<p>The child-src directive defines the valid sources for web workers and nested browsing contexts loaded using elements such as &#60;frame&#62; and &#60;iframe&#62;. This directive is preferred over the frame-src directive, which is deprecated. For workers, non-compliant requests are treated as fatal network errors by the user agent.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="connect_src"
+>connect_src</a></h2>
+
+<p>The connect-src directive defines valid sources for fetch, XMLHttpRequest, WebSocket, and EventSource connections.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="default_src"
+>default_src</a></h2>
+
+<p>The default-src directive defines the security policy for types of content which are not expressly called out by more specific directives. This directive covers the following directives:</p>
+
+<ul>
+<li><a href="#child_src" class="podlinkpod"
+>&#34;child_src&#34;</a></li>
+
+<li><a href="#connect_src" class="podlinkpod"
+>&#34;connect_src&#34;</a></li>
+
+<li><a href="#font_src" class="podlinkpod"
+>&#34;font_src&#34;</a></li>
+
+<li><a href="#img_src" class="podlinkpod"
+>&#34;img_src&#34;</a></li>
+
+<li><a href="#media_src" class="podlinkpod"
+>&#34;media_src&#34;</a></li>
+
+<li><a href="#object_src" class="podlinkpod"
+>&#34;object_src&#34;</a></li>
+
+<li><a href="#script_src" class="podlinkpod"
+>&#34;script_src&#34;</a></li>
+
+<li><a href="#style_src" class="podlinkpod"
+>&#34;style_src&#34;</a></li>
+</ul>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="font_src"
+>font_src</a></h2>
+
+<p>The font-src directive specifies valid sources for fonts loaded using @font-face.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="img_src"
+>img_src</a></h2>
+
+<p>The img-src directive specifies valid sources of images and favicons.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="manifest_src"
+>manifest_src</a></h2>
+
+<p>The manifest-src directive specifies which manifest can be applied to the resource.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="media_src"
+>media_src</a></h2>
+
+<p>The media-src directive specifies valid sources for loading media using the &#60;audio&#62; and &#60;video&#62; elements.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="object_src"
+>object_src</a></h2>
+
+<p>The object-src directive specifies valid sources for the &#60;object&#62;, &#60;embed&#62;, and &#60;applet&#62; elements.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="referrer"
+>referrer</a></h2>
+
+<p>The referrer directive specifies information in the <b>referer</b> (sic) header for links away from a page. Valid values are <code  class="code">no-referrer</code>, <code  class="code">no-referrer-when-downgrade</code>, <code  class="code">origin</code>, <code  class="code">origin-when-cross-origin</code>, and <code  class="code">unsafe-url</code>.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="report_uri"
+>report_uri</a></h2>
+
+<p>The report-uri directive instructs the user agent to report attempts to violate the Content Security Policy. These violation reports consist of JSON documents sent via an HTTP POST request to the specified URI.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="sandbox"
+>sandbox</a></h2>
+
+<p>The sandbox directive applies restrictions to a page&#39;s actions including preventing popups, preventing the execution of plugins and scripts, and enforcing a same-origin policy.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="script_src"
+>script_src</a></h2>
+
+<p>The script-src directive specifies valid sources for JavaScript. When either the script-src or the default-src directive is included, inline script and eval() are disabled unless you specify &#39;unsafe-inline&#39; and &#39;unsafe-eval&#39;, respectively. In Chrome 49 and later, &#39;script-src http&#39; will match both HTTP and HTTPS.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="style_src"
+>style_src</a></h2>
+
+<p>The style-src directive specifies valid sources for stylesheets. This includes both externally-loaded stylesheets and inline use of the <code  class="code">style</code> element and HTML style attributes. Stylesheets from sources that aren&#39;t included in the source list are not requested or loaded. When either the style-src or the default-src directive is included, inline use of the <code  class="code">style</code> element and HTML style attributes are disabled unless you specify &#39;unsafe-inline&#39;.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="upgrade_insecure_requests"
+>upgrade_insecure_requests</a></h2>
+
+<p>The upgrade-insecure-requests directive instructs user agents to treat all of a site&#39;s unsecure URL&#39;s (those serverd over HTTP) as though they have been replaced with secure URL&#39;s (those served over HTTPS). This directive is intended for web sites with large numbers of unsecure legacy URL&#39;s that need to be rewritten.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="METHODS"
+>METHODS</a></h1>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="header_names()"
+>header_names()</a></h2>
+
+<p>This returns a list of header names. This will typically be <code  class="code">Content-Security-Policy</code>, <code  class="code">X-Content-Security-Policy</code>, and <code  class="code">X-WebKit-CSP</code>.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="value()"
+>value()</a></h2>
+
+<p>This returns the value or right-of-colon part of the header.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="add_cgi_headers($headers)"
+>add_cgi_headers($headers)</a></h2>
+
+<p>This adds <code  class="code">header_value()</code> to <code  class="code">$headers</code> in a format that is compatible with <a href="../../CGI.html" class="podlinkpod"
+>CGI</a>&#39;s headers() method.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="nonce()_/_has_nonce()"
+>nonce() / has_nonce()</a></h2>
+
+<p>This is unique value that can used if the &#39;nonce&#39; is used as a source for style_src or script_src.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="Methods_in_need_of_POD"
+><b>Methods in need of POD</b></a></h1>
+
+<dl>
+<dt><a name="has_report_uri"
+>has_report_uri</a></dt>
+
+<dd>
+<dt><a name="has_child_src"
+>has_child_src</a></dt>
+
+<dd>
+<dt><a name="has_connect_src"
+>has_connect_src</a></dt>
+
+<dd>
+<dt><a name="has_script_src"
+>has_script_src</a></dt>
+
+<dd>
+<dt><a name="has_media_src"
+>has_media_src</a></dt>
+
+<dd>
+<dt><a name="has_base_uri"
+>has_base_uri</a></dt>
+
+<dd>
+<dt><a name="has_img_src"
+>has_img_src</a></dt>
+
+<dd>
+<dt><a name="has_referrer"
+>has_referrer</a></dt>
+
+<dd>
+<dt><a name="has_style_src"
+>has_style_src</a></dt>
+
+<dd>
+<dt><a name="has_default_src"
+>has_default_src</a></dt>
+
+<dd>
+<dt><a name="has_object_src"
+>has_object_src</a></dt>
+
+<dd>
+<dt><a name="has_font_src"
+>has_font_src</a></dt>
+</dl>
+<p class="backlinkbottom"><b><a name="___bottom" href="../../index.html" title="All Documents">&lt;&lt;</a></b></p>
+
+<!-- end doc -->
+
+</body></html>

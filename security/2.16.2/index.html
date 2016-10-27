@@ -1,0 +1,288 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+  <title>2.16.2, 2.17.3 Security Advisory :: Bugzilla :: bugzilla.org</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="keywords" content="bugzilla bug track tracking enterprise solution">
+  <link rel="icon" href="/img/bugzilla_icon.png" type="image/png">
+  <link rel="stylesheet" type="text/css" href="/css/print.css" media="print">
+  <link rel="stylesheet" type="text/css" href="/css/base/content.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/base/template.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/css/bugzilla.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/css/cavendish/home.css" title="Cavendish" media="screen">
+</head>
+<body id="www-bugzilla-org" class="homepage">
+  <div id="container">
+    <p class="skipLink"><a href="#mainContent" accesskey="2">Skip to main content</a></p>
+    <div id="header">
+      <h1><a href="/" title="Return to Bugzilla home page" accesskey="1">Bugzilla</a></h1>
+      <div id="tools">
+        <ul id="mainNav">
+          <li><a href="/contribute/" title="How to Help"
+            >Contribute!</a></li>
+          <li><a href="/features/" title="Bugzilla features">Features</a></li>
+          <li><a href="/download/" title="Get Bugzilla for free">Download</a></li>
+          <li><a href="/support/" title="Where to get more help">Support</a></li>
+          <li><a href="/docs/" title="Bugzilla documenation">Docs</a></li>
+          <li><a href="/news/" title="Read about what is happening with Bugzilla">News</a></li>
+          <li><a href="/about/" title="Getting the most out of your online experience">About</a></li>
+        </ul>
+        <!-- closes #textSize-->
+        <form id="search" method="get" action="https://www.google.com/cse">
+          <div id="sf">
+            <label for="q" title="Search bugzilla.org">search bugzilla.org: </label>
+            <input type="hidden" name="cx" value="008043952663535741821:9whwb87ip5a">
+            <input type="text" id="q" name="q" accesskey="s" size="30">
+            <input type="submit" id="submit" value="go">
+          </div>
+        </form>
+      </div>
+     <!-- closes #tools-->
+    </div>
+    <!-- closes #header-->
+    <hr class="hide">
+    <div id="mBody">
+
+        <hr class="hide"><div id="side">
+<ul id="nav">
+<li>
+	<a href="/about/" title="Find out more about Bugzilla."><strong>About</strong></a>
+	<ul>
+		<li><a href="/installation-list/" title="Hundreds of companies and organizations trust Bugzilla.">Who Uses Bugzilla?</a></li>
+		<li><a href="/status/roadmap.html" title="Learn about Bugzilla's future.">Roadmap</a></li>
+		<li><a href="/developers/profiles.html" title="Meet the Bugzilla team.">Meet the Team</a></li>
+		<li><a href="/releases/" title="Information on current and previous releases.">Release Information</a></li>
+	</ul>
+</li>
+<li>
+	<a href="/news/" title="Get the low down on what's happening with the project."><strong>News</strong></a>
+	<ul>
+		<li><a href="http://planet.bugzilla.org" title="View the status of the Bugzilla project.">Planet Bugzilla</a></li>
+		<li><a href="/security/" title="Important updates regarding Bugzilla security.">Security Advisories</a></li>
+        <li><a href="/status/changes.html" title="Detailed list of all the changes between each Bugzilla version">Change Logs</a></li>
+	</ul>
+</li>
+<li>
+        <a href="/download/" title="Download Bugzilla"><strong>Download</strong></a>
+        <ul>
+                <li><a href="https://wiki.mozilla.org/Bugzilla:Addons" title="Third-party Bugzilla extensions">Extensions</a></li>
+                <li><a href="/requirements/">Requirements</a></li>
+        </ul>
+</li>
+<li>
+	<a href="/support/" title="Find out where to get more information and help."><strong>Support</strong></a>
+	<ul>
+                <li><a href="/support/" title="Find out where to get more information and help.">Free Support</a></li>
+                <li><a href="/support/consulting.html" title="Paid support options">Paid Support</a></li>
+		<li><a href="/docs/" title="Read the Bugzilla manual and other important documents.">Documentation</a></li>
+		<li><a href="https://wiki.mozilla.org/Bugzilla" title="Collaboratively updated information about Bugzilla.">Wiki</a></li>
+		<li><a href="/developers/reporting_bugs.html" title="Let us know if there is an error in Bugzilla.">Report a Bug</a></li>
+	</ul>
+</li>
+<li>
+	<a href="/developers/" title="Developer resources">Developer Resources</a>
+</li>
+  <li>
+    <a href="/contribute/" title="Ways you can help Bugzilla"
+    >How To Help Out</a>
+  </li>
+</ul>
+
+<div>
+<p><a href="https://twitter.com/bugzilla">Follow @bugzilla on Twitter</a></p>
+<p><a href="https://www.facebook.com/pages/Bugzilla/1427568330846442">Like Bugzilla on Facebook</a></p>
+<p><a href="https://plus.google.com/u/0/104215203522965843895?prsrc=3">Follow Bugzilla on Google+</a></p>
+</div>
+</div>
+<!-- closes #side -->      <div id="mainContent">
+        <h1>2.16.2, 2.17.3 Security Advisory</h1>
+April 24th, 2003<br/>
+<pre>
+Summary
+=======
+
+All Bugzilla installations are advised to upgrade to the latest stable
+version of Bugzilla, 2.16.3, which was released today.
+
+Development snapshots prior to version 2.17.4 are also affected, so if you
+are using a development snapshot, you should obtain a newer one (2.17.4) or
+use CVS to update.
+
+This advisory covers multiple situations where unescaped raw HTML submitted by
+users could be echoed back to the user, and a situation where temporary
+files were not written to verified-unique filenames, thus exposing them to
+potential symlink attacks by local users with sufficient permissions.
+
+
+Vulnerability Details
+=====================
+
+The following three security issues were fixed in versions 2.16.3 and 2.17.4.
+
+Multiple Cross-Site Scripting Vulnerabilities in Default Templates
+------------------------------------------------------------------
+
+Bugzilla output shown to end-users is generated via HTML templates.  One of
+the core Bugzilla contributors recently contributed an automated tool which
+detects failure-to-filter situations in the HTML templates - situations
+where untrusted data was not properly filtered for HTML metacharacters
+prior to outputting to end-users, allowing an attacker to insert a script
+into the output by submitting data to the server in a specially formatted
+manner.
+
+Several exploitable instances were discovered in the default English
+templates that are shipped with both 2.16.2 and 2.17.3 and have been closed
+with this release.  We have received confirmation from the maintainers of
+the German and Russian localized templates that corrected versions of those
+templates sets should be available within 24 hours of this announcement for
+the versions they support.  For corrected versions of other localizations,
+please consult the localization's maintainer.
+
+Bugzilla's output did not use HTML templates prior to version 2.16.
+
+(Bugzilla Bug 192677 / BugTraq ID 6868)
+
+
+Cross-Site Scripting vulnerability in local dependency graphs
+-------------------------------------------------------------
+
+Bugzilla contains a feature which allows users to generate visual graphs of
+the dependency relationships between bugs.  In the past this was done by
+using a remote server running the "Webdot" software.  In version 2.16, a
+feature was introduced which provided the capability to use a
+locally-installed copy of the GraphViz suite to generate the graph files
+directly on the Bugzilla server instead of using a remote server.  This
+option is not enabled by default.
+
+Bugzilla does not properly escape the bug summaries placed in the ALT and
+NAME attributes to the AREA tags in the client-side image map which is
+generated to go with the visual graph.  This means an attacker could place
+scripts in a graph by including a script in a specifically formatted manner
+as part of a bug summary.
+
+You are vulnerable if the "webdotbase" configuration parameter contains
+a local pathname to an installation of "dot".
+
+This bug is related to a feature added to Bugzilla in version 2.16, and
+thus does not affect prior versions.
+
+(Bugzilla Bug 192661 / BugTraq ID 6861)
+
+
+Insecure Handling of Temporary Filenames
+----------------------------------------
+
+There are multiple places where Bugzilla creates temporary files in world-
+or group-writable directories without verifying that the filename is
+unused.  A user with local access to the server could potentially create a
+properly-named symlink within those directories pointing at a file which
+the webserver had access to, thus causing Bugzilla to overwrite that file.
+
+These instances have been fixed in both 2.16.3 and 2.17.4 and affect all
+prior versions of Bugzilla.
+
+(Bugzilla Bug 197153 / BugTraq ID 7412)
+
+
+Vulnerability Solutions
+=======================
+
+The fixes for all of the security bugs mentioned in this advisory are included
+in the 2.16.3 and 2.17.4 releases.  Upgrading to these releases will
+protect installations against exploitations of these security bugs.
+
+Patches to upgrade Bugzilla to 2.16.3 are available at:
+  https://ftp.mozilla.org/pub/webtools/
+  (these patches are only valid for 2.16.2, 2.16.1, and 2.16 users).
+
+Full release downloads and CVS upgrade instructions are available at:
+  https://www.bugzilla.org/download.html
+
+Links to the distribution sites of localized template sets can be found at:
+  https://www.bugzilla.org/download.html#localizations
+
+
+Credits
+=======
+
+The Bugzilla team wish to thank the following people for their assistance
+in locating and advising us of these situations:
+
+Jouni Heikniemi - for finding the XSS in local dependency graphs
+Gervase Markham - for contributing the automated testing tool which
+     located the XSS issues in the default template set
+Jonathan Schatz - for discovering the insecure temporary filename handling
+
+
+References
+==========
+
+Complete bug reports and the specific patches for the security bugs covered
+herein may be obtained on the following bug reports:
+
+   XSS in local dependency graphing:
+   =&gt; https://bugzilla.mozilla.org/show_bug.cgi?id=192661
+
+   XSS failure to filter in default templates:
+   =&gt; https://bugzilla.mozilla.org/show_bug.cgi?id=192677
+
+   Insecure handling of temporary filenames
+   =&gt; https://bugzilla.mozilla.org/show_bug.cgi?id=197153
+
+General information about the Bugzilla bug-tracking system can be found at
+   https://www.bugzilla.org/
+
+Comments and follow-ups can be directed to the
+netscape.public.mozilla.webtools newsgroup or the mozilla-webtools mailing
+list; https://www.mozilla.org/community.html has directions for accessing
+these forums.
+
+-30-
+</pre>
+        
+      </div>
+    </div></div>
+  <!-- closes #container -->
+  <div id="footer">
+    <ul>
+      <li><a href="https://www.mozilla.org/contact/">Contact Us</a></li>
+      <li><a href="https://donate.mozilla.org/page/contribute/bugzilla">Donate</a></li>
+    </ul>
+<!-- Creative Commons License -->
+<p class="copyright">This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/2.0/">Creative Commons License</a>.</p>
+
+<!--
+
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="">
+   <dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+   <license rdf:resource="http://creativecommons.org/licenses/by-sa/2.0/" />
+</Work>
+
+<License rdf:about="http://creativecommons.org/licenses/by-sa/2.0/">
+   <permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+   <permits rdf:resource="http://web.resource.org/cc/Distribution" />
+   <requires rdf:resource="http://web.resource.org/cc/Notice" />
+   <requires rdf:resource="http://web.resource.org/cc/Attribution" />
+   <permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+   <requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+</License>
+
+</rdf:RDF>
+
+-->
+<!-- /Creative Commons License -->
+
+    <p class="copyright">Portions of this work are &copy;
+      1998-2016
+      by individual bugzilla.org contributors.</p>
+    <p>
+      <span>Last modified October 27, 2016</span>
+      <span><a href="https://github.com/bugzilla/bugzilla.org/commits/master">Site History</a></span>
+    </p>
+  </div>
+</body>
+</html>

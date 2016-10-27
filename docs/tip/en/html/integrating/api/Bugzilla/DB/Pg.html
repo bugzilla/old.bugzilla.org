@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>
+Bugzilla::DB::Pg</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" title="style" type="text/css" href="../.././../../../../style.css" media="all" >
+
+</head>
+  <body id="pod">
+<p class="backlinktop"><b><a name="___top" href="../../index.html" accesskey="1" title="All Documents">&lt;&lt;</a></b></p>
+<h1>Bugzilla::DB::Pg</h1>
+<div class='indexgroup'>
+<ul   class='indexList indexList1'>
+  <li class='indexItem indexItem1'><a href='#NAME'>NAME</a>
+  <li class='indexItem indexItem1'><a href='#DESCRIPTION'>DESCRIPTION</a>
+  <ul   class='indexList indexList2'>
+    <li class='indexItem indexItem2'><a href='#Functions'>Functions</a>
+  </ul>
+  <li class='indexItem indexItem1'><a href='#Methods_in_need_of_POD'>Methods in need of POD</a>
+</ul>
+</div>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="NAME"
+>NAME</a></h1>
+
+<p>Bugzilla::DB::Pg - Bugzilla database compatibility layer for PostgreSQL</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="DESCRIPTION"
+>DESCRIPTION</a></h1>
+
+<p>This module overrides methods of the Bugzilla::DB module with PostgreSQL specific implementation.
+It is instantiated by the Bugzilla::DB module and should never be used directly.</p>
+
+<p>For interface details see <a href="../../Bugzilla/DB.html" class="podlinkpod"
+>Bugzilla::DB</a> and <a href="../../DBI.html" class="podlinkpod"
+>DBI</a>.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="Functions"
+>Functions</a></h2>
+
+<dl>
+<dt><a name="sql_like_escape"
+><code  class="code">sql_like_escape</code></a></dt>
+
+<dd>
+<dl>
+<dt><a name="Description"
+><b>Description</b></a></dt>
+
+<dd>
+<p>The postgres versions of the sql_like methods use the ANSI SQL LIKE statements to perform substring searching.
+To prevent issues with users attempting to search for strings containing special characters associated with LIKE,
+we escape them out so they don&#39;t affect the search terms.</p>
+
+<dt><a name="Params"
+><b>Params</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="$fragment_-_The_string_fragment_in_need_of_escaping_and_quoting"
+><code  class="code">$fragment</code> - The string fragment in need of escaping and quoting</a></dt>
+</dl>
+
+<dt><a name="Returns"
+><b>Returns</b></a></dt>
+
+<dd>
+<p>The fragment with any pre existing %,_,| characters escaped out,
+wrapped in percent characters and quoted.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="Methods_in_need_of_POD"
+><b>Methods in need of POD</b></a></h1>
+
+<dl>
+<dt><a name="sql_date_format"
+>sql_date_format</a></dt>
+
+<dd>
+<dt><a name="bz_explain"
+>bz_explain</a></dt>
+
+<dd>
+<dt><a name="bz_sequence_exists"
+>bz_sequence_exists</a></dt>
+
+<dd>
+<dt><a name="bz_last_key"
+>bz_last_key</a></dt>
+
+<dd>
+<dt><a name="sql_position"
+>sql_position</a></dt>
+
+<dd>
+<dt><a name="sql_like"
+>sql_like</a></dt>
+
+<dd>
+<dt><a name="sql_ilike"
+>sql_ilike</a></dt>
+
+<dd>
+<dt><a name="sql_not_ilike"
+>sql_not_ilike</a></dt>
+
+<dd>
+<dt><a name="sql_limit"
+>sql_limit</a></dt>
+
+<dd>
+<dt><a name="sql_not_regexp"
+>sql_not_regexp</a></dt>
+
+<dd>
+<dt><a name="sql_string_concat"
+>sql_string_concat</a></dt>
+
+<dd>
+<dt><a name="sql_date_math"
+>sql_date_math</a></dt>
+
+<dd>
+<dt><a name="sql_to_days"
+>sql_to_days</a></dt>
+
+<dd>
+<dt><a name="sql_from_days"
+>sql_from_days</a></dt>
+
+<dd>
+<dt><a name="bz_table_list_real"
+>bz_table_list_real</a></dt>
+
+<dd>
+<dt><a name="sql_regexp"
+>sql_regexp</a></dt>
+
+<dd>
+<dt><a name="sql_istring"
+>sql_istring</a></dt>
+
+<dd>
+<dt><a name="sql_group_concat"
+>sql_group_concat</a></dt>
+
+<dd>
+<dt><a name="bz_setup_database"
+>bz_setup_database</a></dt>
+</dl>
+<p class="backlinkbottom"><b><a name="___bottom" href="../../index.html" title="All Documents">&lt;&lt;</a></b></p>
+
+<!-- end doc -->
+
+</body></html>

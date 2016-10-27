@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>
+Bugzilla::Config::Common</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" title="style" type="text/css" href="../.././../../../../style.css" media="all" >
+
+</head>
+  <body id="pod">
+<p class="backlinktop"><b><a name="___top" href="../../index.html" accesskey="1" title="All Documents">&lt;&lt;</a></b></p>
+<h1>Bugzilla::Config::Common</h1>
+<div class='indexgroup'>
+<ul   class='indexList indexList1'>
+  <li class='indexItem indexItem1'><a href='#NAME'>NAME</a>
+  <li class='indexItem indexItem1'><a href='#DESCRIPTION'>DESCRIPTION</a>
+  <ul   class='indexList indexList2'>
+    <li class='indexItem indexItem2'><a href='#Functions'>Functions</a>
+  </ul>
+  <li class='indexItem indexItem1'><a href='#Methods_in_need_of_POD'>Methods in need of POD</a>
+</ul>
+</div>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="NAME"
+>NAME</a></h1>
+
+<p>Bugzilla::Config::Common - Parameter checking functions</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="DESCRIPTION"
+>DESCRIPTION</a></h1>
+
+<p>All parameter checking functions are called with two parameters: the value to check,
+and a hash with the details of the param (type,
+default etc.) as defined in the relevant <em  class="code">Bugzilla::Config::*</em> package.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="Functions"
+>Functions</a></h2>
+
+<dl>
+<dt><a name="check_multi"
+><code  class="code">check_multi</code></a></dt>
+
+<dd>
+<p>Checks that a multi-valued parameter (ie types <code  class="code">s</code>,
+<code  class="code">o</code> or <code  class="code">m</code>) satisfies its contraints.</p>
+
+<dt><a name="check_numeric"
+><code  class="code">check_numeric</code></a></dt>
+
+<dd>
+<p>Checks that the value is a valid number</p>
+
+<dt><a name="check_regexp"
+><code  class="code">check_regexp</code></a></dt>
+
+<dd>
+<p>Checks that the value is a valid regexp</p>
+
+<dt><a name="check_comment_taggers_group"
+><code  class="code">check_comment_taggers_group</code></a></dt>
+
+<dd>
+<p>Checks that the required modules for comment tagging are installed,
+and that a valid group is provided.</p>
+</dd>
+</dl>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="Methods_in_need_of_POD"
+><b>Methods in need of POD</b></a></h1>
+
+<dl>
+<dt><a name="check_notification"
+>check_notification</a></dt>
+
+<dd>
+<dt><a name="check_priority"
+>check_priority</a></dt>
+
+<dd>
+<dt><a name="check_ip"
+>check_ip</a></dt>
+
+<dd>
+<dt><a name="check_user_verify_class"
+>check_user_verify_class</a></dt>
+
+<dd>
+<dt><a name="check_bug_status"
+>check_bug_status</a></dt>
+
+<dd>
+<dt><a name="check_shadowdb"
+>check_shadowdb</a></dt>
+
+<dd>
+<dt><a name="check_smtp_server"
+>check_smtp_server</a></dt>
+
+<dd>
+<dt><a name="check_smtp_auth"
+>check_smtp_auth</a></dt>
+
+<dd>
+<dt><a name="check_url"
+>check_url</a></dt>
+
+<dd>
+<dt><a name="check_urlbase"
+>check_urlbase</a></dt>
+
+<dd>
+<dt><a name="check_email"
+>check_email</a></dt>
+
+<dd>
+<dt><a name="check_webdotbase"
+>check_webdotbase</a></dt>
+
+<dd>
+<dt><a name="check_font_file"
+>check_font_file</a></dt>
+
+<dd>
+<dt><a name="get_param_list"
+>get_param_list</a></dt>
+
+<dd>
+<dt><a name="check_maxattachmentsize"
+>check_maxattachmentsize</a></dt>
+
+<dd>
+<dt><a name="check_utf8"
+>check_utf8</a></dt>
+
+<dd>
+<dt><a name="check_group"
+>check_group</a></dt>
+
+<dd>
+<dt><a name="check_opsys"
+>check_opsys</a></dt>
+
+<dd>
+<dt><a name="check_platform"
+>check_platform</a></dt>
+
+<dd>
+<dt><a name="check_severity"
+>check_severity</a></dt>
+
+<dd>
+<dt><a name="check_sslbase"
+>check_sslbase</a></dt>
+
+<dd>
+<dt><a name="check_mail_delivery_method"
+>check_mail_delivery_method</a></dt>
+
+<dd>
+<dt><a name="check_theschwartz_available"
+>check_theschwartz_available</a></dt>
+
+<dd>
+<dt><a name="check_smtp_ssl"
+>check_smtp_ssl</a></dt>
+</dl>
+<p class="backlinkbottom"><b><a name="___bottom" href="../../index.html" title="All Documents">&lt;&lt;</a></b></p>
+
+<!-- end doc -->
+
+</body></html>

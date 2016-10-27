@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>
+Bugzilla::Keyword</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" title="style" type="text/css" href=".././../../../../style.css" media="all" >
+
+</head>
+  <body id="pod">
+<p class="backlinktop"><b><a name="___top" href="../index.html" accesskey="1" title="All Documents">&lt;&lt;</a></b></p>
+<h1>Bugzilla::Keyword</h1>
+<div class='indexgroup'>
+<ul   class='indexList indexList1'>
+  <li class='indexItem indexItem1'><a href='#NAME'>NAME</a>
+  <li class='indexItem indexItem1'><a href='#SYNOPSIS'>SYNOPSIS</a>
+  <li class='indexItem indexItem1'><a href='#DESCRIPTION'>DESCRIPTION</a>
+  <li class='indexItem indexItem1'><a href='#METHODS'>METHODS</a>
+  <li class='indexItem indexItem1'><a href='#Methods_in_need_of_POD'>Methods in need of POD</a>
+</ul>
+</div>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="NAME"
+>NAME</a></h1>
+
+<p>Bugzilla::Keyword - A Keyword that can be added to a bug.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="SYNOPSIS"
+>SYNOPSIS</a></h1>
+
+<pre  class="code"> use Bugzilla::Keyword;
+
+ my $description = $keyword-&#62;description;
+
+ my $keywords = Bugzilla::Keyword-&#62;get_all_with_bug_count();</pre>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="DESCRIPTION"
+>DESCRIPTION</a></h1>
+
+<p>Bugzilla::Keyword represents a keyword that can be added to a bug.</p>
+
+<p>This implements all standard <code  class="code">Bugzilla::Object</code> methods. See <a href="../Bugzilla/Object.html" class="podlinkpod"
+>Bugzilla::Object</a> for more details.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="METHODS"
+>METHODS</a></h1>
+
+<p>This is only a list of methods specific to <code  class="code">Bugzilla::Keyword</code>. See <a href="../Bugzilla/Object.html" class="podlinkpod"
+>Bugzilla::Object</a> for more methods that this object implements.</p>
+
+<dl>
+<dt><a name="get_all_with_bug_count()"
+><code  class="code">get_all_with_bug_count()</code></a></dt>
+
+<dd>
+<pre  class="code"> Description: Returns all defined keywords. This is an efficient way
+              to get the associated bug counts, as only one SQL query
+              is executed with this method, instead of one per keyword
+              when calling get_all and then bug_count.
+ Params:      none
+ Returns:     A reference to an array of Keyword objects, or an empty
+              arrayref if there are no keywords.</pre>
+
+<dt><a name="is_active"
+><code  class="code">is_active</code></a></dt>
+
+<dd>
+<pre  class="code"> Description: Indicates if the keyword may be used on a bug
+ Params:      none
+ Returns:     a boolean value that is true if the keyword can be applied to bugs.</pre>
+
+<dt><a name="set_is_active($is_active)"
+><code  class="code">set_is_active($is_active)</code></a></dt>
+
+<dd>
+<pre  class="code"> Description: Set the is_active property to a boolean value
+ Params:      the new value of the is_active property.
+ Returns:     nothing</pre>
+</dd>
+</dl>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="Methods_in_need_of_POD"
+><b>Methods in need of POD</b></a></h1>
+
+<dl>
+<dt><a name="set_description"
+>set_description</a></dt>
+
+<dd>
+<dt><a name="bug_count"
+>bug_count</a></dt>
+
+<dd>
+<dt><a name="set_name"
+>set_name</a></dt>
+
+<dd>
+<dt><a name="description"
+>description</a></dt>
+</dl>
+<p class="backlinkbottom"><b><a name="___bottom" href="../index.html" title="All Documents">&lt;&lt;</a></b></p>
+
+<!-- end doc -->
+
+</body></html>

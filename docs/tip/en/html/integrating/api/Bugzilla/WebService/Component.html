@@ -1,0 +1,484 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>
+Bugzilla::Webservice::Component</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" title="style" type="text/css" href="../.././../../../../style.css" media="all" >
+
+</head>
+  <body id="pod">
+<p class="backlinktop"><b><a name="___top" href="../../index.html" accesskey="1" title="All Documents">&lt;&lt;</a></b></p>
+<h1>Bugzilla::Webservice::Component</h1>
+<div class='indexgroup'>
+<ul   class='indexList indexList1'>
+  <li class='indexItem indexItem1'><a href='#NAME'>NAME</a>
+  <li class='indexItem indexItem1'><a href='#DESCRIPTION'>DESCRIPTION</a>
+  <li class='indexItem indexItem1'><a href='#METHODS'>METHODS</a>
+  <li class='indexItem indexItem1'><a href='#Component_Creation_and_Modification'>Component Creation and Modification</a>
+  <ul   class='indexList indexList2'>
+    <li class='indexItem indexItem2'><a href='#create'>create</a>
+    <li class='indexItem indexItem2'><a href='#update'>update</a>
+    <li class='indexItem indexItem2'><a href='#delete'>delete</a>
+  </ul>
+</ul>
+</div>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="NAME"
+>NAME</a></h1>
+
+<p>Bugzilla::Webservice::Component - The Component API</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="DESCRIPTION"
+>DESCRIPTION</a></h1>
+
+<p>This part of the Bugzilla API allows you to deal with the available product components.
+You will be able to get information about them as well as manipulate them.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="METHODS"
+>METHODS</a></h1>
+
+<p>See <a href="../../Bugzilla/WebService.html" class="podlinkpod"
+>Bugzilla::WebService</a> for a description of how parameters are passed,
+and what <b>STABLE</b>,
+<b>UNSTABLE</b>,
+and <b>EXPERIMENTAL</b> mean.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="Component_Creation_and_Modification"
+>Component Creation and Modification</a></h1>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="create"
+>create</a></h2>
+
+<p><b>EXPERIMENTAL</b></p>
+
+<dl>
+<dt><a name="Description"
+><b>Description</b></a></dt>
+
+<dd>
+<p>This allows you to create a new component in Bugzilla.</p>
+
+<dt><a name="Params"
+><b>Params</b></a></dt>
+
+<dd>
+<p>Some params must be set,
+or an error will be thrown.
+These params are marked <b>Required</b>.</p>
+
+<dl>
+<dt><a name="name"
+><code  class="code">name</code></a></dt>
+
+<dd>
+<p><b>Required</b> <code  class="code">string</code> The name of the new component.</p>
+
+<dt><a name="product"
+><code  class="code">product</code></a></dt>
+
+<dd>
+<p><b>Required</b> <code  class="code">string</code> The name of the product that the component must be added to.
+This product must already exist,
+and the user have the necessary permissions to edit components for it.</p>
+
+<dt><a name="description"
+><code  class="code">description</code></a></dt>
+
+<dd>
+<p><b>Required</b> <code  class="code">string</code> The description of the new component.</p>
+
+<dt><a name="default_assignee"
+><code  class="code">default_assignee</code></a></dt>
+
+<dd>
+<p><b>Required</b> <code  class="code">string</code> The login name of the default assignee of the component.</p>
+
+<dt><a name="default_cc"
+><code  class="code">default_cc</code></a></dt>
+
+<dd>
+<p><code  class="code">array</code> An array of strings with each element representing one login name of the default CC list.</p>
+
+<dt><a name="default_qa_contact"
+><code  class="code">default_qa_contact</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> The login name of the default QA contact for the component.</p>
+
+<dt><a name="is_open"
+><code  class="code">is_open</code></a></dt>
+
+<dd>
+<p><code  class="code">boolean</code> 1 if you want to enable the component for bug creations.
+0 otherwise.
+Default is 1.</p>
+</dd>
+</dl>
+
+<dt><a name="Returns"
+><b>Returns</b></a></dt>
+
+<dd>
+<p>A hash with one key: <code  class="code">id</code>.
+This will represent the ID of the newly-added component.</p>
+
+<dt><a name="Errors"
+><b>Errors</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="304_(Authorization_Failure)"
+>304 (Authorization Failure)</a></dt>
+
+<dd>
+<p>You are not authorized to create a new component.</p>
+
+<dt><a name="1200_(Component_already_exists)"
+>1200 (Component already exists)</a></dt>
+
+<dd>
+<p>The name that you specified for the new component already exists in the specified product.</p>
+</dd>
+</dl>
+
+<dt><a name="History"
+><b>History</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="Added_in_Bugzilla_5.0."
+>Added in Bugzilla <b>5.0</b>.</a></dt>
+</dl>
+</dd>
+</dl>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="update"
+>update</a></h2>
+
+<dl>
+<dt><a name="Description"
+><b>Description</b></a></dt>
+
+<dd>
+<p>This allows you to update one or more components in Bugzilla.</p>
+
+<dt><a name="REST"
+><b>REST</b></a></dt>
+
+<dd>
+<p>PUT /rest/component/&#60;component_id&#62;</p>
+
+<p>PUT /rest/component/&#60;product_name&#62;/&#60;component_name&#62;</p>
+
+<p>The params to include in the PUT body as well as the returned data format,
+are the same as below.
+The <code  class="code">ids</code> and <code  class="code">names</code> params will be overridden as it is pulled from the URL path.</p>
+
+<dt><a name="Params"
+><b>Params</b></a></dt>
+
+<dd>
+<p><b>Note:</b> The following parameters specify which components you are updating.
+You must set one or both of these parameters.</p>
+
+<dl>
+<dt><a name="ids"
+><code  class="code">ids</code></a></dt>
+
+<dd>
+<p><code  class="code">array</code> of <code  class="code">int</code>s.
+Numeric ids of the components that you wish to update.</p>
+
+<dt><a name="names"
+><code  class="code">names</code></a></dt>
+
+<dd>
+<p><code  class="code">array</code> of <code  class="code">hash</code>es.
+Names of the components that you wish to update.
+The hash keys are <code  class="code">product</code> and <code  class="code">component</code>,
+representing the name of the product and the component you wish to change.</p>
+</dd>
+</dl>
+
+<p><b>Note:</b> The following parameters specify the new values you want to set for the components you are updating.</p>
+
+<dl>
+<dt><a name="name"
+><code  class="code">name</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> A new name for this component.
+If you try to set this while updating more than one component for a product,
+an error will occur,
+as component names must be unique per product.</p>
+
+<dt><a name="description"
+><code  class="code">description</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> Update the long description for these components to this value.</p>
+
+<dt><a name="default_assignee"
+><code  class="code">default_assignee</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> The login name of the default assignee of the component.</p>
+
+<dt><a name="default_cc"
+><code  class="code">default_cc</code></a></dt>
+
+<dd>
+<p><code  class="code">array</code> An array of strings with each element representing one login name of the default CC list.</p>
+
+<dt><a name="default_qa_contact"
+><code  class="code">default_qa_contact</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> The login name of the default QA contact for the component.</p>
+
+<dt><a name="is_open"
+><code  class="code">is_open</code></a></dt>
+
+<dd>
+<p><code  class="code">boolean</code> True if the component is currently allowing bugs to be entered into it,
+False otherwise.</p>
+</dd>
+</dl>
+
+<dt><a name="Returns"
+><b>Returns</b></a></dt>
+
+<dd>
+<p>A <code  class="code">hash</code> with a single field &#34;components&#34;.
+This points to an array of hashes with the following fields:</p>
+
+<dl>
+<dt><a name="id"
+><code  class="code">id</code></a></dt>
+
+<dd>
+<p><code  class="code">int</code> The id of the component that was updated.</p>
+
+<dt><a name="changes"
+><code  class="code">changes</code></a></dt>
+
+<dd>
+<p><code  class="code">hash</code> The changes that were actually done on this component.
+The keys are the names of the fields that were changed,
+and the values are a hash with two keys:</p>
+
+<dl>
+<dt><a name="added"
+><code  class="code">added</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> The value that this field was changed to.</p>
+
+<dt><a name="removed"
+><code  class="code">removed</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> The value that was previously set in this field.</p>
+</dd>
+</dl>
+
+<p>Note that booleans will be represented with the strings &#39;1&#39; and &#39;0&#39;.</p>
+
+<p>Here&#39;s an example of what a return value might look like:</p>
+
+<pre  class="code"> {
+   components =&#62; [
+     {
+       id =&#62; 123,
+       changes =&#62; {
+         name =&#62; {
+           removed =&#62; &#39;FooName&#39;,
+           added   =&#62; &#39;BarName&#39;
+         },
+         default_assignee =&#62; {
+           removed =&#62; &#39;foo@company.com&#39;,
+           added   =&#62; &#39;bar@company.com&#39;,
+         }
+       }
+     }
+   ]
+ }</pre>
+</dd>
+</dl>
+
+<dt><a name="Errors"
+><b>Errors</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="51_(User_does_not_exist)"
+>51 (User does not exist)</a></dt>
+
+<dd>
+<p>One of the contact e-mail addresses is not a valid Bugzilla user.</p>
+
+<dt><a name="106_(Product_access_denied)"
+>106 (Product access denied)</a></dt>
+
+<dd>
+<p>The product you are trying to modify does not exist or you don&#39;t have access to it.</p>
+
+<dt><a name="706_(Product_admin_denied)"
+>706 (Product admin denied)</a></dt>
+
+<dd>
+<p>You do not have the permission to change components for this product.</p>
+
+<dt><a name="105_(Component_name_too_long)"
+>105 (Component name too long)</a></dt>
+
+<dd>
+<p>The name specified for this component was longer than the maximum allowed length.</p>
+
+<dt><a name="1200_(Component_name_already_exists)"
+>1200 (Component name already exists)</a></dt>
+
+<dd>
+<p>You specified the name of a component that already exists. (Component names must be unique per product in Bugzilla.)</p>
+
+<dt><a name="1210_(Component_blank_name)"
+>1210 (Component blank name)</a></dt>
+
+<dd>
+<p>You must specify a non-blank name for this component.</p>
+
+<dt><a name="1211_(Component_must_have_description)"
+>1211 (Component must have description)</a></dt>
+
+<dd>
+<p>You must specify a description for this component.</p>
+
+<dt><a name="1212_(Component_name_is_not_unique)"
+>1212 (Component name is not unique)</a></dt>
+
+<dd>
+<p>You have attempted to set more than one component in the same product with the same name. Component names must be unique in each product.</p>
+
+<dt><a name="1213_(Component_needs_a_default_assignee)"
+>1213 (Component needs a default assignee)</a></dt>
+
+<dd>
+<p>A default assignee is required for this component.</p>
+</dd>
+</dl>
+
+<dt><a name="History"
+><b>History</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="Added_in_Bugzilla_5.0."
+>Added in Bugzilla <b>5.0</b>.</a></dt>
+</dl>
+</dd>
+</dl>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="delete"
+>delete</a></h2>
+
+<dl>
+<dt><a name="Description"
+><b>Description</b></a></dt>
+
+<dd>
+<p>This allows you to delete one or more components in Bugzilla.</p>
+
+<dt><a name="REST"
+><b>REST</b></a></dt>
+
+<dd>
+<p>DELETE /rest/component/&#60;component_id&#62;</p>
+
+<p>DELETE /rest/component/&#60;product_name&#62;/&#60;component_name&#62;</p>
+
+<p>The params to include in the PUT body as well as the returned data format, are the same as below. The <code  class="code">ids</code> and <code  class="code">names</code> params will be overridden as it is pulled from the URL path.</p>
+
+<dt><a name="Params"
+><b>Params</b></a></dt>
+
+<dd>
+<p><b>Note:</b> The following parameters specify which components you are deleting. You must set one or both of these parameters.</p>
+
+<dl>
+<dt><a name="ids"
+><code  class="code">ids</code></a></dt>
+
+<dd>
+<p><code  class="code">array</code> of <code  class="code">int</code>s. Numeric ids of the components that you wish to delete.</p>
+
+<dt><a name="names"
+><code  class="code">names</code></a></dt>
+
+<dd>
+<p><code  class="code">array</code> of <code  class="code">hash</code>es. Names of the components that you wish to delete. The hash keys are <code  class="code">product</code> and <code  class="code">component</code>, representing the name of the product and the component you wish to delete.</p>
+</dd>
+</dl>
+
+<dt><a name="Returns"
+><b>Returns</b></a></dt>
+
+<dd>
+<p>A <code  class="code">hash</code> with a single field &#34;components&#34;. This points to an array of hashes with the following field:</p>
+
+<dl>
+<dt><a name="id"
+><code  class="code">id</code></a></dt>
+
+<dd>
+<p><code  class="code">int</code> The id of the component that was deleted.</p>
+</dd>
+</dl>
+
+<dt><a name="Errors"
+><b>Errors</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="106_(Product_access_denied)"
+>106 (Product access denied)</a></dt>
+
+<dd>
+<p>The product you are trying to modify does not exist or you don&#39;t have access to it.</p>
+
+<dt><a name="706_(Product_admin_denied)"
+>706 (Product admin denied)</a></dt>
+
+<dd>
+<p>You do not have the permission to delete components for this product.</p>
+
+<dt><a name="1202_(Component_has_bugs)"
+>1202 (Component has bugs)</a></dt>
+
+<dd>
+<p>The component you are trying to delete currently has bugs assigned to it. You must move these bugs before trying to delete the component.</p>
+</dd>
+</dl>
+
+<dt><a name="History"
+><b>History</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="Added_in_Bugzilla_5.0"
+>Added in Bugzilla <b>5.0</b></a></dt>
+</dl>
+</dd>
+</dl>
+<p class="backlinkbottom"><b><a name="___bottom" href="../../index.html" title="All Documents">&lt;&lt;</a></b></p>
+
+<!-- end doc -->
+
+</body></html>

@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+  <title>2.16.7, 2.18rc3, 2.19.1 Security Advisory :: Bugzilla :: bugzilla.org</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="keywords" content="bugzilla bug track tracking enterprise solution">
+  <link rel="icon" href="/img/bugzilla_icon.png" type="image/png">
+  <link rel="stylesheet" type="text/css" href="/css/print.css" media="print">
+  <link rel="stylesheet" type="text/css" href="/css/base/content.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/base/template.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/css/bugzilla.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/css/cavendish/home.css" title="Cavendish" media="screen">
+</head>
+<body id="www-bugzilla-org" class="homepage">
+  <div id="container">
+    <p class="skipLink"><a href="#mainContent" accesskey="2">Skip to main content</a></p>
+    <div id="header">
+      <h1><a href="/" title="Return to Bugzilla home page" accesskey="1">Bugzilla</a></h1>
+      <div id="tools">
+        <ul id="mainNav">
+          <li><a href="/contribute/" title="How to Help"
+            >Contribute!</a></li>
+          <li><a href="/features/" title="Bugzilla features">Features</a></li>
+          <li><a href="/download/" title="Get Bugzilla for free">Download</a></li>
+          <li><a href="/support/" title="Where to get more help">Support</a></li>
+          <li><a href="/docs/" title="Bugzilla documenation">Docs</a></li>
+          <li><a href="/news/" title="Read about what is happening with Bugzilla">News</a></li>
+          <li><a href="/about/" title="Getting the most out of your online experience">About</a></li>
+        </ul>
+        <!-- closes #textSize-->
+        <form id="search" method="get" action="https://www.google.com/cse">
+          <div id="sf">
+            <label for="q" title="Search bugzilla.org">search bugzilla.org: </label>
+            <input type="hidden" name="cx" value="008043952663535741821:9whwb87ip5a">
+            <input type="text" id="q" name="q" accesskey="s" size="30">
+            <input type="submit" id="submit" value="go">
+          </div>
+        </form>
+      </div>
+     <!-- closes #tools-->
+    </div>
+    <!-- closes #header-->
+    <hr class="hide">
+    <div id="mBody">
+
+        <hr class="hide"><div id="side">
+<ul id="nav">
+<li>
+	<a href="/about/" title="Find out more about Bugzilla."><strong>About</strong></a>
+	<ul>
+		<li><a href="/installation-list/" title="Hundreds of companies and organizations trust Bugzilla.">Who Uses Bugzilla?</a></li>
+		<li><a href="/status/roadmap.html" title="Learn about Bugzilla's future.">Roadmap</a></li>
+		<li><a href="/developers/profiles.html" title="Meet the Bugzilla team.">Meet the Team</a></li>
+		<li><a href="/releases/" title="Information on current and previous releases.">Release Information</a></li>
+	</ul>
+</li>
+<li>
+	<a href="/news/" title="Get the low down on what's happening with the project."><strong>News</strong></a>
+	<ul>
+		<li><a href="http://planet.bugzilla.org" title="View the status of the Bugzilla project.">Planet Bugzilla</a></li>
+		<li><a href="/security/" title="Important updates regarding Bugzilla security.">Security Advisories</a></li>
+        <li><a href="/status/changes.html" title="Detailed list of all the changes between each Bugzilla version">Change Logs</a></li>
+	</ul>
+</li>
+<li>
+        <a href="/download/" title="Download Bugzilla"><strong>Download</strong></a>
+        <ul>
+                <li><a href="https://wiki.mozilla.org/Bugzilla:Addons" title="Third-party Bugzilla extensions">Extensions</a></li>
+                <li><a href="/requirements/">Requirements</a></li>
+        </ul>
+</li>
+<li>
+	<a href="/support/" title="Find out where to get more information and help."><strong>Support</strong></a>
+	<ul>
+                <li><a href="/support/" title="Find out where to get more information and help.">Free Support</a></li>
+                <li><a href="/support/consulting.html" title="Paid support options">Paid Support</a></li>
+		<li><a href="/docs/" title="Read the Bugzilla manual and other important documents.">Documentation</a></li>
+		<li><a href="https://wiki.mozilla.org/Bugzilla" title="Collaboratively updated information about Bugzilla.">Wiki</a></li>
+		<li><a href="/developers/reporting_bugs.html" title="Let us know if there is an error in Bugzilla.">Report a Bug</a></li>
+	</ul>
+</li>
+<li>
+	<a href="/developers/" title="Developer resources">Developer Resources</a>
+</li>
+  <li>
+    <a href="/contribute/" title="Ways you can help Bugzilla"
+    >How To Help Out</a>
+  </li>
+</ul>
+
+<div>
+<p><a href="https://twitter.com/bugzilla">Follow @bugzilla on Twitter</a></p>
+<p><a href="https://www.facebook.com/pages/Bugzilla/1427568330846442">Like Bugzilla on Facebook</a></p>
+<p><a href="https://plus.google.com/u/0/104215203522965843895?prsrc=3">Follow Bugzilla on Google+</a></p>
+</div>
+</div>
+<!-- closes #side -->      <div id="mainContent">
+        <h1>2.16.7, 2.18rc3, 2.19.1 Security Advisory</h1>
+January 6, 2005<br/>
+<pre>
+
+Summary
+=======
+
+Bugzilla is a Web-based bug-tracking system, used by a large number of
+software projects.
+
+This advisory covers a single cross-site scripting issue that has
+recently been discovered and fixed in the Bugzilla code: If a malicious
+user links to a Bugzilla site using a specially crafted URL, a script in
+the error page generated by Bugzilla will display the URL unaltered in
+the page, allowing scripts embedded in the URL to execute.  Not all
+browsers are affected.  Many web browsers prevent these types of URLs
+from being sent in the first place.  A list of browsers that we know are
+or are not affected is in the Vulnerability Details section below.
+
+At this time, we are very close to producing a new release of Bugzilla,
+however, that release has not yet been completed.  In the mean time, we
+felt it was only fair to advise everyone of this issue, since it has
+already been made public via at least BugTraq and Secunia as part of a
+broader paper covering cross-site scripting on many major websites.
+
+We do have patches available which can be applied to your Bugzilla
+installation.
+
+
+Vulnerability Details
+=====================
+
+Class:       Cross-site scripting
+Versions:    2.15 through 2.18rc3 and 2.19.1(from cvs)
+Description: It is possible to send a carefully crafted URL to Bugzilla
+             designed to trigger an error message.  The Internal Error
+             message includes javascript code which displays the URL the
+             user is visiting.  The javascript code does not escape the
+             URL before displaying it, allowing scripts contained in the
+             URL to be executed by the browser.  Many browsers do not
+             allow unescaped URLs to be sent to a webserver (thus
+             complying with RFC 2616 section 2.3.1 and RFC 2396 section
+             2.4.3), and are thus immune to this issue.
+             Browsers which are known to be immune:
+             - Firefox 1.0
+             - Mozilla 1.7.5
+             - Camino 0.8.2
+             - Netscape 7.2
+             - Safari 1.2.4
+             Browsers known to be susceptible:
+             - Internet Explorer 6 SP2
+             - Konqueror 3.2
+             Browsers not listed here have not been tested.
+Reference:   https://bugzilla.mozilla.org/show_bug.cgi?id=272620
+CVE Name:    CAN-2004-1061
+
+
+Vulnerability Solutions
+=======================
+
+The fixes for the security bug mentioned in this advisory will be
+included in the 2.16.8 and 2.18 releases, and in the first release
+candidate of 2.20, none of which are yet available at this writing. In
+the mean time, the patch to correct the issue may be downloaded from the
+bug report at https://bugzilla.mozilla.org/show_bug.cgi?id=272620 .
+Applying the provided patch, or upgrading to these releases once they
+are available, will protect installations from possible exploits of this
+issue.
+
+
+Credits
+=======
+
+The Bugzilla team wish to thank the following people for their
+assistance in locating, advising us of, and assisting us to fix
+these situations:
+
+Michael Krax
+Gervase Markham
+Marc Schumann
+
+
+General information about the Bugzilla bug-tracking system can be found
+at https://www.bugzilla.org/
+
+Comments and follow-ups can be directed to the
+netscape.public.mozilla.webtools newsgroup or the mozilla-webtools
+mailing list; https://www.bugzilla.org/support/ has directions for
+accessing these forums.
+
+ -30-
+</pre>
+        
+      </div>
+    </div></div>
+  <!-- closes #container -->
+  <div id="footer">
+    <ul>
+      <li><a href="https://www.mozilla.org/contact/">Contact Us</a></li>
+      <li><a href="https://donate.mozilla.org/page/contribute/bugzilla">Donate</a></li>
+    </ul>
+<!-- Creative Commons License -->
+<p class="copyright">This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/2.0/">Creative Commons License</a>.</p>
+
+<!--
+
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="">
+   <dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+   <license rdf:resource="http://creativecommons.org/licenses/by-sa/2.0/" />
+</Work>
+
+<License rdf:about="http://creativecommons.org/licenses/by-sa/2.0/">
+   <permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+   <permits rdf:resource="http://web.resource.org/cc/Distribution" />
+   <requires rdf:resource="http://web.resource.org/cc/Notice" />
+   <requires rdf:resource="http://web.resource.org/cc/Attribution" />
+   <permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+   <requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+</License>
+
+</rdf:RDF>
+
+-->
+<!-- /Creative Commons License -->
+
+    <p class="copyright">Portions of this work are &copy;
+      1998-2016
+      by individual bugzilla.org contributors.</p>
+    <p>
+      <span>Last modified October 27, 2016</span>
+      <span><a href="https://github.com/bugzilla/bugzilla.org/commits/master">Site History</a></span>
+    </p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+  <title>2.14.4, 2.16.1 (upgraded from 2.10 or earlier) Security Advisory :: Bugzilla :: bugzilla.org</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="keywords" content="bugzilla bug track tracking enterprise solution">
+  <link rel="icon" href="/img/bugzilla_icon.png" type="image/png">
+  <link rel="stylesheet" type="text/css" href="/css/print.css" media="print">
+  <link rel="stylesheet" type="text/css" href="/css/base/content.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/base/template.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/css/bugzilla.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/css/cavendish/home.css" title="Cavendish" media="screen">
+</head>
+<body id="www-bugzilla-org" class="homepage">
+  <div id="container">
+    <p class="skipLink"><a href="#mainContent" accesskey="2">Skip to main content</a></p>
+    <div id="header">
+      <h1><a href="/" title="Return to Bugzilla home page" accesskey="1">Bugzilla</a></h1>
+      <div id="tools">
+        <ul id="mainNav">
+          <li><a href="/contribute/" title="How to Help"
+            >Contribute!</a></li>
+          <li><a href="/features/" title="Bugzilla features">Features</a></li>
+          <li><a href="/download/" title="Get Bugzilla for free">Download</a></li>
+          <li><a href="/support/" title="Where to get more help">Support</a></li>
+          <li><a href="/docs/" title="Bugzilla documenation">Docs</a></li>
+          <li><a href="/news/" title="Read about what is happening with Bugzilla">News</a></li>
+          <li><a href="/about/" title="Getting the most out of your online experience">About</a></li>
+        </ul>
+        <!-- closes #textSize-->
+        <form id="search" method="get" action="https://www.google.com/cse">
+          <div id="sf">
+            <label for="q" title="Search bugzilla.org">search bugzilla.org: </label>
+            <input type="hidden" name="cx" value="008043952663535741821:9whwb87ip5a">
+            <input type="text" id="q" name="q" accesskey="s" size="30">
+            <input type="submit" id="submit" value="go">
+          </div>
+        </form>
+      </div>
+     <!-- closes #tools-->
+    </div>
+    <!-- closes #header-->
+    <hr class="hide">
+    <div id="mBody">
+
+        <hr class="hide"><div id="side">
+<ul id="nav">
+<li>
+	<a href="/about/" title="Find out more about Bugzilla."><strong>About</strong></a>
+	<ul>
+		<li><a href="/installation-list/" title="Hundreds of companies and organizations trust Bugzilla.">Who Uses Bugzilla?</a></li>
+		<li><a href="/status/roadmap.html" title="Learn about Bugzilla's future.">Roadmap</a></li>
+		<li><a href="/developers/profiles.html" title="Meet the Bugzilla team.">Meet the Team</a></li>
+		<li><a href="/releases/" title="Information on current and previous releases.">Release Information</a></li>
+	</ul>
+</li>
+<li>
+	<a href="/news/" title="Get the low down on what's happening with the project."><strong>News</strong></a>
+	<ul>
+		<li><a href="http://planet.bugzilla.org" title="View the status of the Bugzilla project.">Planet Bugzilla</a></li>
+		<li><a href="/security/" title="Important updates regarding Bugzilla security.">Security Advisories</a></li>
+        <li><a href="/status/changes.html" title="Detailed list of all the changes between each Bugzilla version">Change Logs</a></li>
+	</ul>
+</li>
+<li>
+        <a href="/download/" title="Download Bugzilla"><strong>Download</strong></a>
+        <ul>
+                <li><a href="https://wiki.mozilla.org/Bugzilla:Addons" title="Third-party Bugzilla extensions">Extensions</a></li>
+                <li><a href="/requirements/">Requirements</a></li>
+        </ul>
+</li>
+<li>
+	<a href="/support/" title="Find out where to get more information and help."><strong>Support</strong></a>
+	<ul>
+                <li><a href="/support/" title="Find out where to get more information and help.">Free Support</a></li>
+                <li><a href="/support/consulting.html" title="Paid support options">Paid Support</a></li>
+		<li><a href="/docs/" title="Read the Bugzilla manual and other important documents.">Documentation</a></li>
+		<li><a href="https://wiki.mozilla.org/Bugzilla" title="Collaboratively updated information about Bugzilla.">Wiki</a></li>
+		<li><a href="/developers/reporting_bugs.html" title="Let us know if there is an error in Bugzilla.">Report a Bug</a></li>
+	</ul>
+</li>
+<li>
+	<a href="/developers/" title="Developer resources">Developer Resources</a>
+</li>
+  <li>
+    <a href="/contribute/" title="Ways you can help Bugzilla"
+    >How To Help Out</a>
+  </li>
+</ul>
+
+<div>
+<p><a href="https://twitter.com/bugzilla">Follow @bugzilla on Twitter</a></p>
+<p><a href="https://www.facebook.com/pages/Bugzilla/1427568330846442">Like Bugzilla on Facebook</a></p>
+<p><a href="https://plus.google.com/u/0/104215203522965843895?prsrc=3">Follow Bugzilla on Google+</a></p>
+</div>
+</div>
+<!-- closes #side -->      <div id="mainContent">
+        <h1>2.14.4, 2.16.1 (upgraded from 2.10 or earlier) Security Advisory</h1>
+November 26th, 2002<br/>
+<pre>
+Severity: Minor
+
+Summary
+=======
+
+The Bugzilla team recently discovered a cross-site scripting vulnerability.
+The vulnerability, present in Bugzilla's 'quips' feature, affects all
+installations who originally installed Bugzilla 2.10 or earlier and which
+have been upgraded from there.
+
+If you originally installed version 2.12 (released 2001 Apr 27) or later,
+or you have never had quips enabled, then you are not vulnerable to this
+attack.
+
+Vulnerability Details
+=====================
+
+This vulnerability affects installations using the "quips" feature to put
+short, user-submitted phrases at the top of bug lists.
+
+2.10 and earlier versions allowed users to enter unchecked input which was
+displayed as-entered back to the user.  Version 2.12 and later attempted to
+fix this problem by preventing users from entering HTML in new quips, and
+also escaping existing quips when displaying them to users in the bug list.
+
+However, the output of existing quips from "show all quips" choice on the
+quips management page was not properly escaped, so any *existing* quips
+still in the database from before the input checks were put in place would
+be displayed to a user with unescaped HTML if they chose to view a list of
+all of the existing quips at once.
+
+If you originally installed a version older than 2.12, had quips enabled,
+and have not cleaned up your quips database since you upgraded to 2.12,
+your installation may contain scripting attacks in your quips file from
+ages ago, still able to affect end users.
+
+
+Vulnerability Solutions
+=======================
+
+The best way to fix this vulnerability is to audit the contents of your
+quips file.
+
+Quips are stored in the file 'data/comments' in Bugzilla 2.14.x and 2.16.x,
+and in the database, in a 'quips' table, in 2.17.x).
+
+In addition to auditing quips, Bugzilla administrators can also force quips
+to be properly encoded to prevent HTML attacks by applying one of the following
+one-line patches.
+
+The Bugzilla team recommends both auditing your quips and applying the patches.
+
+Because of the low severity of this vulnerability, the small size of the
+required changes to fix it, and the small number of installations believed in
+existence at the point in time when this was corrected for new installations,
+we have not released any updated versions of Bugzilla, however, these fixes
+have been checked into the associated branches (so if you update via CVS you'll
+get them) and will be included in any future versions we release.
+
+Please note that Bugzilla 2.14.x will no longer be supported after December 31,
+2002, so Bugzilla 2.14.x sites are encouraged to upgrade to 2.16.1.
+
+Patch for Bugzilla 2.14.4:
+
+Index: quips.cgi
+===================================================================
+RCS file: /cvsroot/mozilla/webtools/bugzilla/quips.cgi,v
+retrieving revision 1.1
+diff -u -r1.1 quips.cgi
+--- quips.cgi   29 May 2001 04:01:48 -0000      1.1
++++ quips.cgi   22 Nov 2002 21:04:08 -0000
+@@ -49,7 +49,7 @@
+
+     if (open (COMMENTS, "&lt;data/comments")) {
+         while (&lt;COMMENTS&gt;) {
+-            print $_,"&lt;br&gt;\n";
++            print html_quote($_),"&lt;br&gt;\n";
+         }
+         close COMMENTS;
+     }
+
+
+Patch for Bugzilla 2.16.1:
+
+Index: template/en/default/list/quips.html.tmpl
+===================================================================
+RCS file:
+/cvsroot/mozilla/webtools/bugzilla/template/en/default/list/quips.html.tmpl,v
+retrieving revision 1.4.2.1
+diff -u -r1.4.2.1 quips.html.tmpl
+--- template/en/default/list/quips.html.tmpl    23 May 2002 08:14:23 -0000 1.4.2.1
++++ template/en/default/list/quips.html.tmpl    22 Nov 2002 21:19:22 -0000
+@@ -59,7 +59,7 @@
+   &lt;/h2&gt;
+   &lt;ul&gt;
+     [&#37; FOREACH quip = quips &#37;]
+-      &lt;li&gt;[&#37; quip &#37;]&lt;/li&gt;
++      &lt;li&gt;[&#37; quip FILTER html &#37;]&lt;/li&gt;
+     [&#37; END &#37;]
+   &lt;/ul&gt;
+ [&#37; ELSE &#37;]
+
+
+For Bugzilla 2.17 from CVS:
+
+Run a 'cvs update' to pick up the fix.
+
+Bugzilla 2.17.1 already contains this fix.
+
+
+For More Information
+====================
+
+References:  Bugzilla bug 179329
+https://bugzilla.mozilla.org/show_bug.cgi?id=179329
+
+General information about the Bugzilla bug-tracking system can be found at
+https://www.bugzilla.org/
+
+Comments and follow-ups can be directed to the
+netscape.public.mozilla.webtools newsgroup or the mozilla-webtools mailing
+list; https://www.mozilla.org/community.html has directions for accessing
+these forums.
+</pre>
+        
+      </div>
+    </div></div>
+  <!-- closes #container -->
+  <div id="footer">
+    <ul>
+      <li><a href="https://www.mozilla.org/contact/">Contact Us</a></li>
+      <li><a href="https://donate.mozilla.org/page/contribute/bugzilla">Donate</a></li>
+    </ul>
+<!-- Creative Commons License -->
+<p class="copyright">This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/2.0/">Creative Commons License</a>.</p>
+
+<!--
+
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="">
+   <dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+   <license rdf:resource="http://creativecommons.org/licenses/by-sa/2.0/" />
+</Work>
+
+<License rdf:about="http://creativecommons.org/licenses/by-sa/2.0/">
+   <permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+   <permits rdf:resource="http://web.resource.org/cc/Distribution" />
+   <requires rdf:resource="http://web.resource.org/cc/Notice" />
+   <requires rdf:resource="http://web.resource.org/cc/Attribution" />
+   <permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+   <requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+</License>
+
+</rdf:RDF>
+
+-->
+<!-- /Creative Commons License -->
+
+    <p class="copyright">Portions of this work are &copy;
+      1998-2016
+      by individual bugzilla.org contributors.</p>
+    <p>
+      <span>Last modified October 27, 2016</span>
+      <span><a href="https://github.com/bugzilla/bugzilla.org/commits/master">Site History</a></span>
+    </p>
+  </div>
+</body>
+</html>

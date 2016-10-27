@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+  <title>Requirements :: Bugzilla :: bugzilla.org</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="keywords" content="bugzilla bug track tracking enterprise solution">
+  <link rel="icon" href="/img/bugzilla_icon.png" type="image/png">
+  <link rel="stylesheet" type="text/css" href="/css/print.css" media="print">
+  <link rel="stylesheet" type="text/css" href="/css/base/content.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/base/template.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/css/bugzilla.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/css/cavendish/home.css" title="Cavendish" media="screen">
+</head>
+<body id="www-bugzilla-org" class="homepage">
+  <div id="container">
+    <p class="skipLink"><a href="#mainContent" accesskey="2">Skip to main content</a></p>
+    <div id="header">
+      <h1><a href="/" title="Return to Bugzilla home page" accesskey="1">Bugzilla</a></h1>
+      <div id="tools">
+        <ul id="mainNav">
+          <li><a href="/contribute/" title="How to Help"
+            >Contribute!</a></li>
+          <li><a href="/features/" title="Bugzilla features">Features</a></li>
+          <li><a href="/download/" title="Get Bugzilla for free">Download</a></li>
+          <li><a href="/support/" title="Where to get more help">Support</a></li>
+          <li><a href="/docs/" title="Bugzilla documenation">Docs</a></li>
+          <li><a href="/news/" title="Read about what is happening with Bugzilla">News</a></li>
+          <li><a href="/about/" title="Getting the most out of your online experience">About</a></li>
+        </ul>
+        <!-- closes #textSize-->
+        <form id="search" method="get" action="https://www.google.com/cse">
+          <div id="sf">
+            <label for="q" title="Search bugzilla.org">search bugzilla.org: </label>
+            <input type="hidden" name="cx" value="008043952663535741821:9whwb87ip5a">
+            <input type="text" id="q" name="q" accesskey="s" size="30">
+            <input type="submit" id="submit" value="go">
+          </div>
+        </form>
+      </div>
+     <!-- closes #tools-->
+    </div>
+    <!-- closes #header-->
+    <hr class="hide">
+    <div id="mBody">
+
+        <hr class="hide"><div id="side">
+<ul id="nav">
+<li>
+	<a href="/about/" title="Find out more about Bugzilla."><strong>About</strong></a>
+	<ul>
+		<li><a href="/installation-list/" title="Hundreds of companies and organizations trust Bugzilla.">Who Uses Bugzilla?</a></li>
+		<li><a href="/status/roadmap.html" title="Learn about Bugzilla's future.">Roadmap</a></li>
+		<li><a href="/developers/profiles.html" title="Meet the Bugzilla team.">Meet the Team</a></li>
+		<li><a href="/releases/" title="Information on current and previous releases.">Release Information</a></li>
+	</ul>
+</li>
+<li>
+	<a href="/news/" title="Get the low down on what's happening with the project."><strong>News</strong></a>
+	<ul>
+		<li><a href="http://planet.bugzilla.org" title="View the status of the Bugzilla project.">Planet Bugzilla</a></li>
+		<li><a href="/security/" title="Important updates regarding Bugzilla security.">Security Advisories</a></li>
+        <li><a href="/status/changes.html" title="Detailed list of all the changes between each Bugzilla version">Change Logs</a></li>
+	</ul>
+</li>
+<li>
+        <a href="/download/" title="Download Bugzilla"><strong>Download</strong></a>
+        <ul>
+                <li><a href="https://wiki.mozilla.org/Bugzilla:Addons" title="Third-party Bugzilla extensions">Extensions</a></li>
+                <li><a href="/requirements/">Requirements</a></li>
+        </ul>
+</li>
+<li>
+	<a href="/support/" title="Find out where to get more information and help."><strong>Support</strong></a>
+	<ul>
+                <li><a href="/support/" title="Find out where to get more information and help.">Free Support</a></li>
+                <li><a href="/support/consulting.html" title="Paid support options">Paid Support</a></li>
+		<li><a href="/docs/" title="Read the Bugzilla manual and other important documents.">Documentation</a></li>
+		<li><a href="https://wiki.mozilla.org/Bugzilla" title="Collaboratively updated information about Bugzilla.">Wiki</a></li>
+		<li><a href="/developers/reporting_bugs.html" title="Let us know if there is an error in Bugzilla.">Report a Bug</a></li>
+	</ul>
+</li>
+<li>
+	<a href="/developers/" title="Developer resources">Developer Resources</a>
+</li>
+  <li>
+    <a href="/contribute/" title="Ways you can help Bugzilla"
+    >How To Help Out</a>
+  </li>
+</ul>
+
+<div>
+<p><a href="https://twitter.com/bugzilla">Follow @bugzilla on Twitter</a></p>
+<p><a href="https://www.facebook.com/pages/Bugzilla/1427568330846442">Like Bugzilla on Facebook</a></p>
+<p><a href="https://plus.google.com/u/0/104215203522965843895?prsrc=3">Follow Bugzilla on Google+</a></p>
+</div>
+</div>
+<!-- closes #side -->      <div id="mainContent">
+        <h1>Requirements</h1>
+
+<h2>Operating System</h2>
+
+<p>To install and run Bugzilla on your server, the core requirement is to have
+Perl installed. This means that Bugzilla can be installed on any platform where
+Perl can be installed, including Windows, Linux, and Mac OS X. Linux is highly
+recommended and is our 1st-class citizen operating system.</p>
+
+<h2>Hardware</h2>
+
+<p>The hardware requirements depend heavily on the size of the user base and on
+the number of bugs in your database. For small teams (up to a few tens of users)
+with few bugs (up to a few thousands bugs), any good machine will do the job
+pretty well. The important part is to have enough RAM (4 GB or more recommended)
+and a fast processor (for instance, 3 GHz). Such hardware is pretty common
+nowadays. A harddisk with 50 GB of free space is large enough.</p>
+
+<p>Larger teams with several thousands of users and several hundreds of thousands
+bugs need more hardware. To give you an idea, the Bugzilla installation at
+Mozilla uses 8 servers: 3 webheads (12 GB of RAM each), 1 master database (35 GB
+of RAM), 3 slave databases (35 GB of RAM each), and 1 email relay. Moreover,
+mod_perl is enabled for improved performance. Note that it is designed for very
+high concurrent access, which is quite unusual, so your requirements are probably
+lower than that.</p>
+
+<h2>Software</h2>
+
+<p>Bugzilla needs a database server, a web server, and Perl. In all
+recommendations below, "Bugzilla requires version X" must be understood as
+"Bugzilla requires version X <em>or newer</em>". In all cases, the newer, the
+better, as newer releases have more bug fixes, are still supported and still get
+security fixes. If you install the mimimum version mentioned below, the risk is
+that this version will reach End Of Life pretty soon and so can be unsupported
+at any time.
+
+<dl>
+  <dt>Perl:</dt>
+  <dd>Bugzilla 4.4 and older require Perl 5.8.1 (<em>or newer</em>, see the
+  previous paragraph), but Bugzilla 5.0 and newer will require Perl 5.10.1, and
+  so we don't recommend Perl 5.8.x at this stage. Instead, you should install
+  Perl 5.12 (though <a href="http://www.cpan.org/src/">this version already
+  reached End Of Life</a>) or newer, as these newer versions have some useful
+  improvements which will make your life easier.</dd>
+
+  <dt>Database Server:</dt>
+  <dd>Bugzilla supports MySQL, PostgreSQL, Oracle and SQLite. We highly recommend
+  MySQL and PostgreSQL, which have the best support from Bugzilla and are used
+  daily by Bugzilla developers. Oracle has
+  <a href="https://bugzilla.mozilla.org/buglist.cgi?quicksearch=prod%3ABugzilla%20summary%3AOracle">several known issues</a>
+  and is a 2nd-class citizen. It should work decently in most cases, but may
+  fail miserably in some cases too. SQLite is recommended for testing purposes
+  only or for small teams.<br>
+  If you install MySQL, version 5.0.15 is required by Bugzilla 4.x, but we highly
+  recommend version 5.5 or newer. If you install PostgreSQL, version 8.3 is required.</dd>
+
+  <dt>Web Server:</dt>
+  <dd>Bugzilla has no minimum requirements for its web server. We recommend to
+  install Apache 2.2, though Bugzilla works fine with IIS too (IIS 7 or higher
+  recommended). If you install Apache and you want improved performances, you can
+  enable its mod_perl module.</dd>
+</dl>
+</p>
+        
+      </div>
+    </div></div>
+  <!-- closes #container -->
+  <div id="footer">
+    <ul>
+      <li><a href="https://www.mozilla.org/contact/">Contact Us</a></li>
+      <li><a href="https://donate.mozilla.org/page/contribute/bugzilla">Donate</a></li>
+    </ul>
+<!-- Creative Commons License -->
+<p class="copyright">This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/2.0/">Creative Commons License</a>.</p>
+
+<!--
+
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="">
+   <dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+   <license rdf:resource="http://creativecommons.org/licenses/by-sa/2.0/" />
+</Work>
+
+<License rdf:about="http://creativecommons.org/licenses/by-sa/2.0/">
+   <permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+   <permits rdf:resource="http://web.resource.org/cc/Distribution" />
+   <requires rdf:resource="http://web.resource.org/cc/Notice" />
+   <requires rdf:resource="http://web.resource.org/cc/Attribution" />
+   <permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+   <requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+</License>
+
+</rdf:RDF>
+
+-->
+<!-- /Creative Commons License -->
+
+    <p class="copyright">Portions of this work are &copy;
+      1998-2016
+      by individual bugzilla.org contributors.</p>
+    <p>
+      <span>Last modified October 27, 2016</span>
+      <span><a href="https://github.com/bugzilla/bugzilla.org/commits/master">Site History</a></span>
+    </p>
+  </div>
+</body>
+</html>

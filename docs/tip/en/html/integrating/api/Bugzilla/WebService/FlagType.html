@@ -1,0 +1,667 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>
+Bugzilla::WebService::FlagType</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" title="style" type="text/css" href="../.././../../../../style.css" media="all" >
+
+</head>
+  <body id="pod">
+<p class="backlinktop"><b><a name="___top" href="../../index.html" accesskey="1" title="All Documents">&lt;&lt;</a></b></p>
+<h1>Bugzilla::WebService::FlagType</h1>
+<div class='indexgroup'>
+<ul   class='indexList indexList1'>
+  <li class='indexItem indexItem1'><a href='#NAME'>NAME</a>
+  <li class='indexItem indexItem1'><a href='#DESCRIPTION'>DESCRIPTION</a>
+  <li class='indexItem indexItem1'><a href='#METHODS'>METHODS</a>
+  <ul   class='indexList indexList2'>
+    <li class='indexItem indexItem2'><a href='#Get_Flag_Types'>Get Flag Types</a>
+    <li class='indexItem indexItem2'><a href='#Create_Flag'>Create Flag</a>
+    <li class='indexItem indexItem2'><a href='#update'>update</a>
+  </ul>
+</ul>
+</div>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="NAME"
+>NAME</a></h1>
+
+<p>Bugzilla::WebService::FlagType - API for creating flags.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="DESCRIPTION"
+>DESCRIPTION</a></h1>
+
+<p>This part of the Bugzilla API allows you to create new flags</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="METHODS"
+>METHODS</a></h1>
+
+<p>See <a href="../../Bugzilla/WebService.html" class="podlinkpod"
+>Bugzilla::WebService</a> for a description of what <b>STABLE</b>,
+<b>UNSTABLE</b>,
+and <b>EXPERIMENTAL</b> mean,
+and for more description about error codes.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="Get_Flag_Types"
+>Get Flag Types</a></h2>
+
+<dl>
+<dt><a name="get_UNSTABLE"
+><code  class="code">get</code> <b>UNSTABLE</b></a></dt>
+
+<dd>
+<dt><a name="Description"
+><b>Description</b></a></dt>
+
+<dd>
+<p>Get information about valid flag types that can be set for bugs and attachments.</p>
+
+<dt><a name="REST"
+><b>REST</b></a></dt>
+
+<dd>
+<p>You have several options for retreiving information about flag types.
+The first part is the request method and the rest is the related path needed.</p>
+
+<p>To get information about all flag types for a product:</p>
+
+<p>GET /rest/flag_type/&#60;product&#62;</p>
+
+<p>To get information about flag_types for a product and component:</p>
+
+<p>GET /rest/flag_type/&#60;product&#62;/&#60;component&#62;</p>
+
+<p>The returned data format is the same as below.</p>
+
+<dt><a name="Params"
+><b>Params</b></a></dt>
+
+<dd>
+<p>You must pass a product name and an optional component name.</p>
+
+<dl>
+<dt><a name="product_(string)_-_The_name_of_a_valid_product."
+><code  class="code">product</code> (string) - The name of a valid product.</a></dt>
+
+<dd>
+<dt><a name="component_(string)_-_An_optional_valid_component_name_associated_with_the_product."
+><code  class="code">component</code> (string) - An optional valid component name associated with the product.</a></dt>
+</dl>
+
+<dt><a name="Returns"
+><b>Returns</b></a></dt>
+
+<dd>
+<p>A hash containing two keys,
+<code  class="code">bug</code> and <code  class="code">attachment</code>.
+Each key value is an array of hashes,
+containing the following keys:</p>
+
+<dl>
+<dt><a name="id"
+><code  class="code">id</code></a></dt>
+
+<dd>
+<p><code  class="code">int</code> An integer id uniquely identifying this flag type.</p>
+
+<dt><a name="name"
+><code  class="code">name</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> The name for the flag type.</p>
+
+<dt><a name="type"
+><code  class="code">type</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> The target of the flag type which is either <code  class="code">bug</code> or <code  class="code">attachment</code>.</p>
+
+<dt><a name="description"
+><code  class="code">description</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> The description of the flag type.</p>
+
+<dt><a name="values"
+><code  class="code">values</code></a></dt>
+
+<dd>
+<p><code  class="code">array</code> An array of string values that the user can set on the flag type.</p>
+
+<dt><a name="is_requesteeble"
+><code  class="code">is_requesteeble</code></a></dt>
+
+<dd>
+<p><code  class="code">boolean</code> Users can ask specific other users to set flags of this type.</p>
+
+<dt><a name="is_multiplicable"
+><code  class="code">is_multiplicable</code></a></dt>
+
+<dd>
+<p><code  class="code">boolean</code> Multiple flags of this type can be set for the same bug or attachment.</p>
+</dd>
+</dl>
+
+<dt><a name="Errors"
+><b>Errors</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="106_(Product_Access_Denied)"
+>106 (Product Access Denied)</a></dt>
+
+<dd>
+<p>Either the product does not exist or you don&#39;t have access to it.</p>
+
+<dt><a name="51_(Invalid_Component)"
+>51 (Invalid Component)</a></dt>
+
+<dd>
+<p>The component provided does not exist in the product.</p>
+</dd>
+</dl>
+
+<dt><a name="History"
+><b>History</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="Added_in_Bugzilla_5.0."
+>Added in Bugzilla <b>5.0</b>.</a></dt>
+</dl>
+</dd>
+</dl>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="Create_Flag"
+>Create Flag</a></h2>
+
+<dl>
+<dt><a name="create_UNSTABLE"
+><code  class="code">create</code> <b>UNSTABLE</b></a></dt>
+
+<dd>
+<dt><a name="Description"
+><b>Description</b></a></dt>
+
+<dd>
+<p>Creates a new FlagType</p>
+
+<dt><a name="REST"
+><b>REST</b></a></dt>
+
+<dd>
+<p>POST /rest/flag_type</p>
+
+<p>The params to include in the POST body as well as the returned data format,
+are the same as below.</p>
+
+<dt><a name="Params"
+><b>Params</b></a></dt>
+
+<dd>
+<p>At a minimum the following two arguments must be supplied:</p>
+
+<dl>
+<dt><a name="name_(string)_-_The_name_of_the_new_Flag_Type."
+><code  class="code">name</code> (string) - The name of the new Flag Type.</a></dt>
+
+<dd>
+<dt><a name="description_(string)_-_A_description_for_the_Flag_Type_object."
+><code  class="code">description</code> (string) - A description for the Flag Type object.</a></dt>
+</dl>
+
+<dt><a name="Returns"
+><b>Returns</b></a></dt>
+
+<dd>
+<p><code  class="code">int</code> flag_id</p>
+
+<p>The ID of the new FlagType object is returned.</p>
+
+<dt><a name="Params"
+><b>Params</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="name_required"
+>name <b>required</b></a></dt>
+
+<dd>
+<p><code  class="code">string</code> A short name identifying this type.</p>
+
+<dt><a name="description_required"
+>description <b>required</b></a></dt>
+
+<dd>
+<p><code  class="code">string</code> A comprehensive description of this type.</p>
+
+<dt><a name="inclusions_optional"
+>inclusions <b>optional</b></a></dt>
+
+<dd>
+<p>An array of strings or a hash containing product names,
+and optionally component names.
+If you provide a string,
+the flag type will be shown on all bugs in that product.
+If you provide a hash,
+the key represents the product name,
+and the value is the components of the product to be included.</p>
+
+<p>For example:</p>
+
+<pre  class="code"> [ &#39;FooProduct&#39;,
+   {
+     BarProduct =&#62; [ &#39;C1&#39;, &#39;C3&#39; ],
+     BazProduct =&#62; [ &#39;C7&#39; ]
+   }
+ ]</pre>
+
+<p>This flag will be added to <b>All</b> components of <i>FooProduct</i>, components C1 and C3 of <i>BarProduct</i>, and C7 of <i>BazProduct</i>.</p>
+
+<dt><a name="exclusions_optional"
+>exclusions <b>optional</b></a></dt>
+
+<dd>
+<p>An array of strings or hashes containing product names. This uses the same fromat as inclusions.</p>
+
+<p>This will exclude the flag from all products and components specified.</p>
+
+<dt><a name="sortkey_optional"
+>sortkey <b>optional</b></a></dt>
+
+<dd>
+<p><code  class="code">int</code> A number between 1 and 32767 by which this type will be sorted when displayed to users in a list; ignore if you don&#39;t care what order the types appear in or if you want them to appear in alphabetical order.</p>
+
+<dt><a name="is_active_optional"
+>is_active <b>optional</b></a></dt>
+
+<dd>
+<p><code  class="code">boolean</code> Flag of this type appear in the UI and can be set. Default is <b>true</b>.</p>
+
+<dt><a name="is_requestable_optional"
+>is_requestable <b>optional</b></a></dt>
+
+<dd>
+<p><code  class="code">boolean</code> Users can ask for flags of this type to be set. Default is <b>true</b>.</p>
+
+<dt><a name="cc_list_optional"
+>cc_list <b>optional</b></a></dt>
+
+<dd>
+<p><code  class="code">array</code> An array of strings. If the flag type is requestable, who should receive e-mail notification of requests. This is an array of e-mail addresses which do not need to be Bugzilla logins.</p>
+
+<dt><a name="is_specifically_requestable_optional"
+>is_specifically_requestable <b>optional</b></a></dt>
+
+<dd>
+<p><code  class="code">boolean</code> Users can ask specific other users to set flags of this type as opposed to just asking the wind. Default is <b>true</b>.</p>
+
+<dt><a name="is_multiplicable_optional"
+>is_multiplicable <b>optional</b></a></dt>
+
+<dd>
+<p><code  class="code">boolean</code> Multiple flags of this type can be set on the same bug. Default is <b>true</b>.</p>
+
+<dt><a name="grant_group_optional"
+>grant_group <b>optional</b></a></dt>
+
+<dd>
+<p><code  class="code">string</code> The group allowed to grant/deny flags of this type (to allow all users to grant/deny these flags, select no group). Default is <b>no group</b>.</p>
+
+<dt><a name="request_group_optional"
+>request_group <b>optional</b></a></dt>
+
+<dd>
+<p><code  class="code">string</code> If flags of this type are requestable, the group allowed to request them (to allow all users to request these flags, select no group). Note that the request group alone has no effect if the grant group is not defined! Default is <b>no group</b>.</p>
+</dd>
+</dl>
+
+<dt><a name="Errors"
+><b>Errors</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="51_(Group_Does_Not_Exist)"
+>51 (Group Does Not Exist)</a></dt>
+
+<dd>
+<p>The group name you entered does not exist, or you do not have access to it.</p>
+
+<dt><a name="105_(Unknown_component)"
+>105 (Unknown component)</a></dt>
+
+<dd>
+<p>The component does not exist for this product.</p>
+
+<dt><a name="106_(Product_Access_Denied)"
+>106 (Product Access Denied)</a></dt>
+
+<dd>
+<p>Either the product does not exist or you don&#39;t have editcomponents privileges to it.</p>
+
+<dt><a name="501_(Illegal_Email_Address)"
+>501 (Illegal Email Address)</a></dt>
+
+<dd>
+<p>One of the e-mail address in the CC list is invalid. An e-mail in the CC list does NOT need to be a valid Bugzilla user.</p>
+
+<dt><a name="1101_(Flag_Type_Name_invalid)"
+>1101 (Flag Type Name invalid)</a></dt>
+
+<dd>
+<p>You must specify a non-blank name for this flag type. It must no contain spaces or commas, and must be 50 characters or less.</p>
+
+<dt><a name="1102_(Flag_type_must_have_description)"
+>1102 (Flag type must have description)</a></dt>
+
+<dd>
+<p>You must specify a description for this flag type.</p>
+
+<dt><a name="1103_(Flag_type_CC_list_is_invalid"
+>1103 (Flag type CC list is invalid</a></dt>
+
+<dd>
+<p>The CC list must be 200 characters or less.</p>
+
+<dt><a name="1104_(Flag_Type_Sort_Key_Not_Valid)"
+>1104 (Flag Type Sort Key Not Valid)</a></dt>
+
+<dd>
+<p>The sort key is not a valid number.</p>
+
+<dt><a name="1105_(Flag_Type_Not_Editable)"
+>1105 (Flag Type Not Editable)</a></dt>
+
+<dd>
+<p>This flag type is not available for the products you can administer. Therefore you can not edit attributes of the flag type, other than the inclusion and exclusion list.</p>
+</dd>
+</dl>
+
+<dt><a name="History"
+><b>History</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="Added_in_Bugzilla_5.0."
+>Added in Bugzilla <b>5.0</b>.</a></dt>
+</dl>
+</dd>
+</dl>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="update"
+>update</a></h2>
+
+<p><b>EXPERIMENTAL</b></p>
+
+<dl>
+<dt><a name="Description"
+><b>Description</b></a></dt>
+
+<dd>
+<p>This allows you to update a flag type in Bugzilla.</p>
+
+<dt><a name="REST"
+><b>REST</b></a></dt>
+
+<dd>
+<p>PUT /rest/flag_type/&#60;product_id_or_name&#62;</p>
+
+<p>The params to include in the PUT body as well as the returned data format, are the same as below. The <code  class="code">ids</code> and <code  class="code">names</code> params will be overridden as it is pulled from the URL path.</p>
+
+<dt><a name="Params"
+><b>Params</b></a></dt>
+
+<dd>
+<p><b>Note:</b> The following parameters specify which products you are updating. You must set one or both of these parameters.</p>
+
+<dl>
+<dt><a name="ids"
+><code  class="code">ids</code></a></dt>
+
+<dd>
+<p><code  class="code">array</code> of <code  class="code">int</code>s. Numeric ids of the flag types that you wish to update.</p>
+
+<dt><a name="names"
+><code  class="code">names</code></a></dt>
+
+<dd>
+<p><code  class="code">array</code> of <code  class="code">string</code>s. Names of the flag types that you wish to update. If many flag types have the same name, this will change ALL of them.</p>
+</dd>
+</dl>
+
+<p><b>Note:</b> The following parameters specify the new values you want to set for the products you are updating.</p>
+
+<dl>
+<dt><a name="name"
+>name</a></dt>
+
+<dd>
+<p><code  class="code">string</code> A short name identifying this type.</p>
+
+<dt><a name="description"
+>description</a></dt>
+
+<dd>
+<p><code  class="code">string</code> A comprehensive description of this type.</p>
+
+<dt><a name="inclusions_optional"
+>inclusions <b>optional</b></a></dt>
+
+<dd>
+<p>An array of strings or a hash containing product names, and optionally component names. If you provide a string, the flag type will be shown on all bugs in that product. If you provide a hash, the key represents the product name, and the value is the components of the product to be included.</p>
+
+<p>for example</p>
+
+<pre  class="code"> [ &#39;FooProduct&#39;,
+   {
+     BarProduct =&#62; [ &#39;C1&#39;, &#39;C3&#39; ],
+     BazProduct =&#62; [ &#39;C7&#39; ]
+   }
+ ]</pre>
+
+<p>This flag will be added to <b>All</b> components of <i>FooProduct</i>, components C1 and C3 of <i>BarProduct</i>, and C7 of <i>BazProduct</i>.</p>
+
+<dt><a name="exclusions_optional"
+>exclusions <b>optional</b></a></dt>
+
+<dd>
+<p>An array of strings or hashes containing product names. This uses the same fromat as inclusions.</p>
+
+<p>This will exclude the flag from all products and components specified.</p>
+
+<dt><a name="sortkey"
+>sortkey</a></dt>
+
+<dd>
+<p><code  class="code">int</code> A number between 1 and 32767 by which this type will be sorted when displayed to users in a list; ignore if you don&#39;t care what order the types appear in or if you want them to appear in alphabetical order.</p>
+
+<dt><a name="is_active"
+>is_active</a></dt>
+
+<dd>
+<p><code  class="code">boolean</code> Flag of this type appear in the UI and can be set.</p>
+
+<dt><a name="is_requestable"
+>is_requestable</a></dt>
+
+<dd>
+<p><code  class="code">boolean</code> Users can ask for flags of this type to be set.</p>
+
+<dt><a name="cc_list"
+>cc_list</a></dt>
+
+<dd>
+<p><code  class="code">array</code> An array of strings. If the flag type is requestable, who should receive e-mail notification of requests. This is an array of e-mail addresses which do not need to be Bugzilla logins.</p>
+
+<dt><a name="is_specifically_requestable"
+>is_specifically_requestable</a></dt>
+
+<dd>
+<p><code  class="code">boolean</code> Users can ask specific other users to set flags of this type as opposed to just asking the wind.</p>
+
+<dt><a name="is_multiplicable"
+>is_multiplicable</a></dt>
+
+<dd>
+<p><code  class="code">boolean</code> Multiple flags of this type can be set on the same bug.</p>
+
+<dt><a name="grant_group"
+>grant_group</a></dt>
+
+<dd>
+<p><code  class="code">string</code> The group allowed to grant/deny flags of this type (to allow all users to grant/deny these flags, select no group).</p>
+
+<dt><a name="request_group"
+>request_group</a></dt>
+
+<dd>
+<p><code  class="code">string</code> If flags of this type are requestable, the group allowed to request them (to allow all users to request these flags, select no group). Note that the request group alone has no effect if the grant group is not defined!</p>
+</dd>
+</dl>
+
+<dt><a name="Returns"
+><b>Returns</b></a></dt>
+
+<dd>
+<p>A <code  class="code">hash</code> with a single field &#34;flagtypes&#34;. This points to an array of hashes with the following fields:</p>
+
+<dl>
+<dt><a name="id"
+><code  class="code">id</code></a></dt>
+
+<dd>
+<p><code  class="code">int</code> The id of the product that was updated.</p>
+
+<dt><a name="name"
+><code  class="code">name</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> The name of the product that was updated.</p>
+
+<dt><a name="changes"
+><code  class="code">changes</code></a></dt>
+
+<dd>
+<p><code  class="code">hash</code> The changes that were actually done on this product. The keys are the names of the fields that were changed, and the values are a hash with two keys:</p>
+
+<dl>
+<dt><a name="added"
+><code  class="code">added</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> The value that this field was changed to.</p>
+
+<dt><a name="removed"
+><code  class="code">removed</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> The value that was previously set in this field.</p>
+</dd>
+</dl>
+
+<p>Note that booleans will be represented with the strings &#39;1&#39; and &#39;0&#39;.</p>
+
+<p>Here&#39;s an example of what a return value might look like:</p>
+
+<pre  class="code"> {
+   products =&#62; [
+     {
+       id =&#62; 123,
+       changes =&#62; {
+         name =&#62; {
+           removed =&#62; &#39;FooFlagType&#39;,
+           added   =&#62; &#39;BarFlagType&#39;
+         },
+         is_requestable =&#62; {
+           removed =&#62; &#39;1&#39;,
+           added   =&#62; &#39;0&#39;,
+         }
+       }
+     }
+   ]
+ }</pre>
+</dd>
+</dl>
+
+<dt><a name="Errors"
+><b>Errors</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="51_(Group_Does_Not_Exist)"
+>51 (Group Does Not Exist)</a></dt>
+
+<dd>
+<p>The group name you entered does not exist, or you do not have access to it.</p>
+
+<dt><a name="105_(Unknown_component)"
+>105 (Unknown component)</a></dt>
+
+<dd>
+<p>The component does not exist for this product.</p>
+
+<dt><a name="106_(Product_Access_Denied)"
+>106 (Product Access Denied)</a></dt>
+
+<dd>
+<p>Either the product does not exist or you don&#39;t have editcomponents privileges to it.</p>
+
+<dt><a name="501_(Illegal_Email_Address)"
+>501 (Illegal Email Address)</a></dt>
+
+<dd>
+<p>One of the e-mail address in the CC list is invalid. An e-mail in the CC list does NOT need to be a valid Bugzilla user.</p>
+
+<dt><a name="1101_(Flag_Type_Name_invalid)"
+>1101 (Flag Type Name invalid)</a></dt>
+
+<dd>
+<p>You must specify a non-blank name for this flag type. It must no contain spaces or commas, and must be 50 characters or less.</p>
+
+<dt><a name="1102_(Flag_type_must_have_description)"
+>1102 (Flag type must have description)</a></dt>
+
+<dd>
+<p>You must specify a description for this flag type.</p>
+
+<dt><a name="1103_(Flag_type_CC_list_is_invalid"
+>1103 (Flag type CC list is invalid</a></dt>
+
+<dd>
+<p>The CC list must be 200 characters or less.</p>
+
+<dt><a name="1104_(Flag_Type_Sort_Key_Not_Valid)"
+>1104 (Flag Type Sort Key Not Valid)</a></dt>
+
+<dd>
+<p>The sort key is not a valid number.</p>
+
+<dt><a name="1105_(Flag_Type_Not_Editable)"
+>1105 (Flag Type Not Editable)</a></dt>
+
+<dd>
+<p>This flag type is not available for the products you can administer. Therefore you can not edit attributes of the flag type, other than the inclusion and exclusion list.</p>
+</dd>
+</dl>
+
+<dt><a name="History"
+><b>History</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="Added_in_Bugzilla_5.0."
+>Added in Bugzilla <b>5.0</b>.</a></dt>
+</dl>
+</dd>
+</dl>
+<p class="backlinkbottom"><b><a name="___bottom" href="../../index.html" title="All Documents">&lt;&lt;</a></b></p>
+
+<!-- end doc -->
+
+</body></html>

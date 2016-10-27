@@ -1,0 +1,312 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+  <title>3.2.9, 3.4.9, 3.6.3, and and 4.0rc1 Security Advisory :: Bugzilla :: bugzilla.org</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="keywords" content="bugzilla bug track tracking enterprise solution">
+  <link rel="icon" href="/img/bugzilla_icon.png" type="image/png">
+  <link rel="stylesheet" type="text/css" href="/css/print.css" media="print">
+  <link rel="stylesheet" type="text/css" href="/css/base/content.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/base/template.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/css/bugzilla.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/css/cavendish/home.css" title="Cavendish" media="screen">
+</head>
+<body id="www-bugzilla-org" class="homepage">
+  <div id="container">
+    <p class="skipLink"><a href="#mainContent" accesskey="2">Skip to main content</a></p>
+    <div id="header">
+      <h1><a href="/" title="Return to Bugzilla home page" accesskey="1">Bugzilla</a></h1>
+      <div id="tools">
+        <ul id="mainNav">
+          <li><a href="/contribute/" title="How to Help"
+            >Contribute!</a></li>
+          <li><a href="/features/" title="Bugzilla features">Features</a></li>
+          <li><a href="/download/" title="Get Bugzilla for free">Download</a></li>
+          <li><a href="/support/" title="Where to get more help">Support</a></li>
+          <li><a href="/docs/" title="Bugzilla documenation">Docs</a></li>
+          <li><a href="/news/" title="Read about what is happening with Bugzilla">News</a></li>
+          <li><a href="/about/" title="Getting the most out of your online experience">About</a></li>
+        </ul>
+        <!-- closes #textSize-->
+        <form id="search" method="get" action="https://www.google.com/cse">
+          <div id="sf">
+            <label for="q" title="Search bugzilla.org">search bugzilla.org: </label>
+            <input type="hidden" name="cx" value="008043952663535741821:9whwb87ip5a">
+            <input type="text" id="q" name="q" accesskey="s" size="30">
+            <input type="submit" id="submit" value="go">
+          </div>
+        </form>
+      </div>
+     <!-- closes #tools-->
+    </div>
+    <!-- closes #header-->
+    <hr class="hide">
+    <div id="mBody">
+
+        <hr class="hide"><div id="side">
+<ul id="nav">
+<li>
+	<a href="/about/" title="Find out more about Bugzilla."><strong>About</strong></a>
+	<ul>
+		<li><a href="/installation-list/" title="Hundreds of companies and organizations trust Bugzilla.">Who Uses Bugzilla?</a></li>
+		<li><a href="/status/roadmap.html" title="Learn about Bugzilla's future.">Roadmap</a></li>
+		<li><a href="/developers/profiles.html" title="Meet the Bugzilla team.">Meet the Team</a></li>
+		<li><a href="/releases/" title="Information on current and previous releases.">Release Information</a></li>
+	</ul>
+</li>
+<li>
+	<a href="/news/" title="Get the low down on what's happening with the project."><strong>News</strong></a>
+	<ul>
+		<li><a href="http://planet.bugzilla.org" title="View the status of the Bugzilla project.">Planet Bugzilla</a></li>
+		<li><a href="/security/" title="Important updates regarding Bugzilla security.">Security Advisories</a></li>
+        <li><a href="/status/changes.html" title="Detailed list of all the changes between each Bugzilla version">Change Logs</a></li>
+	</ul>
+</li>
+<li>
+        <a href="/download/" title="Download Bugzilla"><strong>Download</strong></a>
+        <ul>
+                <li><a href="https://wiki.mozilla.org/Bugzilla:Addons" title="Third-party Bugzilla extensions">Extensions</a></li>
+                <li><a href="/requirements/">Requirements</a></li>
+        </ul>
+</li>
+<li>
+	<a href="/support/" title="Find out where to get more information and help."><strong>Support</strong></a>
+	<ul>
+                <li><a href="/support/" title="Find out where to get more information and help.">Free Support</a></li>
+                <li><a href="/support/consulting.html" title="Paid support options">Paid Support</a></li>
+		<li><a href="/docs/" title="Read the Bugzilla manual and other important documents.">Documentation</a></li>
+		<li><a href="https://wiki.mozilla.org/Bugzilla" title="Collaboratively updated information about Bugzilla.">Wiki</a></li>
+		<li><a href="/developers/reporting_bugs.html" title="Let us know if there is an error in Bugzilla.">Report a Bug</a></li>
+	</ul>
+</li>
+<li>
+	<a href="/developers/" title="Developer resources">Developer Resources</a>
+</li>
+  <li>
+    <a href="/contribute/" title="Ways you can help Bugzilla"
+    >How To Help Out</a>
+  </li>
+</ul>
+
+<div>
+<p><a href="https://twitter.com/bugzilla">Follow @bugzilla on Twitter</a></p>
+<p><a href="https://www.facebook.com/pages/Bugzilla/1427568330846442">Like Bugzilla on Facebook</a></p>
+<p><a href="https://plus.google.com/u/0/104215203522965843895?prsrc=3">Follow Bugzilla on Google+</a></p>
+</div>
+</div>
+<!-- closes #side -->      <div id="mainContent">
+        <h1>3.2.9, 3.4.9, 3.6.3, and 4.0rc1 Security Advisory</h1>
+Monday, January 24, 2011<br/>
+<pre>
+Summary
+=======
+
+Bugzilla is a Web-based bug-tracking system used by a large number of
+software projects.
+
+Recently, Mozilla expanded its security bug bounty program to include web
+applications (https://www.mozilla.org/security/bug-bounty.html). As a result,
+several new security issues affecting Bugzilla were discovered:
+
+* A weakness in Bugzilla could allow a user to gain unauthorized access
+  to another Bugzilla account.
+
+* A weakness in the Perl CGI.pm module allows injecting HTTP headers
+  and content to users via several pages in Bugzilla.
+
+* The new user autocomplete functionality in Bugzilla 4.0 is vulnerable
+  to a cross-site scripting attack.
+
+* The new automatic duplicate detection functionality in Bugzilla 4.0
+  is vulnerable to a cross-site scripting attack.
+
+* If you put a harmful "javascript:" or "data:" URL into Bugzilla's
+  "URL" field, then there are multiple situations in which Bugzilla
+  will unintentionally make that link clickable.
+
+* Various pages lack protection against cross-site request forgeries.
+
+All affected installations are encouraged to upgrade as soon as
+possible.
+
+Vulnerability Details
+=====================
+
+Class:       Account Compromise
+Versions:    2.14 to 3.2.9, 3.4.9, 3.6.3, 4.0rc1
+Fixed In:    3.2.10, 3.4.10, 3.6.4, 4.0rc2
+Description: It was possible for a user to gain unauthorized access to
+             any Bugzilla account in a very short amount of time (short
+             enough that the attack is highly effective). This is a
+             critical vulnerability that should be patched immediately
+             by all Bugzilla installations.
+References:  https://bugzilla.mozilla.org/show_bug.cgi?id=621591
+             https://bugzilla.mozilla.org/show_bug.cgi?id=619594
+CVE Number:  CVE-2010-4568
+
+Class:       HTTP Response Splitting
+Versions:    Every Version Before 3.2.10, 3.4.10, 3.6.4, 4.0rc2
+Fixed In:    3.2.10, 3.4.10, 3.6.4, 4.0rc2
+Description: By inserting particular strings into certain URLs, it was
+             possible to inject both headers and content to any
+             browser.
+References:  https://bugzilla.mozilla.org/show_bug.cgi?id=591165
+             https://bugzilla.mozilla.org/show_bug.cgi?id=621572
+             http://avatraxiom.livejournal.com/104105.html
+             http://cwe.mitre.org/data/definitions/113.html
+CVE Number:  CVE-2010-2761, CVE-2010-4411, CVE-2010-4572
+
+Class:       Cross-Site Scripting
+Versions:    3.7.1 to 4.0rc1
+Fixed In:    4.0rc2
+Description: Bugzilla 3.7.x and 4.0rc1 have a new client-side
+             autocomplete mechanism for all fields where a username
+             is entered. This mechanism was vulnerable to a cross-site
+             scripting attack.
+References:  https://bugzilla.mozilla.org/show_bug.cgi?id=619637
+CVE Number:  CVE-2010-4569
+
+Class:       Cross-Site Scripting
+Versions:    3.7.1 to 4.0rc1
+Fixed In:    4.0rc2
+Description: Bugzilla 3.7.x and 4.0rc1 have a new mechanism on the
+             bug entry page for automatically detecting if the bug
+             you are filing is a duplicate of another existing bug.
+             This mechanism was vulnerable to a cross-site scripting
+             attack.
+References:  https://bugzilla.mozilla.org/show_bug.cgi?id=619648
+CVE Number:  CVE-2010-4570
+
+Class:       Cross-Site Scripting
+Versions:    Every Version Before 3.2.10, 3.4.10, 3.6.4, 4.0rc2
+Fixed In:    3.2.10, 3.4.10, 3.6.4, 4.0rc2
+Description: Bugzilla has a "URL" field that can contain several types
+             of URL, including "javascript:" and "data:" URLs. However,
+             it does not make "javascript:" and "data:" URLs into
+             clickable links, to protect against cross-site scripting
+             attacks or other attacks. It was possible to bypass this
+             protection by adding spaces into the URL in places that
+             Bugzilla did not expect them. Also, "javascript:" and 
+             "data:" links were *always* shown as clickable to
+             logged-out users.
+References:  https://bugzilla.mozilla.org/show_bug.cgi?id=619588
+             https://bugzilla.mozilla.org/show_bug.cgi?id=628034
+CVE Number:  CVE-2010-4567, CVE-2011-0048
+
+Class:       Cross-Site Request Forgery
+Versions:    Every Version Before 3.2.10, 3.4.10, 3.6.4, 4.0rc2
+Fixed In:    3.2.10, 3.4.10, 3.6.4, 4.0rc2
+Description: Various pages were vulnerable to Cross-Site Request 
+             Forgery attacks. Most of these issues are not as serious
+             as previous CSRF vulnerabilities. Some of these issues
+             were only addressed on more recent branches of Bugzilla
+             and not fixed in earlier branches, in order to avoid
+             changing behavior that external applications may depend
+             on. The links below in "References" describe which issues
+             were fixed on which branches.
+References:  https://bugzilla.mozilla.org/show_bug.cgi?id=621090
+             https://bugzilla.mozilla.org/show_bug.cgi?id=621105
+             https://bugzilla.mozilla.org/show_bug.cgi?id=621107
+             https://bugzilla.mozilla.org/show_bug.cgi?id=621108
+             https://bugzilla.mozilla.org/show_bug.cgi?id=621109
+             https://bugzilla.mozilla.org/show_bug.cgi?id=621110
+CVE Number:  CVE-2011-0046
+
+Vulnerability Solutions
+=======================
+
+The fixes for these issues are included in the 3.2.10, 3.4.10, 3.6.4,
+and 4.0rc2 releases. Upgrading to a release with the relevant fixes
+will protect your installation from possible exploits of these issues.
+
+If you are unable to upgrade but would like to patch just the
+individual security vulnerabilities, there are patches available for
+each issue at the bugzilla.mozilla.org "References" URLs for the
+vulnerabilities.
+
+Full release downloads, patches to upgrade Bugzilla from previous
+versions, and CVS/bzr upgrade instructions are available at:
+
+  https://www.bugzilla.org/download/
+
+Credits
+=======
+
+The Bugzilla team wish to thank the following people/organizations for
+their assistance in locating, advising us of, and assisting us to fix
+this issue:
+
+Willem Pinckaers
+Anonymous ("mozilla11")
+Michal Zalewski
+Michael Brooks (Sitewatch)
+José A. Vázquez
+Reed Loden
+Frédéric Buclin
+Max Kanat-Alexander
+David Lawrence
+Mark Stosberg
+Byron Jones
+Guy Pyrzak
+
+We would especially like to thank Willem Pinckaers of Pine Digital
+Security for discovering--and providing a proof-of-concept exploit
+for--the rather complex but very serious Account Compromise issue.
+
+General information about the Bugzilla bug-tracking system can be found
+at:
+
+  https://www.bugzilla.org/
+
+Comments and follow-ups can be directed to the mozilla.support.bugzilla
+newsgroup or the support-bugzilla mailing list.
+https://www.bugzilla.org/support/ has directions for accessing these
+forums.
+</pre>
+        
+      </div>
+    </div></div>
+  <!-- closes #container -->
+  <div id="footer">
+    <ul>
+      <li><a href="https://www.mozilla.org/contact/">Contact Us</a></li>
+      <li><a href="https://donate.mozilla.org/page/contribute/bugzilla">Donate</a></li>
+    </ul>
+<!-- Creative Commons License -->
+<p class="copyright">This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/2.0/">Creative Commons License</a>.</p>
+
+<!--
+
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="">
+   <dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+   <license rdf:resource="http://creativecommons.org/licenses/by-sa/2.0/" />
+</Work>
+
+<License rdf:about="http://creativecommons.org/licenses/by-sa/2.0/">
+   <permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+   <permits rdf:resource="http://web.resource.org/cc/Distribution" />
+   <requires rdf:resource="http://web.resource.org/cc/Notice" />
+   <requires rdf:resource="http://web.resource.org/cc/Attribution" />
+   <permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+   <requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+</License>
+
+</rdf:RDF>
+
+-->
+<!-- /Creative Commons License -->
+
+    <p class="copyright">Portions of this work are &copy;
+      1998-2016
+      by individual bugzilla.org contributors.</p>
+    <p>
+      <span>Last modified October 27, 2016</span>
+      <span><a href="https://github.com/bugzilla/bugzilla.org/commits/master">Site History</a></span>
+    </p>
+  </div>
+</body>
+</html>

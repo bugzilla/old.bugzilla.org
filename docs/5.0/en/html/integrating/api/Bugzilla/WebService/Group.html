@@ -1,0 +1,531 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>
+Bugzilla::Webservice::Group</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" title="style" type="text/css" href="../.././../../../../style.css" media="all" >
+
+</head>
+  <body id="pod">
+<p class="backlinktop"><b><a name="___top" href="../../index.html" accesskey="1" title="All Documents">&lt;&lt;</a></b></p>
+<h1>Bugzilla::Webservice::Group</h1>
+<div class='indexgroup'>
+<ul   class='indexList indexList1'>
+  <li class='indexItem indexItem1'><a href='#NAME'>NAME</a>
+  <li class='indexItem indexItem1'><a href='#DESCRIPTION'>DESCRIPTION</a>
+  <li class='indexItem indexItem1'><a href='#METHODS'>METHODS</a>
+  <li class='indexItem indexItem1'><a href='#Group_Creation_and_Modification'>Group Creation and Modification</a>
+  <ul   class='indexList indexList2'>
+    <li class='indexItem indexItem2'><a href='#create'>create</a>
+    <li class='indexItem indexItem2'><a href='#update'>update</a>
+  </ul>
+  <li class='indexItem indexItem1'><a href='#Group_Information'>Group Information</a>
+  <ul   class='indexList indexList2'>
+    <li class='indexItem indexItem2'><a href='#get'>get</a>
+  </ul>
+</ul>
+</div>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="NAME"
+>NAME</a></h1>
+
+<p>Bugzilla::Webservice::Group - The API for creating,
+changing,
+and getting information about Groups.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="DESCRIPTION"
+>DESCRIPTION</a></h1>
+
+<p>This part of the Bugzilla API allows you to create Groups and get information about them.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="METHODS"
+>METHODS</a></h1>
+
+<p>See <a href="../../Bugzilla/WebService.html" class="podlinkpod"
+>Bugzilla::WebService</a> for a description of how parameters are passed,
+and what <b>STABLE</b>,
+<b>UNSTABLE</b>,
+and <b>EXPERIMENTAL</b> mean.</p>
+
+<p>Although the data input and output is the same for JSONRPC,
+XMLRPC and REST,
+the directions for how to access the data via REST is noted in each method where applicable.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="Group_Creation_and_Modification"
+>Group Creation and Modification</a></h1>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="create"
+>create</a></h2>
+
+<p><b>UNSTABLE</b></p>
+
+<dl>
+<dt><a name="Description"
+><b>Description</b></a></dt>
+
+<dd>
+<p>This allows you to create a new group in Bugzilla.</p>
+
+<dt><a name="REST"
+><b>REST</b></a></dt>
+
+<dd>
+<p>POST /rest/group</p>
+
+<p>The params to include in the POST body as well as the returned data format,
+are the same as below.</p>
+
+<dt><a name="Params"
+><b>Params</b></a></dt>
+
+<dd>
+<p>Some params must be set,
+or an error will be thrown.
+These params are marked <b>Required</b>.</p>
+
+<dl>
+<dt><a name="name"
+><code  class="code">name</code></a></dt>
+
+<dd>
+<p><b>Required</b> <code  class="code">string</code> A short name for this group.
+Must be unique.
+This is not usually displayed in the user interface,
+except in a few places.</p>
+
+<dt><a name="description"
+><code  class="code">description</code></a></dt>
+
+<dd>
+<p><b>Required</b> <code  class="code">string</code> A human-readable name for this group.
+Should be relatively short.
+This is what will normally appear in the UI as the name of the group.</p>
+
+<dt><a name="user_regexp"
+><code  class="code">user_regexp</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> A regular expression.
+Any user whose Bugzilla username matches this regular expression will automatically be granted membership in this group.</p>
+
+<dt><a name="is_active"
+><code  class="code">is_active</code></a></dt>
+
+<dd>
+<p><code  class="code">boolean</code> <code  class="code">True</code> if new group can be used for bugs,
+<code  class="code">False</code> if this is a group that will only contain users and no bugs will be restricted to it.</p>
+
+<dt><a name="icon_url"
+><code  class="code">icon_url</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> A URL pointing to a small icon used to identify the group.
+This icon will show up next to users&#39; names in various parts of Bugzilla if they are in this group.</p>
+</dd>
+</dl>
+
+<dt><a name="Returns"
+><b>Returns</b></a></dt>
+
+<dd>
+<p>A hash with one element,
+<code  class="code">id</code>.
+This is the id of the newly-created group.</p>
+
+<dt><a name="Errors"
+><b>Errors</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="800_(Empty_Group_Name)"
+>800 (Empty Group Name)</a></dt>
+
+<dd>
+<p>You must specify a value for the <code  class="code">name</code> field.</p>
+
+<dt><a name="801_(Group_Exists)"
+>801 (Group Exists)</a></dt>
+
+<dd>
+<p>There is already another group with the same <code  class="code">name</code>.</p>
+
+<dt><a name="802_(Group_Missing_Description)"
+>802 (Group Missing Description)</a></dt>
+
+<dd>
+<p>You must specify a value for the <code  class="code">description</code> field.</p>
+
+<dt><a name="803_(Group_Regexp_Invalid)"
+>803 (Group Regexp Invalid)</a></dt>
+
+<dd>
+<p>You specified an invalid regular expression in the <code  class="code">user_regexp</code> field.</p>
+</dd>
+</dl>
+
+<dt><a name="History"
+><b>History</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="REST_API_call_added_in_Bugzilla_5.0."
+>REST API call added in Bugzilla <b>5.0</b>.</a></dt>
+</dl>
+</dd>
+</dl>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="update"
+>update</a></h2>
+
+<p><b>UNSTABLE</b></p>
+
+<dl>
+<dt><a name="Description"
+><b>Description</b></a></dt>
+
+<dd>
+<p>This allows you to update a group in Bugzilla.</p>
+
+<dt><a name="REST"
+><b>REST</b></a></dt>
+
+<dd>
+<p>PUT /rest/group/&#60;group_name_or_id&#62;</p>
+
+<p>The params to include in the PUT body as well as the returned data format,
+are the same as below.
+The <code  class="code">ids</code> param will be overridden as it is pulled from the URL path.</p>
+
+<dt><a name="Params"
+><b>Params</b></a></dt>
+
+<dd>
+<p>At least <code  class="code">ids</code> or <code  class="code">names</code> must be set,
+or an error will be thrown.</p>
+
+<dl>
+<dt><a name="ids"
+><code  class="code">ids</code></a></dt>
+
+<dd>
+<p><b>Required</b> <code  class="code">array</code> Contain ids of groups to update.</p>
+
+<dt><a name="names"
+><code  class="code">names</code></a></dt>
+
+<dd>
+<p><b>Required</b> <code  class="code">array</code> Contain names of groups to update.</p>
+
+<dt><a name="name"
+><code  class="code">name</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> A new name for group.</p>
+
+<dt><a name="description"
+><code  class="code">description</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> A new description for groups.
+This is what will appear in the UI as the name of the groups.</p>
+
+<dt><a name="user_regexp"
+><code  class="code">user_regexp</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> A new regular expression for email.
+Will automatically grant membership to these groups to anyone with an email address that matches this perl regular expression.</p>
+
+<dt><a name="is_active"
+><code  class="code">is_active</code></a></dt>
+
+<dd>
+<p><code  class="code">boolean</code> Set if groups are active and eligible to be used for bugs.
+True if bugs can be restricted to this group,
+false otherwise.</p>
+
+<dt><a name="icon_url"
+><code  class="code">icon_url</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> A URL pointing to an icon that will appear next to the name of users who are in this group.</p>
+</dd>
+</dl>
+
+<dt><a name="Returns"
+><b>Returns</b></a></dt>
+
+<dd>
+<p>A <code  class="code">hash</code> with a single field &#34;groups&#34;.
+This points to an array of hashes with the following fields:</p>
+
+<dl>
+<dt><a name="id"
+><code  class="code">id</code></a></dt>
+
+<dd>
+<p><code  class="code">int</code> The id of the group that was updated.</p>
+
+<dt><a name="changes"
+><code  class="code">changes</code></a></dt>
+
+<dd>
+<p><code  class="code">hash</code> The changes that were actually done on this group.
+The keys are the names of the fields that were changed,
+and the values are a hash with two keys:</p>
+
+<dl>
+<dt><a name="added"
+><code  class="code">added</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> The values that were added to this field,
+possibly a comma-and-space-separated list if multiple values were added.</p>
+
+<dt><a name="removed"
+><code  class="code">removed</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> The values that were removed from this field,
+possibly a comma-and-space-separated list if multiple values were removed.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+
+<dt><a name="Errors"
+><b>Errors</b></a></dt>
+
+<dd>
+<p>The same as <a href="#create" class="podlinkpod"
+>&#34;create&#34;</a>.</p>
+
+<dt><a name="History"
+><b>History</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="REST_API_call_added_in_Bugzilla_5.0."
+>REST API call added in Bugzilla <b>5.0</b>.</a></dt>
+</dl>
+</dd>
+</dl>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="Group_Information"
+>Group Information</a></h1>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="get"
+>get</a></h2>
+
+<p><b>UNSTABLE</b></p>
+
+<dl>
+<dt><a name="Description"
+><b>Description</b></a></dt>
+
+<dd>
+<p>Returns information about <a href="../../Groups.html" class="podlinkpod"
+>Bugzilla::Group</a>.</p>
+
+<dt><a name="REST"
+><b>REST</b></a></dt>
+
+<dd>
+<p>To return information about a specific group by <code  class="code">id</code> or <code  class="code">name</code>:</p>
+
+<p>GET /rest/group/&#60;group_id_or_name&#62;</p>
+
+<p>You can also return information about more than one specific group by using the following in your query string:</p>
+
+<p>GET /rest/group?ids=1&#38;ids=2&#38;ids=3 or GET /group?names=ProductOne&#38;names=Product2</p>
+
+<p>the returned data format is same as below.</p>
+
+<dt><a name="Params"
+><b>Params</b></a></dt>
+
+<dd>
+<p>If neither ids or names is passed,
+and you are in the creategroups or editusers group,
+then all groups will be retrieved.
+Otherwise,
+only groups that you have bless privileges for will be returned.</p>
+
+<dl>
+<dt><a name="ids"
+><code  class="code">ids</code></a></dt>
+
+<dd>
+<p><code  class="code">array</code> Contain ids of groups to update.</p>
+
+<dt><a name="names"
+><code  class="code">names</code></a></dt>
+
+<dd>
+<p><code  class="code">array</code> Contain names of groups to update.</p>
+
+<dt><a name="membership"
+><code  class="code">membership</code></a></dt>
+
+<dd>
+<p><code  class="code">boolean</code> Set to 1 then a list of members of the passed groups&#39; names and ids will be returned.</p>
+</dd>
+</dl>
+
+<dt><a name="Returns"
+><b>Returns</b></a></dt>
+
+<dd>
+<p>If the user is a member of the &#34;creategroups&#34; group they will receive information about all groups or groups matching the criteria that they passed.
+You have to be in the creategroups group unless you&#39;re requesting membership information.</p>
+
+<p>If the user is not a member of the &#34;creategroups&#34; group,
+but they are in the &#34;editusers&#34; group or have bless privileges to the groups they require membership information for,
+the is_active,
+is_bug_group and user_regexp values are not supplied.</p>
+
+<p>The return value will be a hash containing group names as the keys,
+each group name will point to a hash that describes the group and has the following items:</p>
+
+<dl>
+<dt><a name="id"
+>id</a></dt>
+
+<dd>
+<p><code  class="code">int</code> The unique integer ID that Bugzilla uses to identify this group.
+Even if the name of the group changes,
+this ID will stay the same.</p>
+
+<dt><a name="name"
+>name</a></dt>
+
+<dd>
+<p><code  class="code">string</code> The name of the group.</p>
+
+<dt><a name="description"
+>description</a></dt>
+
+<dd>
+<p><code  class="code">string</code> The description of the group.</p>
+
+<dt><a name="is_bug_group"
+>is_bug_group</a></dt>
+
+<dd>
+<p><code  class="code">int</code> Whether this groups is to be used for bug reports or is only administrative specific.</p>
+
+<dt><a name="user_regexp"
+>user_regexp</a></dt>
+
+<dd>
+<p><code  class="code">string</code> A regular expression that allows users to be added to this group if their login matches.</p>
+
+<dt><a name="is_active"
+>is_active</a></dt>
+
+<dd>
+<p><code  class="code">int</code> Whether this group is currently active or not.</p>
+
+<dt><a name="users"
+>users</a></dt>
+
+<dd>
+<p><code  class="code">array</code> An array of hashes,
+each hash contains a user object for one of the members of this group,
+only returned if the user sets the <code  class="code">membership</code> parameter to 1,
+the user hash has the following items:</p>
+
+<dl>
+<dt><a name="id"
+>id</a></dt>
+
+<dd>
+<p><code  class="code">int</code> The id of the user.</p>
+
+<dt><a name="real_name"
+>real_name</a></dt>
+
+<dd>
+<p><code  class="code">string</code> The actual name of the user.</p>
+
+<dt><a name="email"
+>email</a></dt>
+
+<dd>
+<p><code  class="code">string</code> The email address of the user.</p>
+
+<dt><a name="name"
+>name</a></dt>
+
+<dd>
+<p><code  class="code">string</code> The login name of the user.
+Note that in some situations this is different than their email.</p>
+
+<dt><a name="can_login"
+>can_login</a></dt>
+
+<dd>
+<p><code  class="code">boolean</code> A boolean value to indicate if the user can login into bugzilla.</p>
+
+<dt><a name="email_enabled"
+>email_enabled</a></dt>
+
+<dd>
+<p><code  class="code">boolean</code> A boolean value to indicate if bug-related mail will be sent to the user or not.</p>
+
+<dt><a name="disabled_text"
+>disabled_text</a></dt>
+
+<dd>
+<p><code  class="code">string</code> A text field that holds the reason for disabling a user from logging into bugzilla,
+if empty then the user account is enabled otherwise it is disabled/closed.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+
+<dt><a name="Errors"
+><b>Errors</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="51_(Invalid_Object)"
+>51 (Invalid Object)</a></dt>
+
+<dd>
+<p>A non existing group name was passed to the function,
+as a result no group object existed for that invalid name.</p>
+
+<dt><a name="805_(Cannot_view_groups)"
+>805 (Cannot view groups)</a></dt>
+
+<dd>
+<p>Logged-in users are not authorized to edit bugzilla groups as they are not members of the creategroups group in bugzilla,
+or they are not authorized to access group member&#39;s information as they are not members of the &#34;editusers&#34; group or can bless the group.</p>
+</dd>
+</dl>
+
+<dt><a name="History"
+><b>History</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="This_function_was_added_in_Bugzilla_5.0."
+>This function was added in Bugzilla <b>5.0</b>.</a></dt>
+</dl>
+</dd>
+</dl>
+<p class="backlinkbottom"><b><a name="___bottom" href="../../index.html" title="All Documents">&lt;&lt;</a></b></p>
+
+<!-- end doc -->
+
+</body></html>

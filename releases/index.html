@@ -1,0 +1,666 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+  <title>Release Information :: Bugzilla :: bugzilla.org</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="keywords" content="bugzilla bug track tracking enterprise solution">
+  <link rel="icon" href="/img/bugzilla_icon.png" type="image/png">
+  <link rel="stylesheet" type="text/css" href="/css/print.css" media="print">
+  <link rel="stylesheet" type="text/css" href="/css/base/content.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/base/template.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/css/bugzilla.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/css/cavendish/home.css" title="Cavendish" media="screen">
+</head>
+<body id="www-bugzilla-org" class="homepage">
+  <div id="container">
+    <p class="skipLink"><a href="#mainContent" accesskey="2">Skip to main content</a></p>
+    <div id="header">
+      <h1><a href="/" title="Return to Bugzilla home page" accesskey="1">Bugzilla</a></h1>
+      <div id="tools">
+        <ul id="mainNav">
+          <li><a href="/contribute/" title="How to Help"
+            >Contribute!</a></li>
+          <li><a href="/features/" title="Bugzilla features">Features</a></li>
+          <li><a href="/download/" title="Get Bugzilla for free">Download</a></li>
+          <li><a href="/support/" title="Where to get more help">Support</a></li>
+          <li><a href="/docs/" title="Bugzilla documenation">Docs</a></li>
+          <li><a href="/news/" title="Read about what is happening with Bugzilla">News</a></li>
+          <li><a href="/about/" title="Getting the most out of your online experience">About</a></li>
+        </ul>
+        <!-- closes #textSize-->
+        <form id="search" method="get" action="https://www.google.com/cse">
+          <div id="sf">
+            <label for="q" title="Search bugzilla.org">search bugzilla.org: </label>
+            <input type="hidden" name="cx" value="008043952663535741821:9whwb87ip5a">
+            <input type="text" id="q" name="q" accesskey="s" size="30">
+            <input type="submit" id="submit" value="go">
+          </div>
+        </form>
+      </div>
+     <!-- closes #tools-->
+    </div>
+    <!-- closes #header-->
+    <hr class="hide">
+    <div id="mBody">
+
+        <hr class="hide"><div id="side">
+<ul id="nav">
+<li>
+	<a href="/about/" title="Find out more about Bugzilla."><strong>About</strong></a>
+	<ul>
+		<li><a href="/installation-list/" title="Hundreds of companies and organizations trust Bugzilla.">Who Uses Bugzilla?</a></li>
+		<li><a href="/status/roadmap.html" title="Learn about Bugzilla's future.">Roadmap</a></li>
+		<li><a href="/developers/profiles.html" title="Meet the Bugzilla team.">Meet the Team</a></li>
+		<li><a href="/releases/" title="Information on current and previous releases.">Release Information</a></li>
+	</ul>
+</li>
+<li>
+	<a href="/news/" title="Get the low down on what's happening with the project."><strong>News</strong></a>
+	<ul>
+		<li><a href="http://planet.bugzilla.org" title="View the status of the Bugzilla project.">Planet Bugzilla</a></li>
+		<li><a href="/security/" title="Important updates regarding Bugzilla security.">Security Advisories</a></li>
+        <li><a href="/status/changes.html" title="Detailed list of all the changes between each Bugzilla version">Change Logs</a></li>
+	</ul>
+</li>
+<li>
+        <a href="/download/" title="Download Bugzilla"><strong>Download</strong></a>
+        <ul>
+                <li><a href="https://wiki.mozilla.org/Bugzilla:Addons" title="Third-party Bugzilla extensions">Extensions</a></li>
+                <li><a href="/requirements/">Requirements</a></li>
+        </ul>
+</li>
+<li>
+	<a href="/support/" title="Find out where to get more information and help."><strong>Support</strong></a>
+	<ul>
+                <li><a href="/support/" title="Find out where to get more information and help.">Free Support</a></li>
+                <li><a href="/support/consulting.html" title="Paid support options">Paid Support</a></li>
+		<li><a href="/docs/" title="Read the Bugzilla manual and other important documents.">Documentation</a></li>
+		<li><a href="https://wiki.mozilla.org/Bugzilla" title="Collaboratively updated information about Bugzilla.">Wiki</a></li>
+		<li><a href="/developers/reporting_bugs.html" title="Let us know if there is an error in Bugzilla.">Report a Bug</a></li>
+	</ul>
+</li>
+<li>
+	<a href="/developers/" title="Developer resources">Developer Resources</a>
+</li>
+  <li>
+    <a href="/contribute/" title="Ways you can help Bugzilla"
+    >How To Help Out</a>
+  </li>
+</ul>
+
+<div>
+<p><a href="https://twitter.com/bugzilla">Follow @bugzilla on Twitter</a></p>
+<p><a href="https://www.facebook.com/pages/Bugzilla/1427568330846442">Like Bugzilla on Facebook</a></p>
+<p><a href="https://plus.google.com/u/0/104215203522965843895?prsrc=3">Follow Bugzilla on Google+</a></p>
+</div>
+</div>
+<!-- closes #side -->      <div id="mainContent">
+        <h1>Release Information</h1>
+<p>Here you can find specific information about current and previous stable Bugzilla releases.</p>
+
+<h2>Release Policy</h2>
+
+<ul>
+  <li><b>Trunk</b>
+    <ul>
+      <li>Approved changes added constantly</li>
+      <li>Occasionally development snapshots are released</li>
+    </ul>
+  </li>
+  <li><b>Current Stable Release</b>
+    <ul>
+      <li>Includes bug fixes and performance improvements only</li>
+      <li>No new features or large scale performance improvements</li>
+      <li>No database schema changes</li>
+      <li>May contain documentation changes</li>
+      <li>Changes to the documentation in docbook or perldoc format</li>
+      <li>Excludes any changes to templates that aren't part of bug fix,
+        other than typos or grammatical fixes</li>
+    </ul>
+  </li>
+  <li><b>Old Stable Releases</b>
+    <ul>
+      <li>Current policy is that 4 months after the next major release, support
+        for the oldest stable release will be dropped. The other stable release
+        will still be supported until four months after the next major release.
+      </li>
+      <li>Contains security, crash, data loss, and selected critical fixes only</li>
+      <li>No documentation changes unrelated to the above changes allowed</li>
+    </ul>
+  </li>
+  <li><b>Previous Releases</b>
+    <ul>
+      <li>Any release prior to the old stable releases are unsupported</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>Release Dates</h2>
+
+<p>The list below is a list of the release dates of previous versions
+of Bugzilla.</p>
+
+<table>
+    <tr><th>Version</th><th>Release Date</th></tr>
+    <tr>
+        <td colspan="2"><span style="font-style: italic;">Current Stable Release</span></td>
+    </tr>
+    <tr class="stableRelease">        <td><a href="5.0.3/" title="Current Stable Release">5.0.3</a></td>
+        <td>May 16, 2016</td>
+    </tr>
+    <tr>
+        <td colspan="2"><span style="font-style: italic;">Old Stable Releases</span></td>
+    </tr>
+    <tr class="stableRelease">        <td><a href="4.4.12/" title="Old Stable Release">4.4.12</a></td>
+        <td>May 16, 2016</td>
+    </tr>
+    <tr>
+        <td colspan="2"><span style="font-style: italic;">Previous Releases</span></td>
+    </tr>
+    <tr>        <td><a href="5.0.2/">5.0.2</a></td>
+        <td>December 22, 2015</td>
+    </tr>
+    <tr>        <td><a href="5.0.1/">5.0.1</a></td>
+        <td>September 10, 2015</td>
+    </tr>
+    <tr>        <td><a href="5.0/">5.0</a></td>
+        <td>July  7, 2015</td>
+    </tr>
+    <tr>        <td><a href="4.4.11/">4.4.11</a></td>
+        <td>December 22, 2015</td>
+    </tr>
+    <tr>        <td><a href="4.4.10/">4.4.10</a></td>
+        <td>September 10, 2015</td>
+    </tr>
+    <tr>        <td><a href="4.4.9/">4.4.9</a></td>
+        <td>April 15, 2015</td>
+    </tr>
+    <tr>        <td><a href="4.4.8/">4.4.8</a></td>
+        <td>January 27, 2015</td>
+    </tr>
+    <tr>        <td><a href="4.4.7/">4.4.7</a></td>
+        <td>January 21, 2015</td>
+    </tr>
+    <tr>        <td><a href="4.4.6/">4.4.6</a></td>
+        <td>October  6, 2014</td>
+    </tr>
+    <tr>        <td><a href="4.4.5/">4.4.5</a></td>
+        <td>July 24, 2014</td>
+    </tr>
+    <tr>        <td><a href="4.4.4/">4.4.4</a></td>
+        <td>April 18, 2014</td>
+    </tr>
+    <tr>        <td><a href="4.4.3/">4.4.3</a></td>
+        <td>April 17, 2014</td>
+    </tr>
+    <tr>        <td><a href="4.4.2/">4.4.2</a></td>
+        <td>January 27, 2014</td>
+    </tr>
+    <tr>        <td><a href="4.4.1/">4.4.1</a></td>
+        <td>October 16, 2013</td>
+    </tr>
+    <tr>        <td><a href="4.4/">4.4</a></td>
+        <td>May 22, 2013</td>
+    </tr>
+    <tr>        <td><a href="4.2.16/">4.2.16</a></td>
+        <td>December 22, 2015</td>
+    </tr>
+    <tr>        <td><a href="4.2.15/">4.2.15</a></td>
+        <td>September 10, 2015</td>
+    </tr>
+    <tr>        <td><a href="4.2.14/">4.2.14</a></td>
+        <td>April 15, 2015</td>
+    </tr>
+    <tr>        <td><a href="4.2.13/">4.2.13</a></td>
+        <td>January 27, 2015</td>
+    </tr>
+    <tr>        <td><a href="4.2.12/">4.2.12</a></td>
+        <td>January 21, 2015</td>
+    </tr>
+    <tr>        <td><a href="4.2.11/">4.2.11</a></td>
+        <td>October  6, 2014</td>
+    </tr>
+    <tr>        <td><a href="4.2.10/">4.2.10</a></td>
+        <td>July 24, 2014</td>
+    </tr>
+    <tr>        <td><a href="4.2.9/">4.2.9</a></td>
+        <td>April 18, 2014</td>
+    </tr>
+    <tr>        <td><a href="4.2.8/">4.2.8</a></td>
+        <td>April 17, 2014</td>
+    </tr>
+    <tr>        <td><a href="4.2.7/">4.2.7</a></td>
+        <td>October 16, 2013</td>
+    </tr>
+    <tr>        <td><a href="4.2.6/">4.2.6</a></td>
+        <td>May 22, 2013</td>
+    </tr>
+    <tr>        <td><a href="4.2.5/">4.2.5</a></td>
+        <td>February 19, 2013</td>
+    </tr>
+    <tr>        <td><a href="4.2.4/">4.2.4</a></td>
+        <td>November 13, 2012</td>
+    </tr>
+    <tr>        <td><a href="4.2.3/">4.2.3</a></td>
+        <td>August 30, 2012</td>
+    </tr>
+    <tr>        <td><a href="4.2.2/">4.2.2</a></td>
+        <td>July 26, 2012</td>
+    </tr>
+    <tr>        <td><a href="4.2.1/">4.2.1</a></td>
+        <td>April 18, 2012</td>
+    </tr>
+    <tr>        <td><a href="4.2/">4.2</a></td>
+        <td>February 22, 2012</td>
+    </tr>
+    <tr>        <td><a href="4.0.18/">4.0.18</a></td>
+        <td>April 15, 2015</td>
+    </tr>
+    <tr>        <td><a href="4.0.17/">4.0.17</a></td>
+        <td>January 27, 2015</td>
+    </tr>
+    <tr>        <td><a href="4.0.16/">4.0.16</a></td>
+        <td>January 21, 2015</td>
+    </tr>
+    <tr>        <td><a href="4.0.15/">4.0.15</a></td>
+        <td>October  6, 2014</td>
+    </tr>
+    <tr>        <td><a href="4.0.14/">4.0.14</a></td>
+        <td>July 24, 2014</td>
+    </tr>
+    <tr>        <td><a href="4.0.13/">4.0.13</a></td>
+        <td>April 18, 2014</td>
+    </tr>
+    <tr>        <td><a href="4.0.12/">4.0.12</a></td>
+        <td>April 17, 2014</td>
+    </tr>
+    <tr>        <td><a href="4.0.11/">4.0.11</a></td>
+        <td>October 16, 2013</td>
+    </tr>
+    <tr>        <td><a href="4.0.10/">4.0.10</a></td>
+        <td>February 19, 2013</td>
+    </tr>
+    <tr>        <td><a href="4.0.9/">4.0.9</a></td>
+        <td>November 13, 2012</td>
+    </tr>
+    <tr>        <td><a href="4.0.8/">4.0.8</a></td>
+        <td>August 30, 2012</td>
+    </tr>
+    <tr>        <td><a href="4.0.7/">4.0.7</a></td>
+        <td>July 26, 2012</td>
+    </tr>
+    <tr>        <td><a href="4.0.6/">4.0.6</a></td>
+        <td>April 18, 2012</td>
+    </tr>
+    <tr>        <td><a href="4.0.5/">4.0.5</a></td>
+        <td>February 22, 2012</td>
+    </tr>
+    <tr>        <td><a href="4.0.4/">4.0.4</a></td>
+        <td>January 31, 2012</td>
+    </tr>
+    <tr>        <td><a href="4.0.3/">4.0.3</a></td>
+        <td>December 28, 2011</td>
+    </tr>
+    <tr>        <td><a href="4.0.2/">4.0.2</a></td>
+        <td>August  4, 2011</td>
+    </tr>
+    <tr>        <td><a href="4.0.1/">4.0.1</a></td>
+        <td>April 27, 2011</td>
+    </tr>
+    <tr>        <td><a href="4.0/">4.0</a></td>
+        <td>February 15, 2011</td>
+    </tr>
+    <tr>        <td><a href="3.6.13/">3.6.13</a></td>
+        <td>February 19, 2013</td>
+    </tr>
+    <tr>        <td><a href="3.6.12/">3.6.12</a></td>
+        <td>November 13, 2012</td>
+    </tr>
+    <tr>        <td><a href="3.6.11/">3.6.11</a></td>
+        <td>August 30, 2012</td>
+    </tr>
+    <tr>        <td><a href="3.6.10/">3.6.10</a></td>
+        <td>July 26, 2012</td>
+    </tr>
+    <tr>        <td><a href="3.6.9/">3.6.9</a></td>
+        <td>April 18, 2012</td>
+    </tr>
+    <tr>        <td><a href="3.6.8/">3.6.8</a></td>
+        <td>January 31, 2012</td>
+    </tr>
+    <tr>        <td><a href="3.6.7/">3.6.7</a></td>
+        <td>December 28, 2011</td>
+    </tr>
+    <tr>        <td><a href="3.6.6/">3.6.6</a></td>
+        <td>August  4, 2011</td>
+    </tr>
+    <tr>        <td><a href="3.6.5/">3.6.5</a></td>
+        <td>April 27, 2011</td>
+    </tr>
+    <tr>        <td><a href="3.6.4/">3.6.4</a></td>
+        <td>January 24, 2011</td>
+    </tr>
+    <tr>        <td><a href="3.6.3/">3.6.3</a></td>
+        <td>November  2, 2010</td>
+    </tr>
+    <tr>        <td><a href="3.6.2/">3.6.2</a></td>
+        <td>August  5, 2010</td>
+    </tr>
+    <tr>        <td><a href="3.6.1/">3.6.1</a></td>
+        <td>June 24, 2010</td>
+    </tr>
+    <tr>        <td><a href="3.6/">3.6</a></td>
+        <td>April 13, 2010</td>
+    </tr>
+    <tr>        <td><a href="3.4.14/">3.4.14</a></td>
+        <td>January 31, 2012</td>
+    </tr>
+    <tr>        <td><a href="3.4.13/">3.4.13</a></td>
+        <td>December 28, 2011</td>
+    </tr>
+    <tr>        <td><a href="3.4.12/">3.4.12</a></td>
+        <td>August  4, 2011</td>
+    </tr>
+    <tr>        <td><a href="3.4.11/">3.4.11</a></td>
+        <td>April 27, 2011</td>
+    </tr>
+    <tr>        <td><a href="3.4.10/">3.4.10</a></td>
+        <td>January 24, 2011</td>
+    </tr>
+    <tr>        <td><a href="3.4.9/">3.4.9</a></td>
+        <td>November  2, 2010</td>
+    </tr>
+    <tr>        <td><a href="3.4.8/">3.4.8</a></td>
+        <td>August  5, 2010</td>
+    </tr>
+    <tr>        <td><a href="3.4.7/">3.4.7</a></td>
+        <td>June 24, 2010</td>
+    </tr>
+    <tr>        <td><a href="3.4.6/">3.4.6</a></td>
+        <td>March  8, 2010</td>
+    </tr>
+    <tr>        <td><a href="3.4.5/">3.4.5</a></td>
+        <td>January 31, 2010</td>
+    </tr>
+    <tr>        <td><a href="3.4.4/">3.4.4</a></td>
+        <td>November 18, 2009</td>
+    </tr>
+    <tr>        <td><a href="3.4.3/">3.4.3</a></td>
+        <td>November  5, 2009</td>
+    </tr>
+    <tr>        <td><a href="3.4.2/">3.4.2</a></td>
+        <td>September 11, 2009</td>
+    </tr>
+    <tr>        <td><a href="3.4.1/">3.4.1</a></td>
+        <td>August  1, 2009</td>
+    </tr>
+    <tr>        <td><a href="3.4/">3.4</a></td>
+        <td>July 28, 2009</td>
+    </tr>
+    <tr>        <td><a href="3.2.10/">3.2.10</a></td>
+        <td>January 24, 2011</td>
+    </tr>
+    <tr>        <td><a href="3.2.9/">3.2.9</a></td>
+        <td>November  2, 2010</td>
+    </tr>
+    <tr>        <td><a href="3.2.8/">3.2.8</a></td>
+        <td>August  5, 2010</td>
+    </tr>
+    <tr>        <td><a href="3.2.7/">3.2.7</a></td>
+        <td>June 24, 2010</td>
+    </tr>
+    <tr>        <td><a href="3.2.6/">3.2.6</a></td>
+        <td>January 31, 2010</td>
+    </tr>
+    <tr>        <td><a href="3.2.5/">3.2.5</a></td>
+        <td>September 11, 2009</td>
+    </tr>
+    <tr>        <td><a href="3.2.4/">3.2.4</a></td>
+        <td>July  8, 2009</td>
+    </tr>
+    <tr>        <td><a href="3.2.3/">3.2.3</a></td>
+        <td>March 30, 2009</td>
+    </tr>
+    <tr>        <td><a href="3.2.2/">3.2.2</a></td>
+        <td>February  3, 2009</td>
+    </tr>
+    <tr>        <td><a href="3.2.1/">3.2.1</a></td>
+        <td>February  2, 2009</td>
+    </tr>
+    <tr>        <td><a href="3.2/">3.2</a></td>
+        <td>November 29, 2008</td>
+    </tr>
+    <tr>        <td><a href="3.0.11/">3.0.11</a></td>
+        <td>January 31, 2010</td>
+    </tr>
+    <tr>        <td><a href="3.0.10/">3.0.10</a></td>
+        <td>November  5, 2009</td>
+    </tr>
+    <tr>        <td><a href="3.0.9/">3.0.9</a></td>
+        <td>September 11, 2009</td>
+    </tr>
+    <tr>        <td><a href="3.0.8/">3.0.8</a></td>
+        <td>February  3, 2009</td>
+    </tr>
+    <tr>        <td><a href="3.0.7/">3.0.7</a></td>
+        <td>February  2, 2009</td>
+    </tr>
+    <tr>        <td><a href="3.0.6/">3.0.6</a></td>
+        <td>November  6, 2008</td>
+    </tr>
+    <tr>        <td><a href="3.0.5/">3.0.5</a></td>
+        <td>August 12, 2008</td>
+    </tr>
+    <tr>        <td><a href="3.0.4/">3.0.4</a></td>
+        <td>May  4, 2008</td>
+    </tr>
+    <tr>        <td><a href="3.0.3/">3.0.3</a></td>
+        <td>January  8, 2008</td>
+    </tr>
+    <tr>        <td><a href="3.0.2/">3.0.2</a></td>
+        <td>September 18, 2007</td>
+    </tr>
+    <tr>        <td><a href="3.0.1/">3.0.1</a></td>
+        <td>August 23, 2007</td>
+    </tr>
+    <tr>        <td><a href="3.0/">3.0</a></td>
+        <td>May  9, 2007</td>
+    </tr>
+    <tr>        <td><a href="2.22.7/">2.22.7</a></td>
+        <td>February  2, 2009</td>
+    </tr>
+    <tr>        <td><a href="2.22.6/">2.22.6</a></td>
+        <td>November  6, 2008</td>
+    </tr>
+    <tr>        <td><a href="2.22.5/">2.22.5</a></td>
+        <td>August 12, 2008</td>
+    </tr>
+    <tr>        <td><a href="2.22.4/">2.22.4</a></td>
+        <td>May  4, 2008</td>
+    </tr>
+    <tr>        <td><a href="2.22.3/">2.22.3</a></td>
+        <td>August 23, 2007</td>
+    </tr>
+    <tr>        <td><a href="2.22.2/">2.22.2</a></td>
+        <td>February  2, 2007</td>
+    </tr>
+    <tr>        <td><a href="2.22.1/">2.22.1</a></td>
+        <td>October 15, 2006</td>
+    </tr>
+    <tr>        <td><a href="2.22/">2.22</a></td>
+        <td>April 22, 2006</td>
+    </tr>
+    <tr>        <td><a href="2.20.7/">2.20.7</a></td>
+        <td>November  6, 2008</td>
+    </tr>
+    <tr>        <td><a href="2.20.6/">2.20.6</a></td>
+        <td>May  4, 2008</td>
+    </tr>
+    <tr>        <td><a href="2.20.5/">2.20.5</a></td>
+        <td>August 23, 2007</td>
+    </tr>
+    <tr>        <td><a href="2.20.4/">2.20.4</a></td>
+        <td>February  2, 2007</td>
+    </tr>
+    <tr>        <td><a href="2.20.3/">2.20.3</a></td>
+        <td>October 15, 2006</td>
+    </tr>
+    <tr>        <td><a href="2.20.2/">2.20.2</a></td>
+        <td>April 22, 2006</td>
+    </tr>
+    <tr>        <td><a href="2.20.1/">2.20.1</a></td>
+        <td>February 20, 2006</td>
+    </tr>
+    <tr>        <td><a href="2.20/">2.20</a></td>
+        <td>September 30, 2005</td>
+    </tr>
+    <tr>        <td><a href="2.18.6/">2.18.6</a></td>
+        <td>October 15, 2006</td>
+    </tr>
+    <tr>        <td><a href="2.18.5/">2.18.5</a></td>
+        <td>February 20, 2006</td>
+    </tr>
+    <tr>        <td><a href="2.18.4/">2.18.4</a></td>
+        <td>September 30, 2005</td>
+    </tr>
+    <tr>        <td><a href="2.18.3/">2.18.3</a></td>
+        <td>July  9, 2005</td>
+    </tr>
+    <tr>        <td><a href="2.18.2/">2.18.2</a></td>
+        <td>July  7, 2005</td>
+    </tr>
+    <tr>        <td><a href="2.18.1/">2.18.1</a></td>
+        <td>May 11, 2005</td>
+    </tr>
+    <tr>        <td><a href="2.18/">2.18</a></td>
+        <td>January 15, 2005</td>
+    </tr>
+    <tr>        <td><a href="2.16.11/">2.16.11</a></td>
+        <td>February 20, 2006</td>
+    </tr>
+    <tr>        <td><a href="2.16.10/">2.16.10</a></td>
+        <td>May 18, 2005</td>
+    </tr>
+    <tr>        <td><a href="2.16.9/">2.16.9</a></td>
+        <td>May 11, 2005</td>
+    </tr>
+    <tr>        <td><a href="2.16.8/">2.16.8</a></td>
+        <td>January 15, 2005</td>
+    </tr>
+    <tr>        <td><a href="2.16.7/">2.16.7</a></td>
+        <td>October 24, 2004</td>
+    </tr>
+    <tr>        <td><a href="2.16.6/">2.16.6</a></td>
+        <td>July 10, 2004</td>
+    </tr>
+    <tr>        <td><a href="2.16.5/">2.16.5</a></td>
+        <td>March  3, 2004</td>
+    </tr>
+    <tr>        <td><a href="2.16.4/">2.16.4</a></td>
+        <td>November  3, 2003</td>
+    </tr>
+    <tr>        <td><a href="2.16.3/">2.16.3</a></td>
+        <td>April 25, 2003</td>
+    </tr>
+    <tr>        <td><a href="2.16.2/">2.16.2</a></td>
+        <td>January  2, 2003</td>
+    </tr>
+    <tr>        <td><a href="2.16.1/">2.16.1</a></td>
+        <td>September 30, 2002</td>
+    </tr>
+    <tr>        <td><a href="2.16/">2.16</a></td>
+        <td>July 28, 2002</td>
+    </tr>
+    <tr>        <td><a href="2.14.5/">2.14.5</a></td>
+        <td>January  2, 2003</td>
+    </tr>
+    <tr>        <td><a href="2.14.4/">2.14.4</a></td>
+        <td>September 30, 2002</td>
+    </tr>
+    <tr>        <td><a href="2.14.3/">2.14.3</a></td>
+        <td>July 28, 2002</td>
+    </tr>
+    <tr>        <td><a href="2.14.2/">2.14.2</a></td>
+        <td>June  7, 2002</td>
+    </tr>
+    <tr>        <td><a href="2.14.1/">2.14.1</a></td>
+        <td>January  5, 2002</td>
+    </tr>
+    <tr>        <td><a href="2.14/">2.14</a></td>
+        <td>August 29, 2001</td>
+    </tr>
+    <tr>        <td><a href="2.12/">2.12</a></td>
+        <td>April 27, 2001</td>
+    </tr>
+    <tr>
+        <td>2.10</td>
+        <td>May  9, 2000</td>
+    </tr>
+    <tr>
+        <td>2.8</td>
+        <td>November 19, 1999</td>
+    </tr>
+    <tr>
+        <td>2.6</td>
+        <td>August 30, 1999</td>
+    </tr>
+    <tr>
+        <td>2.4</td>
+        <td>April 30, 1999</td>
+    </tr>
+    <tr>
+        <td>2.2</td>
+        <td>February 10, 1999</td>
+    </tr>
+    <tr>
+        <td>2.0</td>
+        <td>September 19, 1998</td>
+    </tr>
+</table>
+        
+      </div>
+    </div></div>
+  <!-- closes #container -->
+  <div id="footer">
+    <ul>
+      <li><a href="https://www.mozilla.org/contact/">Contact Us</a></li>
+      <li><a href="https://donate.mozilla.org/page/contribute/bugzilla">Donate</a></li>
+    </ul>
+<!-- Creative Commons License -->
+<p class="copyright">This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/2.0/">Creative Commons License</a>.</p>
+
+<!--
+
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="">
+   <dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+   <license rdf:resource="http://creativecommons.org/licenses/by-sa/2.0/" />
+</Work>
+
+<License rdf:about="http://creativecommons.org/licenses/by-sa/2.0/">
+   <permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+   <permits rdf:resource="http://web.resource.org/cc/Distribution" />
+   <requires rdf:resource="http://web.resource.org/cc/Notice" />
+   <requires rdf:resource="http://web.resource.org/cc/Attribution" />
+   <permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+   <requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+</License>
+
+</rdf:RDF>
+
+-->
+<!-- /Creative Commons License -->
+
+    <p class="copyright">Portions of this work are &copy;
+      1998-2016
+      by individual bugzilla.org contributors.</p>
+    <p>
+      <span>Last modified October 27, 2016</span>
+      <span><a href="https://github.com/bugzilla/bugzilla.org/commits/master">Site History</a></span>
+    </p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>
+Bugzilla::Webservice::Component</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" title="style" type="text/css" href="../.././../../../../style.css" media="all" >
+
+</head>
+  <body id="pod">
+<p class="backlinktop"><b><a name="___top" href="../../index.html" accesskey="1" title="All Documents">&lt;&lt;</a></b></p>
+<h1>Bugzilla::Webservice::Component</h1>
+<div class='indexgroup'>
+<ul   class='indexList indexList1'>
+  <li class='indexItem indexItem1'><a href='#NAME'>NAME</a>
+  <li class='indexItem indexItem1'><a href='#DESCRIPTION'>DESCRIPTION</a>
+  <li class='indexItem indexItem1'><a href='#METHODS'>METHODS</a>
+  <li class='indexItem indexItem1'><a href='#Component_Creation_and_Modification'>Component Creation and Modification</a>
+  <ul   class='indexList indexList2'>
+    <li class='indexItem indexItem2'><a href='#create'>create</a>
+  </ul>
+</ul>
+</div>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="NAME"
+>NAME</a></h1>
+
+<p>Bugzilla::Webservice::Component - The Component API</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="DESCRIPTION"
+>DESCRIPTION</a></h1>
+
+<p>This part of the Bugzilla API allows you to deal with the available product components.
+You will be able to get information about them as well as manipulate them.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="METHODS"
+>METHODS</a></h1>
+
+<p>See <a href="../../Bugzilla/WebService.html" class="podlinkpod"
+>Bugzilla::WebService</a> for a description of how parameters are passed,
+and what <b>STABLE</b>,
+<b>UNSTABLE</b>,
+and <b>EXPERIMENTAL</b> mean.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="Component_Creation_and_Modification"
+>Component Creation and Modification</a></h1>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="create"
+>create</a></h2>
+
+<p><b>EXPERIMENTAL</b></p>
+
+<dl>
+<dt><a name="Description"
+><b>Description</b></a></dt>
+
+<dd>
+<p>This allows you to create a new component in Bugzilla.</p>
+
+<dt><a name="Params"
+><b>Params</b></a></dt>
+
+<dd>
+<p>Some params must be set,
+or an error will be thrown.
+These params are marked <b>Required</b>.</p>
+
+<dl>
+<dt><a name="name"
+><code  class="code">name</code></a></dt>
+
+<dd>
+<p><b>Required</b> <code  class="code">string</code> The name of the new component.</p>
+
+<dt><a name="product"
+><code  class="code">product</code></a></dt>
+
+<dd>
+<p><b>Required</b> <code  class="code">string</code> The name of the product that the component must be added to.
+This product must already exist,
+and the user have the necessary permissions to edit components for it.</p>
+
+<dt><a name="description"
+><code  class="code">description</code></a></dt>
+
+<dd>
+<p><b>Required</b> <code  class="code">string</code> The description of the new component.</p>
+
+<dt><a name="default_assignee"
+><code  class="code">default_assignee</code></a></dt>
+
+<dd>
+<p><b>Required</b> <code  class="code">string</code> The login name of the default assignee of the component.</p>
+
+<dt><a name="default_cc"
+><code  class="code">default_cc</code></a></dt>
+
+<dd>
+<p><code  class="code">array</code> An array of strings with each element representing one login name of the default CC list.</p>
+
+<dt><a name="default_qa_contact"
+><code  class="code">default_qa_contact</code></a></dt>
+
+<dd>
+<p><code  class="code">string</code> The login name of the default QA contact for the component.</p>
+
+<dt><a name="is_open"
+><code  class="code">is_open</code></a></dt>
+
+<dd>
+<p><code  class="code">boolean</code> 1 if you want to enable the component for bug creations.
+0 otherwise.
+Default is 1.</p>
+</dd>
+</dl>
+
+<dt><a name="Returns"
+><b>Returns</b></a></dt>
+
+<dd>
+<p>A hash with one key: <code  class="code">id</code>.
+This will represent the ID of the newly-added component.</p>
+
+<dt><a name="Errors"
+><b>Errors</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="304_(Authorization_Failure)"
+>304 (Authorization Failure)</a></dt>
+
+<dd>
+<p>You are not authorized to create a new component.</p>
+
+<dt><a name="1200_(Component_already_exists)"
+>1200 (Component already exists)</a></dt>
+
+<dd>
+<p>The name that you specified for the new component already exists in the specified product.</p>
+</dd>
+</dl>
+
+<dt><a name="History"
+><b>History</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="Added_in_Bugzilla_5.0."
+>Added in Bugzilla <b>5.0</b>.</a></dt>
+</dl>
+</dd>
+</dl>
+<p class="backlinkbottom"><b><a name="___bottom" href="../../index.html" title="All Documents">&lt;&lt;</a></b></p>
+
+<!-- end doc -->
+
+</body></html>

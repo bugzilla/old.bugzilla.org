@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+  <title>2.14.4, 2.16.1 Security Advisory :: Bugzilla :: bugzilla.org</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="keywords" content="bugzilla bug track tracking enterprise solution">
+  <link rel="icon" href="/img/bugzilla_icon.png" type="image/png">
+  <link rel="stylesheet" type="text/css" href="/css/print.css" media="print">
+  <link rel="stylesheet" type="text/css" href="/css/base/content.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/base/template.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/css/bugzilla.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/css/cavendish/home.css" title="Cavendish" media="screen">
+</head>
+<body id="www-bugzilla-org" class="homepage">
+  <div id="container">
+    <p class="skipLink"><a href="#mainContent" accesskey="2">Skip to main content</a></p>
+    <div id="header">
+      <h1><a href="/" title="Return to Bugzilla home page" accesskey="1">Bugzilla</a></h1>
+      <div id="tools">
+        <ul id="mainNav">
+          <li><a href="/contribute/" title="How to Help"
+            >Contribute!</a></li>
+          <li><a href="/features/" title="Bugzilla features">Features</a></li>
+          <li><a href="/download/" title="Get Bugzilla for free">Download</a></li>
+          <li><a href="/support/" title="Where to get more help">Support</a></li>
+          <li><a href="/docs/" title="Bugzilla documenation">Docs</a></li>
+          <li><a href="/news/" title="Read about what is happening with Bugzilla">News</a></li>
+          <li><a href="/about/" title="Getting the most out of your online experience">About</a></li>
+        </ul>
+        <!-- closes #textSize-->
+        <form id="search" method="get" action="https://www.google.com/cse">
+          <div id="sf">
+            <label for="q" title="Search bugzilla.org">search bugzilla.org: </label>
+            <input type="hidden" name="cx" value="008043952663535741821:9whwb87ip5a">
+            <input type="text" id="q" name="q" accesskey="s" size="30">
+            <input type="submit" id="submit" value="go">
+          </div>
+        </form>
+      </div>
+     <!-- closes #tools-->
+    </div>
+    <!-- closes #header-->
+    <hr class="hide">
+    <div id="mBody">
+
+        <hr class="hide"><div id="side">
+<ul id="nav">
+<li>
+	<a href="/about/" title="Find out more about Bugzilla."><strong>About</strong></a>
+	<ul>
+		<li><a href="/installation-list/" title="Hundreds of companies and organizations trust Bugzilla.">Who Uses Bugzilla?</a></li>
+		<li><a href="/status/roadmap.html" title="Learn about Bugzilla's future.">Roadmap</a></li>
+		<li><a href="/developers/profiles.html" title="Meet the Bugzilla team.">Meet the Team</a></li>
+		<li><a href="/releases/" title="Information on current and previous releases.">Release Information</a></li>
+	</ul>
+</li>
+<li>
+	<a href="/news/" title="Get the low down on what's happening with the project."><strong>News</strong></a>
+	<ul>
+		<li><a href="http://planet.bugzilla.org" title="View the status of the Bugzilla project.">Planet Bugzilla</a></li>
+		<li><a href="/security/" title="Important updates regarding Bugzilla security.">Security Advisories</a></li>
+        <li><a href="/status/changes.html" title="Detailed list of all the changes between each Bugzilla version">Change Logs</a></li>
+	</ul>
+</li>
+<li>
+        <a href="/download/" title="Download Bugzilla"><strong>Download</strong></a>
+        <ul>
+                <li><a href="https://wiki.mozilla.org/Bugzilla:Addons" title="Third-party Bugzilla extensions">Extensions</a></li>
+                <li><a href="/requirements/">Requirements</a></li>
+        </ul>
+</li>
+<li>
+	<a href="/support/" title="Find out where to get more information and help."><strong>Support</strong></a>
+	<ul>
+                <li><a href="/support/" title="Find out where to get more information and help.">Free Support</a></li>
+                <li><a href="/support/consulting.html" title="Paid support options">Paid Support</a></li>
+		<li><a href="/docs/" title="Read the Bugzilla manual and other important documents.">Documentation</a></li>
+		<li><a href="https://wiki.mozilla.org/Bugzilla" title="Collaboratively updated information about Bugzilla.">Wiki</a></li>
+		<li><a href="/developers/reporting_bugs.html" title="Let us know if there is an error in Bugzilla.">Report a Bug</a></li>
+	</ul>
+</li>
+<li>
+	<a href="/developers/" title="Developer resources">Developer Resources</a>
+</li>
+  <li>
+    <a href="/contribute/" title="Ways you can help Bugzilla"
+    >How To Help Out</a>
+  </li>
+</ul>
+
+<div>
+<p><a href="https://twitter.com/bugzilla">Follow @bugzilla on Twitter</a></p>
+<p><a href="https://www.facebook.com/pages/Bugzilla/1427568330846442">Like Bugzilla on Facebook</a></p>
+<p><a href="https://plus.google.com/u/0/104215203522965843895?prsrc=3">Follow Bugzilla on Google+</a></p>
+</div>
+</div>
+<!-- closes #side -->      <div id="mainContent">
+        <h1>2.14.4, 2.16.1 Security Advisory</h1>
+January 2nd, 2003<br/>
+<pre>
+Severity: major (remote database password disclosure, bug 186383)
+          minor (local file permissions, bug 183188)
+
+Summary
+=======
+
+All Bugzilla installations are advised to upgrade to the latest versions
+of Bugzilla, 2.14.5 and 2.16.2, both released today. Security issues of
+varying importance have been fixed in both branches.  These vulnerabilities
+affect all previous 2.14 and 2.16 releases.
+
+Development snapshots prior to version 2.17.3 are also affected, so if you
+are using a development snapshot, you should obtain a newer one or use CVS
+to update.
+
+2.14.x users are additionally encouraged to upgrade to 2.16.2 as soon as
+possible, as this is the last 2.14.x release and the 2.14 branch will no
+longer be supported by the Bugzilla team.
+
+This advisory covers two security bugs: one involves incorrect local
+permissions on a directory, allowing local users access. The other involves
+protecting configuration information leaks due to backup files created by
+editors.
+
+Vulnerability Details
+=====================
+
+The following security issues were fixed in 2.14.5, 2.16.2, and 2.17.3:
+
+- The provided data collection script intended to be run as a nightly cron
+  job changes the permissions of the data/mining directory to be world-
+  writable every time it runs. This would enable local users to alter or
+  delete the collected data.  (Bugzilla bug 183188 / Bugtraq ID 6502).
+
+- The default .htaccess scripts provided by checksetup.pl do not block
+  access to backups of the localconfig file that might be created by
+  editors such as vi or emacs (typically these will have a .swp or ~
+  suffix).  This allows an end user to download one of the backup copies
+  and potentially obtain your database password.  If you already have such
+  an editor backup in your bugzilla directory it would be advisable to
+  change your database password in addition to upgrading.
+
+  In addition, we also continue to recommend hardening access to the
+  Bugzilla database user account by limiting access to the account to
+  the machine Bugzilla is served from (typically localhost); consult the
+  MySQL documentation for more information on how to accomplish this.
+  (Bugzilla bug 186383 / Bugtraq ID 6501)
+
+Also included in these releases are the patches that were posted as part
+of our earlier security advisory on November 26th, 2002.  (Bugzilla bug
+179329, Bugtraq ID 6257 - see
+http://online.securityfocus.com/archive/1/301316 )
+
+Vulnerability Solutions
+=======================
+
+The fixes for both security bugs contained in this release, as well as the
+previously announced security bug involving cross-site scripting
+vulnerabilities are contained in the 2.14.5, 2.16.2, and 2.17.3 releases.
+Upgrading to these releases will protect installations against
+exploitations of these security bugs.
+
+Individual patches to upgrade Bugzilla are available at:
+  https://ftp.mozilla.org/pub/webtools/
+  (these patches are only valid for 2.14.4 and 2.16.1 users).
+
+Full release downloads and CVS upgrade instructions are available at:
+  https://www.bugzilla.org/download.html
+
+References
+==========
+
+Complete bug reports for the security bugs covered herein may be obtained
+at:
+   https://bugzilla.mozilla.org/show_bug.cgi?id=183188
+   https://bugzilla.mozilla.org/show_bug.cgi?id=186383
+
+General information about the Bugzilla bug-tracking system can be found at
+   https://www.bugzilla.org/
+
+Comments and follow-ups can be directed to the
+netscape.public.mozilla.webtools newsgroup or the mozilla-webtools mailing
+list; https://www.mozilla.org/community.html has directions for accessing
+these forums.
+
+-30-
+</pre>
+        
+      </div>
+    </div></div>
+  <!-- closes #container -->
+  <div id="footer">
+    <ul>
+      <li><a href="https://www.mozilla.org/contact/">Contact Us</a></li>
+      <li><a href="https://donate.mozilla.org/page/contribute/bugzilla">Donate</a></li>
+    </ul>
+<!-- Creative Commons License -->
+<p class="copyright">This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/2.0/">Creative Commons License</a>.</p>
+
+<!--
+
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="">
+   <dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+   <license rdf:resource="http://creativecommons.org/licenses/by-sa/2.0/" />
+</Work>
+
+<License rdf:about="http://creativecommons.org/licenses/by-sa/2.0/">
+   <permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+   <permits rdf:resource="http://web.resource.org/cc/Distribution" />
+   <requires rdf:resource="http://web.resource.org/cc/Notice" />
+   <requires rdf:resource="http://web.resource.org/cc/Attribution" />
+   <permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+   <requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+</License>
+
+</rdf:RDF>
+
+-->
+<!-- /Creative Commons License -->
+
+    <p class="copyright">Portions of this work are &copy;
+      1998-2016
+      by individual bugzilla.org contributors.</p>
+    <p>
+      <span>Last modified October 27, 2016</span>
+      <span><a href="https://github.com/bugzilla/bugzilla.org/commits/master">Site History</a></span>
+    </p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>
+Bugzilla::Version</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" title="style" type="text/css" href=".././../../../../style.css" media="all" >
+
+</head>
+  <body id="pod">
+<p class="backlinktop"><b><a name="___top" href="../index.html" accesskey="1" title="All Documents">&lt;&lt;</a></b></p>
+<h1>Bugzilla::Version</h1>
+<div class='indexgroup'>
+<ul   class='indexList indexList1'>
+  <li class='indexItem indexItem1'><a href='#NAME'>NAME</a>
+  <li class='indexItem indexItem1'><a href='#SYNOPSIS'>SYNOPSIS</a>
+  <li class='indexItem indexItem1'><a href='#DESCRIPTION'>DESCRIPTION</a>
+  <li class='indexItem indexItem1'><a href='#METHODS'>METHODS</a>
+  <li class='indexItem indexItem1'><a href='#FUNCTIONS'>FUNCTIONS</a>
+  <li class='indexItem indexItem1'><a href='#Methods_in_need_of_POD'>Methods in need of POD</a>
+</ul>
+</div>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="NAME"
+>NAME</a></h1>
+
+<p>Bugzilla::Version - Bugzilla product version class.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="SYNOPSIS"
+>SYNOPSIS</a></h1>
+
+<pre  class="code">    use Bugzilla::Version;
+
+    my $version = new Bugzilla::Version({ name =&#62; $name, product =&#62; $product_obj });
+    my $version = Bugzilla::Version-&#62;check({ name =&#62; $name, product =&#62; $product_obj });
+    my $version = Bugzilla::Version-&#62;check({ id =&#62; $id });
+
+    my $value = $version-&#62;name;
+    my $product_id = $version-&#62;product_id;
+    my $product = $version-&#62;product;
+
+    my $version = Bugzilla::Version-&#62;create(
+        { value =&#62; $name, product =&#62; $product_obj });
+
+    $version-&#62;set_value($new_name);
+    $version-&#62;update();
+
+    $version-&#62;remove_from_db;</pre>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="DESCRIPTION"
+>DESCRIPTION</a></h1>
+
+<p>Version.pm represents a Product Version object. It is an implementation of <a href="../Bugzilla/Object.html" class="podlinkpod"
+>Bugzilla::Object</a>, and thus provides all methods that <a href="../Bugzilla/Object.html" class="podlinkpod"
+>Bugzilla::Object</a> provides.</p>
+
+<p>The methods that are specific to <code  class="code">Bugzilla::Version</code> are listed below.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="METHODS"
+>METHODS</a></h1>
+
+<dl>
+<dt><a name="bug_count()"
+><code  class="code">bug_count()</code></a></dt>
+
+<dd>
+<dl>
+<dt><a name="Description"
+><b>Description</b></a></dt>
+
+<dd>
+<p>Returns the total of bugs that belong to the version.</p>
+
+<dt><a name="Params"
+><b>Params</b></a></dt>
+
+<dd>
+<p>none</p>
+
+<dt><a name="Returns"
+><b>Returns</b></a></dt>
+
+<dd>
+<p>Integer with the number of bugs.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="FUNCTIONS"
+>FUNCTIONS</a></h1>
+
+<dl>
+<dt><a name="vers_cmp($a,_$b)"
+><code  class="code">vers_cmp($a, $b)</code></a></dt>
+
+<dd>
+<dl>
+<dt><a name="Description"
+><b>Description</b></a></dt>
+
+<dd>
+<p>This is a comparison function, like you would use in <code  class="code">sort</code>, except that it compares two version numbers. So, for example, 2.10 would be greater than 2.2.</p>
+
+<p>It&#39;s based on versioncmp from <a href="../Sort/Versions.html" class="podlinkpod"
+>Sort::Versions</a>, with some Bugzilla-specific fixes.</p>
+
+<dt><a name="Params"
+><b>Params</b></a></dt>
+
+<dd>
+<p><code  class="code">$a</code> and <code  class="code">$b</code> - The versions you want to compare.</p>
+
+<dt><a name="Returns"
+><b>Returns</b></a></dt>
+
+<dd>
+<p><code  class="code">-1</code> if <code  class="code">$a</code> is less than <code  class="code">$b</code>, <code  class="code">0</code> if they are equal, or <code  class="code">1</code> if <code  class="code">$a</code> is greater than <code  class="code">$b</code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="Methods_in_need_of_POD"
+><b>Methods in need of POD</b></a></h1>
+
+<dl>
+<dt><a name="DEFAULT_VERSION"
+>DEFAULT_VERSION</a></dt>
+
+<dd>
+<dt><a name="set_isactive"
+>set_isactive</a></dt>
+
+<dd>
+<dt><a name="set_value"
+>set_value</a></dt>
+
+<dd>
+<dt><a name="product_id"
+>product_id</a></dt>
+
+<dd>
+<dt><a name="is_active"
+>is_active</a></dt>
+
+<dd>
+<dt><a name="remove_from_db"
+>remove_from_db</a></dt>
+
+<dd>
+<dt><a name="product"
+>product</a></dt>
+
+<dd>
+<dt><a name="update"
+>update</a></dt>
+</dl>
+<p class="backlinkbottom"><b><a name="___bottom" href="../index.html" title="All Documents">&lt;&lt;</a></b></p>
+
+<!-- end doc -->
+
+</body></html>

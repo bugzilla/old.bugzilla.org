@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+  <title>4.3.2, 4.2.2, 4.0.7, and 3.6.10 Security Advisory :: Bugzilla :: bugzilla.org</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="keywords" content="bugzilla bug track tracking enterprise solution">
+  <link rel="icon" href="/img/bugzilla_icon.png" type="image/png">
+  <link rel="stylesheet" type="text/css" href="/css/print.css" media="print">
+  <link rel="stylesheet" type="text/css" href="/css/base/content.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/base/template.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/css/bugzilla.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/css/cavendish/home.css" title="Cavendish" media="screen">
+</head>
+<body id="www-bugzilla-org" class="homepage">
+  <div id="container">
+    <p class="skipLink"><a href="#mainContent" accesskey="2">Skip to main content</a></p>
+    <div id="header">
+      <h1><a href="/" title="Return to Bugzilla home page" accesskey="1">Bugzilla</a></h1>
+      <div id="tools">
+        <ul id="mainNav">
+          <li><a href="/contribute/" title="How to Help"
+            >Contribute!</a></li>
+          <li><a href="/features/" title="Bugzilla features">Features</a></li>
+          <li><a href="/download/" title="Get Bugzilla for free">Download</a></li>
+          <li><a href="/support/" title="Where to get more help">Support</a></li>
+          <li><a href="/docs/" title="Bugzilla documenation">Docs</a></li>
+          <li><a href="/news/" title="Read about what is happening with Bugzilla">News</a></li>
+          <li><a href="/about/" title="Getting the most out of your online experience">About</a></li>
+        </ul>
+        <!-- closes #textSize-->
+        <form id="search" method="get" action="https://www.google.com/cse">
+          <div id="sf">
+            <label for="q" title="Search bugzilla.org">search bugzilla.org: </label>
+            <input type="hidden" name="cx" value="008043952663535741821:9whwb87ip5a">
+            <input type="text" id="q" name="q" accesskey="s" size="30">
+            <input type="submit" id="submit" value="go">
+          </div>
+        </form>
+      </div>
+     <!-- closes #tools-->
+    </div>
+    <!-- closes #header-->
+    <hr class="hide">
+    <div id="mBody">
+
+        <hr class="hide"><div id="side">
+<ul id="nav">
+<li>
+	<a href="/about/" title="Find out more about Bugzilla."><strong>About</strong></a>
+	<ul>
+		<li><a href="/installation-list/" title="Hundreds of companies and organizations trust Bugzilla.">Who Uses Bugzilla?</a></li>
+		<li><a href="/status/roadmap.html" title="Learn about Bugzilla's future.">Roadmap</a></li>
+		<li><a href="/developers/profiles.html" title="Meet the Bugzilla team.">Meet the Team</a></li>
+		<li><a href="/releases/" title="Information on current and previous releases.">Release Information</a></li>
+	</ul>
+</li>
+<li>
+	<a href="/news/" title="Get the low down on what's happening with the project."><strong>News</strong></a>
+	<ul>
+		<li><a href="http://planet.bugzilla.org" title="View the status of the Bugzilla project.">Planet Bugzilla</a></li>
+		<li><a href="/security/" title="Important updates regarding Bugzilla security.">Security Advisories</a></li>
+        <li><a href="/status/changes.html" title="Detailed list of all the changes between each Bugzilla version">Change Logs</a></li>
+	</ul>
+</li>
+<li>
+        <a href="/download/" title="Download Bugzilla"><strong>Download</strong></a>
+        <ul>
+                <li><a href="https://wiki.mozilla.org/Bugzilla:Addons" title="Third-party Bugzilla extensions">Extensions</a></li>
+                <li><a href="/requirements/">Requirements</a></li>
+        </ul>
+</li>
+<li>
+	<a href="/support/" title="Find out where to get more information and help."><strong>Support</strong></a>
+	<ul>
+                <li><a href="/support/" title="Find out where to get more information and help.">Free Support</a></li>
+                <li><a href="/support/consulting.html" title="Paid support options">Paid Support</a></li>
+		<li><a href="/docs/" title="Read the Bugzilla manual and other important documents.">Documentation</a></li>
+		<li><a href="https://wiki.mozilla.org/Bugzilla" title="Collaboratively updated information about Bugzilla.">Wiki</a></li>
+		<li><a href="/developers/reporting_bugs.html" title="Let us know if there is an error in Bugzilla.">Report a Bug</a></li>
+	</ul>
+</li>
+<li>
+	<a href="/developers/" title="Developer resources">Developer Resources</a>
+</li>
+  <li>
+    <a href="/contribute/" title="Ways you can help Bugzilla"
+    >How To Help Out</a>
+  </li>
+</ul>
+
+<div>
+<p><a href="https://twitter.com/bugzilla">Follow @bugzilla on Twitter</a></p>
+<p><a href="https://www.facebook.com/pages/Bugzilla/1427568330846442">Like Bugzilla on Facebook</a></p>
+<p><a href="https://plus.google.com/u/0/104215203522965843895?prsrc=3">Follow Bugzilla on Google+</a></p>
+</div>
+</div>
+<!-- closes #side -->      <div id="mainContent">
+        <h1>4.3.2, 4.2.2, 4.0.7, and 3.6.10 Security Advisory</h1>
+ Thursday, Aug 30th, 2012<br/>
+<pre>
+Summary
+=======
+
+Bugzilla is a Web-based bug-tracking system used by a large number of
+software projects. The following security issues have been discovered
+in Bugzilla:
+
+* When the user logs in using LDAP, the username is not escaped
+  before being passed to LDAP which could potentially lead to LDAP
+  injection.
+
+* Extensions are not protected against directory browsing by default
+  and users can view the source code of templates used by the
+  extensions. These templates may contain sensitive data.
+
+All affected installations are encouraged to upgrade as soon as
+possible.
+
+
+Vulnerability Details
+=====================
+
+Class:       LDAP Injection
+Versions:    2.12 to 3.6.10, 3.7.1 to 4.0.7, 4.1.1 to 4.2.2,
+             4.3.1 to 4.3.2
+Fixed In:    3.6.11, 4.0.8, 4.2.3, 4.3.3
+Description: When the user logs in using LDAP, the username is not
+             escaped when building the uid=$username filter which is
+             used to query the LDAP directory. This could potentially
+             lead to LDAP injection.
+References:  https://bugzilla.mozilla.org/show_bug.cgi?id=785470
+CVE Number:  CVE-2012-3981
+
+Class:       Directory Browsing
+Versions:    2.23.2 to 3.6.10, 3.7.1 to 4.0.7, 4.1.1 to 4.2.2,
+             4.3.1 to 4.3.2
+Fixed In:    4.0.8, 4.2.3, 4.3.3
+Description: Extensions are not protected against directory browsing
+             and users can access the source code of the templates
+             which may contain sensitive data.
+             Directory browsing is blocked in Bugzilla 4.3.3 only,
+             because it requires a configuration change in the Apache
+             httpd.conf file to allow local .htaccess files to use
+             Options -Indexes. To not break existing installations,
+             this fix has not been backported to stable branches.
+             The access to templates is blocked for all supported
+             branches except the old 3.6 branch, because this branch
+             doesn't have .htaccess in the bzr repository and cannot
+             be fixed easily for existing installations without
+             potentially conflicting with custom changes.
+References:  https://bugzilla.mozilla.org/show_bug.cgi?id=785522
+             https://bugzilla.mozilla.org/show_bug.cgi?id=785511
+CVE Number:  none
+
+Vulnerability Solutions
+=======================
+
+The fixes for these issues are included in the 3.6.11, 4.0.8, 4.2.3
+and 4.3.3 releases. Upgrading to a release with the relevant fixes will
+protect your installation from possible exploits of these issues.
+
+If you are unable to upgrade but would like to patch just the
+individual security vulnerabilities, there are patches available for
+each issue at the "References" URL for each vulnerability.
+
+Full release downloads, patches to upgrade Bugzilla from previous
+versions, and CVS/bzr upgrade instructions are available at:
+
+  https://www.bugzilla.org/download/
+
+
+Credits
+=======
+
+The Bugzilla team wish to thank the following people/organizations for
+their assistance in locating, advising us of, and assisting us to fix
+this issue:
+
+Frédéric Buclin
+Reed Loden
+Byron Jones
+Lockheed Martin
+
+General information about the Bugzilla bug-tracking system can be found
+at:
+
+  https://www.bugzilla.org/
+
+Comments and follow-ups can be directed to the mozilla.support.bugzilla
+newsgroup or the support-bugzilla mailing list.
+https://www.bugzilla.org/support/ has directions for accessing these
+forums.
+</pre>
+        
+      </div>
+    </div></div>
+  <!-- closes #container -->
+  <div id="footer">
+    <ul>
+      <li><a href="https://www.mozilla.org/contact/">Contact Us</a></li>
+      <li><a href="https://donate.mozilla.org/page/contribute/bugzilla">Donate</a></li>
+    </ul>
+<!-- Creative Commons License -->
+<p class="copyright">This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/2.0/">Creative Commons License</a>.</p>
+
+<!--
+
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="">
+   <dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+   <license rdf:resource="http://creativecommons.org/licenses/by-sa/2.0/" />
+</Work>
+
+<License rdf:about="http://creativecommons.org/licenses/by-sa/2.0/">
+   <permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+   <permits rdf:resource="http://web.resource.org/cc/Distribution" />
+   <requires rdf:resource="http://web.resource.org/cc/Notice" />
+   <requires rdf:resource="http://web.resource.org/cc/Attribution" />
+   <permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+   <requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+</License>
+
+</rdf:RDF>
+
+-->
+<!-- /Creative Commons License -->
+
+    <p class="copyright">Portions of this work are &copy;
+      1998-2016
+      by individual bugzilla.org contributors.</p>
+    <p>
+      <span>Last modified October 27, 2016</span>
+      <span><a href="https://github.com/bugzilla/bugzilla.org/commits/master">Site History</a></span>
+    </p>
+  </div>
+</body>
+</html>

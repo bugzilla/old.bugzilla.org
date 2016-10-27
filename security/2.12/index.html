@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+  <title>2.12 Bugzilla Security Advisory :: Bugzilla :: bugzilla.org</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="keywords" content="bugzilla bug track tracking enterprise solution">
+  <link rel="icon" href="/img/bugzilla_icon.png" type="image/png">
+  <link rel="stylesheet" type="text/css" href="/css/print.css" media="print">
+  <link rel="stylesheet" type="text/css" href="/css/base/content.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/base/template.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/css/bugzilla.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/css/cavendish/home.css" title="Cavendish" media="screen">
+</head>
+<body id="www-bugzilla-org" class="homepage">
+  <div id="container">
+    <p class="skipLink"><a href="#mainContent" accesskey="2">Skip to main content</a></p>
+    <div id="header">
+      <h1><a href="/" title="Return to Bugzilla home page" accesskey="1">Bugzilla</a></h1>
+      <div id="tools">
+        <ul id="mainNav">
+          <li><a href="/contribute/" title="How to Help"
+            >Contribute!</a></li>
+          <li><a href="/features/" title="Bugzilla features">Features</a></li>
+          <li><a href="/download/" title="Get Bugzilla for free">Download</a></li>
+          <li><a href="/support/" title="Where to get more help">Support</a></li>
+          <li><a href="/docs/" title="Bugzilla documenation">Docs</a></li>
+          <li><a href="/news/" title="Read about what is happening with Bugzilla">News</a></li>
+          <li><a href="/about/" title="Getting the most out of your online experience">About</a></li>
+        </ul>
+        <!-- closes #textSize-->
+        <form id="search" method="get" action="https://www.google.com/cse">
+          <div id="sf">
+            <label for="q" title="Search bugzilla.org">search bugzilla.org: </label>
+            <input type="hidden" name="cx" value="008043952663535741821:9whwb87ip5a">
+            <input type="text" id="q" name="q" accesskey="s" size="30">
+            <input type="submit" id="submit" value="go">
+          </div>
+        </form>
+      </div>
+     <!-- closes #tools-->
+    </div>
+    <!-- closes #header-->
+    <hr class="hide">
+    <div id="mBody">
+
+        <hr class="hide"><div id="side">
+<ul id="nav">
+<li>
+	<a href="/about/" title="Find out more about Bugzilla."><strong>About</strong></a>
+	<ul>
+		<li><a href="/installation-list/" title="Hundreds of companies and organizations trust Bugzilla.">Who Uses Bugzilla?</a></li>
+		<li><a href="/status/roadmap.html" title="Learn about Bugzilla's future.">Roadmap</a></li>
+		<li><a href="/developers/profiles.html" title="Meet the Bugzilla team.">Meet the Team</a></li>
+		<li><a href="/releases/" title="Information on current and previous releases.">Release Information</a></li>
+	</ul>
+</li>
+<li>
+	<a href="/news/" title="Get the low down on what's happening with the project."><strong>News</strong></a>
+	<ul>
+		<li><a href="http://planet.bugzilla.org" title="View the status of the Bugzilla project.">Planet Bugzilla</a></li>
+		<li><a href="/security/" title="Important updates regarding Bugzilla security.">Security Advisories</a></li>
+        <li><a href="/status/changes.html" title="Detailed list of all the changes between each Bugzilla version">Change Logs</a></li>
+	</ul>
+</li>
+<li>
+        <a href="/download/" title="Download Bugzilla"><strong>Download</strong></a>
+        <ul>
+                <li><a href="https://wiki.mozilla.org/Bugzilla:Addons" title="Third-party Bugzilla extensions">Extensions</a></li>
+                <li><a href="/requirements/">Requirements</a></li>
+        </ul>
+</li>
+<li>
+	<a href="/support/" title="Find out where to get more information and help."><strong>Support</strong></a>
+	<ul>
+                <li><a href="/support/" title="Find out where to get more information and help.">Free Support</a></li>
+                <li><a href="/support/consulting.html" title="Paid support options">Paid Support</a></li>
+		<li><a href="/docs/" title="Read the Bugzilla manual and other important documents.">Documentation</a></li>
+		<li><a href="https://wiki.mozilla.org/Bugzilla" title="Collaboratively updated information about Bugzilla.">Wiki</a></li>
+		<li><a href="/developers/reporting_bugs.html" title="Let us know if there is an error in Bugzilla.">Report a Bug</a></li>
+	</ul>
+</li>
+<li>
+	<a href="/developers/" title="Developer resources">Developer Resources</a>
+</li>
+  <li>
+    <a href="/contribute/" title="Ways you can help Bugzilla"
+    >How To Help Out</a>
+  </li>
+</ul>
+
+<div>
+<p><a href="https://twitter.com/bugzilla">Follow @bugzilla on Twitter</a></p>
+<p><a href="https://www.facebook.com/pages/Bugzilla/1427568330846442">Like Bugzilla on Facebook</a></p>
+<p><a href="https://plus.google.com/u/0/104215203522965843895?prsrc=3">Follow Bugzilla on Google+</a></p>
+</div>
+</div>
+<!-- closes #side -->      <div id="mainContent">
+        <H1>2.12 Bugzilla Security Advisory</H1>
+<PRE>
+Apr 27th, 2001
+Author: Matthew Tuck (matty@chariot.net.au)
+</PRE>
+<H2>Overview</H2>
+<PRE>
+Users of Bugzilla are recommended to either update to version 2.12 of
+Bugzilla, or apply the patches at the end of this advisory.
+
+Several instances where untrusted content could be passed to a system
+call, allowing remote users to run system commands as the web server have
+been fixed.
+
+Furthermore, subsequent to prior advice, the files that it is recommended
+you block from remote access has changed in 2.12.  Please see the release
+notes for more details.
+</PRE>
+<H2>Patches To Apply To 2.10 If Not Upgrading To 2.12</H2>
+<PRE>
+
+diff -u -r1.56 -r1.57
+--- process_bug.cgi	2000/05/08 22:00:38	1.56
++++ process_bug.cgi	2000/05/17 21:29:33	1.57
+@@ -512,7 +512,7 @@
+         $::FORM{'comment'} .= "\n\n*** This bug has been marked as a duplicate of $num ***";
+ 
+         print "&lt;TABLE BORDER=1&gt;&lt;TD&gt;&lt;H2&gt;Notation added to bug $num&lt;/H2&gt;\n";
+-        system("./processmail $num $::FORM{'who'}");
++        system("./processmail", $num, $::FORM{'who'});
+         print "&lt;TD&gt;&lt;A HREF=\"show_bug.cgi?id=$num\"&gt;Go To BUG# $num&lt;/A&gt;&lt;/TABLE&gt;\n";
+ 
+         last SWITCH;
+@@ -901,7 +901,7 @@
+ 
+     foreach my $k (keys(%dependencychanged)) {
+         print "&lt;TABLE BORDER=1&gt;&lt;TD&gt;&lt;H2&gt;Checking for dependency changes on bug $k&lt;/H2&gt;\n";
+-        system("./processmail $k $::FORM{'who'}");
++        system("./processmail", $k, $::FORM{'who'});
+         print "&lt;TD&gt;&lt;A HREF=\"show_bug.cgi?id=$k\"&gt;Go To BUG# $k&lt;/A&gt;&lt;/TABLE&gt;\n";     }
+
+
+diff -u -r1.26 -r1.27
+--- post_bug.cgi	2000/04/26 19:35:51	1.26
++++ post_bug.cgi	2000/05/17 21:29:32	1.27
+@@ -229,7 +229,7 @@
+ }
+ 
+ print "&lt;TABLE BORDER=1&gt;&lt;TD&gt;&lt;H2&gt;Bug $id posted&lt;/H2&gt;\n";
+-system("./processmail $id $::COOKIE{'Bugzilla_login'}");
++system("./processmail", $id, $::COOKIE{'Bugzilla_login'});
+ print "&lt;TD&gt;&lt;A HREF=\"show_bug.cgi?id=$id\"&gt;Back To BUG# $id&lt;/A&gt;&lt;/TABLE&gt;\n";
+ 
+ print "&lt;BR&gt;&lt;A HREF=\"createattachment.cgi?id=$id\"&gt;Attach a file to this bug&lt;/a&gt;\n";
+
+
+diff -u -r1.10 -r1.11
+--- createattachment.cgi	2000/03/07 18:22:50	1.10
++++ createattachment.cgi	2000/05/17 21:29:32	1.11
+@@ -106,7 +106,7 @@
+                   "Created an attachment (id=$attachid)\n$desc\n");
+ 
+     print "&lt;TABLE BORDER=1&gt;&lt;TD&gt;&lt;H2&gt;Attachment to bug $id created&lt;/H2&gt;\n";
+-    system("./processmail $id $::COOKIE{'Bugzilla_login'}");
++    system("./processmail", $id, $::COOKIE{'Bugzilla_login'});
+     print "&lt;TD&gt;&lt;A HREF=\"show_bug.cgi?id=$id\"&gt;Go Back to BUG# $id&lt;/A&gt;&lt;/TABLE&gt;\n";
+ }
+
+
+diff -u -r1.13 -r1.14
+--- backdoor.cgi	2000/03/07 20:03:52	1.13
++++ backdoor.cgi	2000/05/17 21:29:31	1.14
+@@ -175,4 +175,4 @@
+ }
+ 
+ print "Created bugzilla bug $zillaid\n";
+-system("./processmail $zillaid");
++system("./processmail", $zillaid);
+
+
+
+</PRE>
+        
+      </div>
+    </div></div>
+  <!-- closes #container -->
+  <div id="footer">
+    <ul>
+      <li><a href="https://www.mozilla.org/contact/">Contact Us</a></li>
+      <li><a href="https://donate.mozilla.org/page/contribute/bugzilla">Donate</a></li>
+    </ul>
+<!-- Creative Commons License -->
+<p class="copyright">This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/2.0/">Creative Commons License</a>.</p>
+
+<!--
+
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="">
+   <dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+   <license rdf:resource="http://creativecommons.org/licenses/by-sa/2.0/" />
+</Work>
+
+<License rdf:about="http://creativecommons.org/licenses/by-sa/2.0/">
+   <permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+   <permits rdf:resource="http://web.resource.org/cc/Distribution" />
+   <requires rdf:resource="http://web.resource.org/cc/Notice" />
+   <requires rdf:resource="http://web.resource.org/cc/Attribution" />
+   <permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+   <requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+</License>
+
+</rdf:RDF>
+
+-->
+<!-- /Creative Commons License -->
+
+    <p class="copyright">Portions of this work are &copy;
+      1998-2016
+      by individual bugzilla.org contributors.</p>
+    <p>
+      <span>Last modified October 27, 2016</span>
+      <span><a href="https://github.com/bugzilla/bugzilla.org/commits/master">Site History</a></span>
+    </p>
+  </div>
+</body>
+</html>

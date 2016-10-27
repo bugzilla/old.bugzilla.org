@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>
+Bugzilla::WebService::BugUserLastVisit</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" title="style" type="text/css" href="../.././../../../../style.css" media="all" >
+
+</head>
+  <body id="pod">
+<p class="backlinktop"><b><a name="___top" href="../../index.html" accesskey="1" title="All Documents">&lt;&lt;</a></b></p>
+<h1>Bugzilla::WebService::BugUserLastVisit</h1>
+<div class='indexgroup'>
+<ul   class='indexList indexList1'>
+  <li class='indexItem indexItem1'><a href='#NAME'>NAME</a>
+  <li class='indexItem indexItem1'><a href='#METHODS'>METHODS</a>
+  <ul   class='indexList indexList2'>
+    <li class='indexItem indexItem2'><a href='#update'>update</a>
+    <li class='indexItem indexItem2'><a href='#get'>get</a>
+  </ul>
+</ul>
+</div>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="NAME"
+>NAME</a></h1>
+
+<p>Bugzilla::WebService::BugUserLastVisit - Find and Store the last time a user visited a bug.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="METHODS"
+>METHODS</a></h1>
+
+<p>See <a href="../../Bugzilla/WebService.html" class="podlinkpod"
+>Bugzilla::WebService</a> for a description of how parameters are passed,
+and what <b>STABLE</b>,
+<b>UNSTABLE</b>,
+and <b>EXPERIMENTAL</b> mean.</p>
+
+<p>Although the data input and output is the same for JSONRPC,
+XMLRPC and REST,
+the directions for how to access the data via REST is noted in each method where applicable.</p>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="update"
+>update</a></h2>
+
+<p><b>EXPERIMENTAL</b></p>
+
+<dl>
+<dt><a name="Description"
+><b>Description</b></a></dt>
+
+<dd>
+<p>Update the last visit time for the specified bug and current user.</p>
+
+<dt><a name="REST"
+><b>REST</b></a></dt>
+
+<dd>
+<p>To add a single bug id:</p>
+
+<pre  class="code">    POST /rest/bug_user_last_visit/&#60;bug-id&#62;</pre>
+
+<p>Tp add one or more bug ids at once:</p>
+
+<pre  class="code">    POST /rest/bug_user_last_visit</pre>
+
+<p>The returned data format is the same as below.</p>
+
+<dt><a name="Params"
+><b>Params</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="ids_(array)_-_One_or_more_bug_ids_to_add."
+><code  class="code">ids</code> (array) - One or more bug ids to add.</a></dt>
+</dl>
+
+<dt><a name="Returns"
+><b>Returns</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="array_-_An_array_of_hashes_containing_the_following:"
+><code  class="code">array</code> - An array of hashes containing the following:</a></dt>
+
+<dd>
+<dl>
+<dt><a name="id_-_(int)_The_bug_id."
+><code  class="code">id</code> - (int) The bug id.</a></dt>
+
+<dd>
+<dt><a name="last_visit_ts_-_(string)_The_timestamp_the_user_last_visited_the_bug."
+><code  class="code">last_visit_ts</code> - (string) The timestamp the user last visited the bug.</a></dt>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+
+<h2><a class='u' href='#___top' title='click to go to top of document'
+name="get"
+>get</a></h2>
+
+<p><b>EXPERIMENTAL</b></p>
+
+<dl>
+<dt><a name="Description"
+><b>Description</b></a></dt>
+
+<dd>
+<p>Get the last visited timestamp for one or more specified bug ids.</p>
+
+<dt><a name="REST"
+><b>REST</b></a></dt>
+
+<dd>
+<p>To return the last visited timestamp for a single bug id:</p>
+
+<pre  class="code">    GET /rest/bug_user_last_visit/&#60;bug-id&#62;</pre>
+
+<dt><a name="Params"
+><b>Params</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="ids_(integer)_-_One_or_more_optional_bug_ids_to_get."
+><code  class="code">ids</code> (integer) - One or more optional bug ids to get.</a></dt>
+</dl>
+
+<dt><a name="Returns"
+><b>Returns</b></a></dt>
+
+<dd>
+<dl>
+<dt><a name="array_-_An_array_of_hashes_containing_the_following:"
+><code  class="code">array</code> - An array of hashes containing the following:</a></dt>
+
+<dd>
+<dl>
+<dt><a name="id_-_(int)_The_bug_id."
+><code  class="code">id</code> - (int) The bug id.</a></dt>
+
+<dd>
+<dt><a name="last_visit_ts_-_(string)_The_timestamp_the_user_last_visited_the_bug."
+><code  class="code">last_visit_ts</code> - (string) The timestamp the user last visited the bug.</a></dt>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="backlinkbottom"><b><a name="___bottom" href="../../index.html" title="All Documents">&lt;&lt;</a></b></p>
+
+<!-- end doc -->
+
+</body></html>

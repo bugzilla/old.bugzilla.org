@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>
+Bugzilla::WebService::Server</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" title="style" type="text/css" href="../.././../../../../style.css" media="all" >
+
+</head>
+  <body id="pod">
+<p class="backlinktop"><b><a name="___top" href="../../index.html" accesskey="1" title="All Documents">&lt;&lt;</a></b></p>
+<h1>Bugzilla::WebService::Server</h1>
+<div class='indexgroup'>
+<ul   class='indexList indexList1'>
+  <li class='indexItem indexItem1'><a href='#NAME'>NAME</a>
+  <li class='indexItem indexItem1'><a href='#DESCRIPTION'>DESCRIPTION</a>
+  <li class='indexItem indexItem1'><a href='#FUNCTIONS'>FUNCTIONS</a>
+  <li class='indexItem indexItem1'><a href='#SEE_ALSO'>SEE ALSO</a>
+  <li class='indexItem indexItem1'><a href='#Methods_in_need_of_POD'>Methods in need of POD</a>
+</ul>
+</div>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="NAME"
+>NAME</a></h1>
+
+<p>Bugzilla::WebService::Server - Base server class for the WebService API</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="DESCRIPTION"
+>DESCRIPTION</a></h1>
+
+<p>Bugzilla::WebService::Server is the base class for the individual WebService API servers such as XMLRPC,
+JSONRPC,
+and REST.
+You never actually create a Bugzilla::WebService::Server directly,
+you only make subclasses of it.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="FUNCTIONS"
+>FUNCTIONS</a></h1>
+
+<dl>
+<dt><a name="bz_etag"
+><code  class="code">bz_etag</code></a></dt>
+
+<dd>
+<p>This function is used to store an ETag value that will be used when returning the data by the different API server modules such as XMLRPC,
+or REST.
+The individual webservice methods can also set the value earlier in the process if needed such as before a unique update token is added.
+If a value is not set earlier,
+an etag will automatically be created using the returned data except in some cases when an error has occurred.</p>
+</dd>
+</dl>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="SEE_ALSO"
+>SEE ALSO</a></h1>
+
+<p><a href="../../XMLRPC.html" class="podlinkpod"
+>Bugzilla::WebService::Server::XMLRPC</a>,
+<a href="../../JSONRPC.html" class="podlinkpod"
+>Bugzilla::WebService::Server::JSONRPC</a>,
+and <a href="../../REST.html" class="podlinkpod"
+>Bugzilla::WebService::Server::REST</a>.</p>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="Methods_in_need_of_POD"
+><b>Methods in need of POD</b></a></h1>
+
+<dl>
+<dt><a name="handle_login"
+>handle_login</a></dt>
+
+<dd>
+<dt><a name="datetime_format_outbound"
+>datetime_format_outbound</a></dt>
+
+<dd>
+<dt><a name="datetime_format_inbound"
+>datetime_format_inbound</a></dt>
+</dl>
+<p class="backlinkbottom"><b><a name="___bottom" href="../../index.html" title="All Documents">&lt;&lt;</a></b></p>
+
+<!-- end doc -->
+
+</body></html>
